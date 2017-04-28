@@ -5,14 +5,15 @@
 # Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2015.
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2016-2017.
 # Bernd Homuth <dev@hmt.im>, 2016.
+# Christian Stadelmann <gnomel10n@genodeftest.de>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-todo master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "todo&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-04-25 14:22+0000\n"
-"PO-Revision-Date: 2017-04-23 20:00+0100\n"
-"Last-Translator: Christian Stadelmann\n"
+"POT-Creation-Date: 2017-04-27 00:25+0000\n"
+"PO-Revision-Date: 2017-04-28 11:40+0200\n"
+"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +89,7 @@ msgstr "Verwalten von persönlichen Aufgaben"
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Todo.desktop.in:7
 msgid "org.gnome.Todo"
-msgstr ""
+msgstr "org.gnome.Todo"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Todo.desktop.in:13
@@ -346,7 +347,7 @@ msgstr "Beim Hochfahren starten"
 
 #: plugins/background/ui/preferences.ui:66
 msgid "Run To Do automatically when you log in"
-msgstr "Aufgaben beim Einloggen automatisch starten"
+msgstr "Aufgaben beim Anmelden automatisch starten"
 
 #: plugins/background/ui/preferences.ui:122
 msgid "Show Notifications"
