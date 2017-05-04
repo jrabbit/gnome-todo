@@ -312,7 +312,7 @@ msgstr "Ili samo čuvajte vaše zadatke na ovom računaru"
 #, c-format
 msgid "%1$s and one more task"
 msgid_plural "%1$s and %2$d other tasks"
-msgstr[0] "%1$s i još jedan zadatak"
+msgstr[0] "%1$s i još %2$d zadatak"
 msgstr[1] "%1$s i još %2$d zadatka"
 msgstr[2] "%1$s i još %2$d zadataka"
 msgstr[3] "%1$s i još jedan zadatak"
