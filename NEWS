@@ -1,4 +1,26 @@
 ================
+Version 3.24.1
+================
+
+Project:
+        * Allow using right-click to select task lists (Linus Probert)
+        * Fix scheduled panel calculation of date span
+        * Fix crash when creating new task
+
+Translations:
+        * Brazilian Portuguese (Rafael Fontenelle)
+        * German (Florian Heiser, Mario Blättermann)
+        * Hungarian (Gábor Kelemen)
+        * Indonesian (Kukuh Syafaat)
+        * Italian (Gianvito Cavasoli)
+        * Kazakh (Baurzhan Muftakhidinov)
+        * Lithuanian (Aurimas Černius)
+        * Polish (Piotr Drąg)
+        * Serbian (Мирослав Николић)
+        * Slovak (Dušan Kazik)
+        * Swedish (Anders Jonsson)
+
+================
 Version 3.24.0.1
 ================
 
