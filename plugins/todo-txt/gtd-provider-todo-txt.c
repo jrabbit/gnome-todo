@@ -349,6 +349,26 @@ gtd_provider_todo_txt_load_source (GtdProviderTodoTxt *self)
 }
 
 static void
+gtd_provider_todo_txt_load_source_monitor (GtdProviderTodoTxt *self)
+{
+  GError *error = NULL;
+
+  self->monitor = g_file_monitor_file (self->source_file,
+                                       G_FILE_MONITOR_WATCH_MOVES,
+                                       NULL,
+                                       &error);
+
+  if (error)
+    {
+      gtd_manager_emit_error_message (gtd_manager_get_default (),
+                                      _("Error while opening the file monitor. Todo.txt will not be monitored"),
+                                      error->message);
+      g_clear_error (&error);
+      return;
+    }
+}
+
+static void
 gtd_provider_todo_txt_create_task (GtdProvider *provider,
                                    GtdTask     *task)
 {
@@ -366,9 +386,6 @@ gtd_provider_todo_txt_create_task (GtdProvider *provider,
   error = write_error = NULL;
 
   g_return_if_fail (G_IS_FILE (self->source_file));
-
-  if (self->monitor)
-    g_signal_handlers_block_by_func (self->monitor, gtd_plugin_todo_txt_monitor_source, self);
 
   list = gtd_task_get_list (task);
   list_name = gtd_task_list_get_name (list);
@@ -420,9 +437,6 @@ gtd_provider_todo_txt_create_task (GtdProvider *provider,
                          NULL,
                          NULL);
 out:
-  if (self->monitor)
-    g_signal_handlers_unblock_by_func (self->monitor, gtd_plugin_todo_txt_monitor_source, self);
-
   g_free (task_line);
 }
 
@@ -445,9 +459,6 @@ gtd_provider_todo_txt_update_task (GtdProvider *provider,
   self = GTD_PROVIDER_TODO_TXT (provider);
   line_number = 0;
   error = write_error = line_read_error = NULL;
-
-  if (self->monitor)
-    g_signal_handlers_block_by_func (self->monitor, gtd_plugin_todo_txt_monitor_source, self);
 
   line_to_update = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (task), "line"));
 
@@ -552,9 +563,6 @@ gtd_provider_todo_txt_update_task (GtdProvider *provider,
   g_output_stream_close (G_OUTPUT_STREAM (writer),
                          NULL,
                          NULL);
-
-  if (self->monitor)
-    g_signal_handlers_unblock_by_func (self->monitor, gtd_plugin_todo_txt_monitor_source, self);
 }
 
 static void
@@ -579,9 +587,6 @@ gtd_provider_todo_txt_remove_task (GtdProvider *provider,
   line_number = 0;
 
   g_return_if_fail (G_IS_FILE (self->source_file));
-
-  if (self->monitor)
-    g_signal_handlers_block_by_func (self->monitor, gtd_plugin_todo_txt_monitor_source, self);
 
   line_number_to_remove = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (task), "line"));
   readstream = g_file_read (self->source_file,
@@ -666,9 +671,6 @@ gtd_provider_todo_txt_remove_task (GtdProvider *provider,
   g_output_stream_close (G_OUTPUT_STREAM (writer),
                          NULL,
                          NULL);
-
-  if (self->monitor)
-    g_signal_handlers_unblock_by_func(self->monitor, gtd_plugin_todo_txt_monitor_source, self);
 }
 
 static void
@@ -687,9 +689,6 @@ gtd_provider_todo_txt_create_task_list (GtdProvider *provider,
   error = write_error = NULL;
 
   g_return_if_fail (G_IS_FILE (self->source_file));
-
-  if (self->monitor)
-    g_signal_handlers_block_by_func (self->monitor, gtd_plugin_todo_txt_monitor_source, self);
 
   write_stream = g_file_append_to (self->source_file,
                                   G_FILE_CREATE_REPLACE_DESTINATION,
@@ -734,9 +733,6 @@ gtd_provider_todo_txt_create_task_list (GtdProvider *provider,
 
 out:
   g_free (put);
-
-  if (self->monitor)
-    g_signal_handlers_unblock_by_func (self->monitor, gtd_plugin_todo_txt_monitor_source, self);
 }
 
 static void
@@ -759,9 +755,6 @@ gtd_provider_todo_txt_update_task_list (GtdProvider *provider,
   error = write_error = NULL;
 
   g_return_if_fail (G_IS_FILE (self->source_file));
-
-  if (self->monitor)
-    g_signal_handlers_block_by_func (self->monitor, gtd_plugin_todo_txt_monitor_source, self);
 
   stored_list_name = g_object_get_data (G_OBJECT (list), "line");
   current_list_name = gtd_task_list_get_name (list);
@@ -870,9 +863,6 @@ gtd_provider_todo_txt_update_task_list (GtdProvider *provider,
 
   g_output_stream_close (G_OUTPUT_STREAM (outstream), NULL, NULL);
   g_input_stream_close (G_INPUT_STREAM (readstream), NULL, NULL);
-
-  if (self->monitor)
-    g_signal_handlers_unblock_by_func (self->monitor, gtd_plugin_todo_txt_monitor_source, self);
 }
 
 static void
@@ -897,9 +887,6 @@ gtd_provider_todo_txt_remove_task_list (GtdProvider *provider,
   list_name = gtd_task_list_get_name (list);
 
   g_return_if_fail (G_IS_FILE (self->source_file));
-
-  if (self->monitor)
-    g_signal_handlers_block_by_func(self->monitor, gtd_plugin_todo_txt_monitor_source, self);
 
   readstream = g_file_read (self->source_file,
                             NULL,
@@ -978,9 +965,6 @@ gtd_provider_todo_txt_remove_task_list (GtdProvider *provider,
   g_output_stream_close (G_OUTPUT_STREAM (writer),
                          NULL,
                          NULL);
-
-  if (self->monitor)
-    g_signal_handlers_unblock_by_func (self->monitor, gtd_plugin_todo_txt_monitor_source, self);
 }
 
 static GList*
@@ -1100,6 +1084,7 @@ gtd_provider_todo_txt_set_property (GObject      *object,
     case PROP_SOURCE:
       self->source_file = g_value_dup_object (value);
       gtd_provider_todo_txt_load_source (self);
+      gtd_provider_todo_txt_load_source_monitor (self);
       break;
 
     default:
@@ -1143,13 +1128,4 @@ gtd_provider_todo_txt_init (GtdProviderTodoTxt *self)
 
   /* icon */
   self->icon = G_ICON (g_themed_icon_new_with_default_fallbacks ("computer-symbolic"));
-}
-
-void
-gtd_provider_todo_txt_set_monitor (GtdProviderTodoTxt *self,
-                                   GFileMonitor       *monitor)
-{
-  g_return_if_fail (GTD_IS_PROVIDER_TODO_TXT (self));
-
-  self->monitor = monitor;
 }
