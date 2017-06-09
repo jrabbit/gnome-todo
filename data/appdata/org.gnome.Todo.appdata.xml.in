@@ -51,6 +51,18 @@
   </kudos>
 
   <releases>
+    <release date="2017-06-08" version="3.24.2">
+      <description>
+        <p>
+          This is the third stable release for GNOME To Do. It enables Todo.txt
+          plugin by default, improve the Scheduled panel and ensure that To Do
+          window always has a valid icon set.
+        </p>
+        <p>This release also updates translations, and adds new translations.</p>
+        <p>Thanks to all the contributors that worked on GNOME To Do!</p>
+      </description>
+    </release>
+
     <release date="2017-05-09" version="3.24.1">
       <description>
         <p>

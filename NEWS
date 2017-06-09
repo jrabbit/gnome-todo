@@ -1,4 +1,17 @@
 ================
+Version 3.24.2
+================
+
+Project:
+        * Enable Todo.txt plugin by default
+        * Vast improvements to Todo.txt plugin (Rohit Kaushik)
+        * Set default application icon (Denis Ollier)
+        * Many fixes to the Scheduled panel
+
+Translations:
+        * Belarusian (Yuras Shumovich)
+
+================
 Version 3.24.1
 ================
 

@@ -1,6 +1,6 @@
 dnl -*- mode: m4 -*-
 AC_PREREQ([2.69])
-AC_INIT([gnome-todo],[3.24.1],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-todo],[gnome-todo])
+AC_INIT([gnome-todo],[3.24.2],[https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-todo],[gnome-todo])
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_SRCDIR([src/main.c])
