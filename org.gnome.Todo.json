@@ -95,6 +95,15 @@
             ]
         },
         {
+            "name": "rest",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "git://git.gnome.org/librest"
+                }
+            ]
+        },
+        {
             "name": "gnome-todo",
             "sources": [
                 {
