@@ -5,6 +5,7 @@
 # Muhammet Kara <muhammetk@gmail.com>, 2015, 2016.
 # Çağatay Yiğit Şahin <cyigitsahin@outlook.com>, 2017.
 # Furkan Ahmet Kara <furkanahmetkara.fk@gmail.com>, 2017.
+# İbrahim Aydın <brhm.1995@hotmail.com>, 2017.
 # Emin Tufan Çetin <etcetin@gmail.com>, 2017.
 #
 msgid ""
@@ -12,10 +13,10 @@ msgstr ""
 "Project-Id-Version: gnome-todo master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "todo&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-05-24 21:26+0000\n"
-"PO-Revision-Date: 2017-05-26 00:05+0300\n"
+"POT-Creation-Date: 2017-07-14 02:26+0000\n"
+"PO-Revision-Date: 2017-07-21 16:36+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
-"Language-Team: Türkçe <>\n"
+"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Todo.appdata.xml.in:7
 #: data/org.gnome.Todo.desktop.in:3 src/gtd-application.c:152
-#: src/gtd-application.c:178 src/gtd-window.c:950
+#: src/gtd-application.c:178 src/gtd-window.c:950 src/gtd-window.c:985
 msgid "To Do"
 msgstr "To Do"
 
@@ -440,37 +441,37 @@ msgstr "Bu Bilgisayarda"
 msgid "Error creating new task list"
 msgstr "Yeni görev listesi oluşturulurken hata"
 
-#: plugins/scheduled-panel/gtd-panel-scheduled.c:90 src/gtd-edit-pane.c:217
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:93 src/gtd-edit-pane.c:217
 #: src/gtd-task-row.c:374
 msgid "No date set"
 msgstr "Bir tarih ayarlanmadı"
 
-#: plugins/scheduled-panel/gtd-panel-scheduled.c:96 src/gtd-task-row.c:352
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:101 src/gtd-task-row.c:352
 #, c-format
 msgid "Yesterday"
 msgid_plural "%d days ago"
 msgstr[0] "%d gün önce"
 
 #. Setup a title
-#: plugins/scheduled-panel/gtd-panel-scheduled.c:100
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:105
 #: plugins/score/score/__init__.py:95 plugins/today-panel/gtd-panel-today.c:132
 #: plugins/today-panel/gtd-panel-today.c:137
 #: plugins/today-panel/gtd-panel-today.c:271 src/gtd-task-row.c:344
 msgid "Today"
 msgstr "Bugün"
 
-#: plugins/scheduled-panel/gtd-panel-scheduled.c:104 src/gtd-task-row.c:348
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:109 src/gtd-task-row.c:348
 msgid "Tomorrow"
 msgstr "Yarın"
 
 #. Setup a title
-#: plugins/scheduled-panel/gtd-panel-scheduled.c:357
-#: plugins/scheduled-panel/gtd-panel-scheduled.c:362
-#: plugins/scheduled-panel/gtd-panel-scheduled.c:499
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:365
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:370
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:507
 msgid "Scheduled"
 msgstr "Zamanlanmış"
 
-#: plugins/scheduled-panel/gtd-panel-scheduled.c:504
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:512
 #: plugins/today-panel/gtd-panel-today.c:276
 #: plugins/unscheduled-panel/unscheduled-panel/__init__.py:52
 #: src/views/gtd-list-selector-panel.c:716
@@ -481,17 +482,55 @@ msgstr "Tamamlanan görevleri temizle…"
 msgid "No task completed today"
 msgstr "Bugün tamamlanmış görev yok"
 
-#: plugins/todo-txt/gtd-plugin-todo-txt.c:84
-#: plugins/todo-txt/gtd-plugin-todo-txt.c:130
-#: plugins/todo-txt/gtd-plugin-todo-txt.c:231
+#: plugins/todoist/gtd-provider-todoist.c:103
+msgid "Todoist"
+msgstr "Todoist"
+
+#: plugins/todoist/gtd-provider-todoist.c:183
+#: plugins/todoist/gtd-provider-todoist.c:415
+#| msgid "Error loading task manager"
+msgid "Error loading Todoist tasks"
+msgstr "Todoist görevleri yüklenirken hata"
+
+#: plugins/todoist/gtd-provider-todoist.c:198
+#| msgid "Add a Todoist account"
+msgid "Error fetching Todoist account key"
+msgstr "Todoist hesap anahtarı alınırken hata"
+
+#: plugins/todoist/gtd-provider-todoist.c:199
+#| msgid "Please make sure the date in Todo.txt is valid."
+msgid "Please ensure that Todoist account is correctly configured."
+msgstr "Lütfen Todoist hesabının doğru yapılandırıldığından emin olun."
+
+#: plugins/todoist/gtd-provider-todoist.c:412
+#, c-format
+msgid "Bad status code (%d) received. Please check your connection."
+msgstr "Kötü durum kodu (%d) alındı. Lütfen bağlantınızı denetleyin."
+
+#: plugins/todoist/gtd-provider-todoist.c:768
+#, c-format
+#| msgid "Todoist"
+msgid "Todoist: %s"
+msgstr "Todoist: %s"
+
+#: plugins/todoist/ui/preferences.ui:80
+msgid "No Todoist accounts found"
+msgstr "Hiçbir Todoist hesabı bulunamadı"
+
+#: plugins/todoist/ui/preferences.ui:89
+msgid "Add a Todoist account"
+msgstr "Todoist hesabı ekle"
+
+#: plugins/todo-txt/gtd-plugin-todo-txt.c:142
+#: plugins/todo-txt/gtd-plugin-todo-txt.c:183
 msgid "Cannot create Todo.txt file"
 msgstr "Todo.txt dosyası oluşturulamıyor"
 
-#: plugins/todo-txt/gtd-plugin-todo-txt.c:337
+#: plugins/todo-txt/gtd-plugin-todo-txt.c:307
 msgid "Select a Todo.txt-formatted file:"
-msgstr "Todo.txt-biçimli dosya seç:"
+msgstr "Todo.txt biçimli dosya seç:"
 
-#: plugins/todo-txt/gtd-plugin-todo-txt.c:338
+#: plugins/todo-txt/gtd-plugin-todo-txt.c:308
 msgid "Select a file"
 msgstr "Bir dosya seç"
 
@@ -686,11 +725,14 @@ msgstr "Seçili görev listeleri kaldırılsın mı?"
 
 #: src/views/gtd-list-selector-panel.c:387
 msgid "Once removed, the task lists cannot be recovered."
-msgstr "Görev listeleri bir kez kaldırıldığında tekrar geri getirilemez."
+msgstr "Görev listeleri bir kez kaldırıldığında kurtarılamaz."
 
 #: src/views/gtd-list-selector-panel.c:399
 msgid "Remove task lists"
 msgstr "Görev listelerini kaldır"
+
+#~ msgid "Todoist Plugin for GNOME To Do"
+#~ msgstr "GNOME To Do için Todoist eklentisi"
 
 #~ msgid "Error while adding a task to Todo.txt"
 #~ msgstr "Todo.txt'ye görev eklenirken hata"
