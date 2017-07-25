@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-todo.master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "todo&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-06-09 19:13+0000\n"
-"PO-Revision-Date: 2017-06-19 11:44+0200\n"
+"POT-Creation-Date: 2017-07-14 02:26+0000\n"
+"PO-Revision-Date: 2017-07-24 15:44+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Todo.appdata.xml.in:7
 #: data/org.gnome.Todo.desktop.in:3 src/gtd-application.c:152
-#: src/gtd-application.c:178 src/gtd-window.c:950
+#: src/gtd-application.c:178 src/gtd-window.c:950 src/gtd-window.c:985
 msgid "To Do"
 msgstr "Tareas pendientes"
 
@@ -486,18 +486,38 @@ msgstr "Limpiar las tareas completadas…"
 msgid "No task completed today"
 msgstr "Hoy no se ha completado ninguna tarea"
 
-#: plugins/todoist/gtd-provider-todoist.c:67
-#| msgid "Todo.txt"
+#: plugins/todoist/gtd-provider-todoist.c:103
 msgid "Todoist"
 msgstr "Todoist"
 
-#: plugins/todoist/gtd-provider-todoist.c:73
-#| msgid "First run of GNOME To Do"
-msgid "Todoist Plugin for GNOME To Do"
-msgstr "Complemento de Todoist para Tareas pendientes de GNOME"
+#: plugins/todoist/gtd-provider-todoist.c:183
+#: plugins/todoist/gtd-provider-todoist.c:415
+#| msgid "Error loading task manager"
+msgid "Error loading Todoist tasks"
+msgstr "Error al cargar las tareas de Todoist"
+
+#: plugins/todoist/gtd-provider-todoist.c:198
+#| msgid "Add a Todoist account"
+msgid "Error fetching Todoist account key"
+msgstr "Error al obtener la clave de la cuenta de Todoist"
+
+#: plugins/todoist/gtd-provider-todoist.c:199
+#| msgid "Please make sure the date in Todo.txt is valid."
+msgid "Please ensure that Todoist account is correctly configured."
+msgstr "Asegúrese de que la cuenta de Todoist está correctamente configurada."
+
+#: plugins/todoist/gtd-provider-todoist.c:412
+#, c-format
+msgid "Bad status code (%d) received. Please check your connection."
+msgstr "Código de estado recibido incorrecto (%d). Compruebe su conexión."
+
+#: plugins/todoist/gtd-provider-todoist.c:768
+#, c-format
+#| msgid "Todoist"
+msgid "Todoist: %s"
+msgstr "Todoist: %s"
 
 #: plugins/todoist/ui/preferences.ui:80
-#| msgid "No tasks found"
 msgid "No Todoist accounts found"
 msgstr "No se han encontrado cuentas de Todoist"
 
@@ -713,6 +733,10 @@ msgstr "Una vez eliminada, la lista de tareas no se podrá recuperar."
 #: src/views/gtd-list-selector-panel.c:399
 msgid "Remove task lists"
 msgstr "Eliminar lista de tareas"
+
+#~| msgid "First run of GNOME To Do"
+#~ msgid "Todoist Plugin for GNOME To Do"
+#~ msgstr "Complemento de Todoist para Tareas pendientes de GNOME"
 
 #~ msgid "Error while adding a task to Todo.txt"
 #~ msgstr "Error al añadir una tarea a Todo.txt"
