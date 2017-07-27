@@ -8,20 +8,20 @@ msgstr ""
 "Project-Id-Version: gnome-todo master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "todo&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-06-08 19:52+0000\n"
-"PO-Revision-Date: 2017-06-17 13:25+0500\n"
+"POT-Creation-Date: 2017-07-14 02:26+0000\n"
+"PO-Revision-Date: 2017-07-27 16:59+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 1.8.12\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: data/appdata/org.gnome.Todo.appdata.xml.in:7
 #: data/org.gnome.Todo.desktop.in:3 src/gtd-application.c:152
-#: src/gtd-application.c:178 src/gtd-window.c:950
+#: src/gtd-application.c:178 src/gtd-window.c:950 src/gtd-window.c:985
 msgid "To Do"
 msgstr "To Do"
 
@@ -478,14 +478,32 @@ msgstr "Аяқталған тапсырмаларды тазарту…"
 msgid "No task completed today"
 msgstr "Бүгін аяқталған тапсырмалар жоқ"
 
-#: plugins/todoist/gtd-provider-todoist.c:67
-#| msgid "Todo.txt"
+#: plugins/todoist/gtd-provider-todoist.c:103
 msgid "Todoist"
 msgstr "Todoist"
 
-#: plugins/todoist/gtd-provider-todoist.c:73
-msgid "Todoist Plugin for GNOME To Do"
-msgstr "GNOME To Do үшін Todoist плагині"
+#: plugins/todoist/gtd-provider-todoist.c:183
+#: plugins/todoist/gtd-provider-todoist.c:415
+msgid "Error loading Todoist tasks"
+msgstr "Todoist тапсырмаларын жүктеу қатесі"
+
+#: plugins/todoist/gtd-provider-todoist.c:198
+msgid "Error fetching Todoist account key"
+msgstr "Todoist тіркелгісінің кілтін алу қатесу"
+
+#: plugins/todoist/gtd-provider-todoist.c:199
+msgid "Please ensure that Todoist account is correctly configured."
+msgstr "Todoist тіркелгісінің дұрыс бапталғанын тексеріңіз."
+
+#: plugins/todoist/gtd-provider-todoist.c:412
+#, c-format
+msgid "Bad status code (%d) received. Please check your connection."
+msgstr "Жарамсыз қалып-күй коды алынды (%d). Байланысыңызды тексеріңіз."
+
+#: plugins/todoist/gtd-provider-todoist.c:768
+#, c-format
+msgid "Todoist: %s"
+msgstr "Todoist: %s"
 
 #: plugins/todoist/ui/preferences.ui:80
 msgid "No Todoist accounts found"
@@ -703,6 +721,9 @@ msgstr "Өшірілсе, тапсырмалар тізімін қалпына �
 #: src/views/gtd-list-selector-panel.c:399
 msgid "Remove task lists"
 msgstr "Тапсырмалар тізімдерін өшіру"
+
+#~ msgid "Todoist Plugin for GNOME To Do"
+#~ msgstr "GNOME To Do үшін Todoist плагині"
 
 #~ msgid "Error while adding a task to Todo.txt"
 #~ msgstr "Todo.txt файлына тапсырманы қосу қатесі"
