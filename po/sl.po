@@ -7,10 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-todo master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"todo&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-08-21 22:00+0200\n"
-"PO-Revision-Date: 2016-08-21 22:02+0200\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"todo&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-07-28 12:06+0200\n"
+"PO-Revision-Date: 2017-07-28 12:12+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl\n"
@@ -20,11 +20,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.1\n"
 
 #: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:1
 #: ../data/org.gnome.Todo.desktop.in.in.h:1 ../src/gtd-application.c:123
-#: ../src/gtd-application.c:149 ../src/gtd-window.c:955
+#: ../src/gtd-application.c:149 ../src/gtd-window.c:940
 msgid "To Do"
 msgstr "To Do"
 
@@ -34,9 +34,35 @@ msgstr "Upravljalnik nalog za GNOME"
 
 #: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:3
 msgid ""
-"GNOME To Do is a simple task management application designed to integrate "
-"with GNOME."
-msgstr "Program GNOME To Do je enostaven program za upravljanje nalog"
+"GNOME To Do is a task management application designed to integrate with "
+"GNOME. It is extensible through plugins and supports custom task providers."
+msgstr ""
+"Program GNOME To Do je enostaven program za vodenje in opravljanje nalog. "
+"Razširljiv je z različnimi vstavki in podpira ponudnike nalog po meri."
+
+#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:4
+msgid "GNOME To Do with the Dark theme variant"
+msgstr "Različica programa GNOME ToDo v temni izvedbi"
+
+#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:5
+msgid "Editing a tasklist with GNOME To Do"
+msgstr "Urejanje seznama nalog s programom GNOME ToDo"
+
+#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:6
+msgid "Task lists displayed on grid mode"
+msgstr "Seznami nalog prikazani na mrežni način"
+
+#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:7
+msgid "Task lists displayed on list mode"
+msgstr "Seznami nalog prikazani na seznamski način"
+
+#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:8
+msgid "Available plugins for GNOME To Do"
+msgstr "Razpoložljivi vstavki za GNome ToDo"
+
+#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:9
+msgid "Visualizing tasks for today on GNOME To Do's Today panel"
+msgstr "Predočenje nalog za današnji dan na oknu dneva"
 
 #: ../data/gtk/menus.ui.h:1
 msgid "New List…"
@@ -125,49 +151,69 @@ msgstr "Trenutni izbirnik seznama"
 msgid "The current list selector. Can be 'grid' or 'list'."
 msgstr "Trenutni izbirnik seznama je lahko ali 'mreža' ali 'seznam'."
 
-#: ../data/ui/edit-pane.ui.h:1 ../plugins/eds/edit-pane.ui.h:1
-#: ../src/gtd-window.c:553
+#: ../data/ui/edit-pane.ui.h:1 ../plugins/eds/edit-pane.ui.h:10
+msgctxt "taskdate"
+msgid "None"
+msgstr "brez"
+
+#: ../data/ui/edit-pane.ui.h:2 ../plugins/eds/edit-pane.ui.h:1
+#: ../src/gtd-window.c:542
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: ../data/ui/edit-pane.ui.h:2 ../plugins/eds/edit-pane.ui.h:2
+#: ../data/ui/edit-pane.ui.h:3 ../plugins/eds/edit-pane.ui.h:2
 msgid "Notes"
 msgstr "Opombe"
 
-#: ../data/ui/edit-pane.ui.h:3 ../plugins/eds/edit-pane.ui.h:3
+#: ../data/ui/edit-pane.ui.h:4 ../plugins/eds/edit-pane.ui.h:3
 msgid "Due Date"
 msgstr "Datum zapadlosti"
 
-#: ../data/ui/edit-pane.ui.h:4 ../plugins/eds/edit-pane.ui.h:4
+#: ../data/ui/edit-pane.ui.h:5 ../plugins/eds/edit-pane.ui.h:4
 msgid "Priority"
 msgstr "Prednost"
 
-#: ../data/ui/edit-pane.ui.h:5 ../plugins/eds/edit-pane.ui.h:5
+#: ../data/ui/edit-pane.ui.h:6 ../plugins/eds/edit-pane.ui.h:5
 msgctxt "taskpriority"
 msgid "None"
 msgstr "brez"
 
-#: ../data/ui/edit-pane.ui.h:6 ../plugins/eds/edit-pane.ui.h:6
+#: ../data/ui/edit-pane.ui.h:7 ../plugins/eds/edit-pane.ui.h:6
 msgid "Low"
 msgstr "Nizka"
 
-#: ../data/ui/edit-pane.ui.h:7 ../plugins/eds/edit-pane.ui.h:7
+#: ../data/ui/edit-pane.ui.h:8 ../plugins/eds/edit-pane.ui.h:7
 msgid "Medium"
 msgstr "Srednja"
 
-#: ../data/ui/edit-pane.ui.h:8 ../plugins/eds/edit-pane.ui.h:8
+#: ../data/ui/edit-pane.ui.h:9 ../plugins/eds/edit-pane.ui.h:8
 msgid "High"
 msgstr "Visoka"
 
-#: ../data/ui/edit-pane.ui.h:9 ../data/ui/list-selector-panel.ui.h:2
+#: ../data/ui/edit-pane.ui.h:10 ../data/ui/list-selector-panel.ui.h:2
 #: ../plugins/eds/edit-pane.ui.h:9
 msgid "Delete"
 msgstr "Izbriši"
 
-#: ../data/ui/edit-pane.ui.h:10 ../plugins/eds/edit-pane.ui.h:10
-msgctxt "taskdate"
-msgid "None"
-msgstr "brez"
+#. Setup a title
+#: ../data/ui/edit-pane.ui.h:11
+#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:87
+#: ../plugins/score/score/__init__.py:95
+#: ../plugins/today-panel/gtd-panel-today.c:135
+#: ../plugins/today-panel/gtd-panel-today.c:140
+#: ../plugins/today-panel/gtd-panel-today.c:309 ../src/gtd-task-row.c:299
+msgid "Today"
+msgstr "Danes"
+
+#: ../data/ui/edit-pane.ui.h:12
+#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:91
+#: ../src/gtd-task-row.c:303
+msgid "Tomorrow"
+msgstr "Jutri"
+
+#: ../data/ui/edit-pane.ui.h:13
+msgid "Next Week"
+msgstr "Naslenji teden"
 
 #: ../data/ui/initial-setup.ui.h:1
 msgid "Welcome"
@@ -178,12 +224,13 @@ msgid "Login to online accounts to access your tasks"
 msgstr "Prijavite se v spletni račun za dostop do nalog"
 
 #: ../data/ui/initial-setup.ui.h:3 ../data/ui/provider-popover.ui.h:2
-#: ../data/ui/window.ui.h:1 ../src/views/gtd-list-selector-panel.c:386
+#: ../data/ui/window.ui.h:1 ../src/gtd-task-list-view.c:599
+#: ../src/views/gtd-list-selector-panel.c:388
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: ../data/ui/initial-setup.ui.h:4 ../data/ui/list-view.ui.h:4
-#: ../src/gtd-task-list-view.c:434
+#: ../data/ui/initial-setup.ui.h:4 ../data/ui/list-view.ui.h:2
+#: ../src/gtd-task-list-view.c:764
 msgid "Done"
 msgstr "Končano"
 
@@ -192,7 +239,7 @@ msgid "Rename"
 msgstr "Preimenuj"
 
 #: ../data/ui/list-selector-panel.ui.h:3
-#: ../src/views/gtd-list-selector-panel.c:465
+#: ../src/views/gtd-list-selector-panel.c:467
 msgid "Lists"
 msgstr "Seznami"
 
@@ -209,28 +256,12 @@ msgid "New List"
 msgstr "Nov seznam"
 
 #: ../data/ui/list-view.ui.h:1
-msgid "No tasks found"
-msgstr "Ni zabeleženih nalog"
-
-#: ../data/ui/list-view.ui.h:2
-msgid "You can add tasks to lists in the <b>Lists</b> view"
-msgstr "Naloge je mogoče dodati v pogledu <b>Seznami</b>"
-
-#: ../data/ui/list-view.ui.h:3
 msgid "Show or hide completed tasks"
 msgstr "Skrij/Pokaži opravljene naloge"
 
 #: ../data/ui/plugin-dialog.ui.h:2
 msgid "No extensions found"
 msgstr "Ni najdenih razširitev"
-
-#: ../data/ui/provider-dialog.ui.h:1
-msgid "Select the default storage location to create task lists:"
-msgstr "Izbor privzetega mesta shranjevanja za ustvarjene sezname nalog:"
-
-#: ../data/ui/provider-dialog.ui.h:2
-msgid "Default storage location"
-msgstr "Privzeto mesto shranjevanja"
 
 #: ../data/ui/provider-popover.ui.h:1
 msgid "Create"
@@ -280,105 +311,67 @@ msgstr "Ali pa shranite naloge na disku računalnika."
 msgid "New task…"
 msgstr "Nova naloga ..."
 
-#: ../plugins/eds/gtd-panel-scheduled.c:67 ../src/gtd-edit-pane.c:147
-#: ../src/gtd-task-row.c:170
-msgid "No date set"
-msgstr "Datum ni nastavljen"
-
-#: ../plugins/eds/gtd-panel-scheduled.c:83 ../src/gtd-task-row.c:148
-#, c-format
-msgid "Yesterday"
-msgid_plural "%d days ago"
-msgstr[0] "pred %d dnevi"
-msgstr[1] "pred %d dnevom"
-msgstr[2] "pred %d dnevoma"
-msgstr[3] "pred %d dnevi"
-
-#. Setup a title
-#: ../plugins/eds/gtd-panel-scheduled.c:87 ../plugins/eds/gtd-panel-today.c:147
-#: ../plugins/eds/gtd-panel-today.c:152 ../plugins/eds/gtd-panel-today.c:314
-#: ../src/gtd-task-row.c:140
-msgid "Today"
-msgstr "Danes"
-
-#: ../plugins/eds/gtd-panel-scheduled.c:91 ../src/gtd-task-row.c:144
-msgid "Tomorrow"
-msgstr "Jutri"
-
-#. Setup a title
-#: ../plugins/eds/gtd-panel-scheduled.c:354
-#: ../plugins/eds/gtd-panel-scheduled.c:359
-#: ../plugins/eds/gtd-panel-scheduled.c:489
-msgid "Scheduled"
-msgstr "V urniku"
-
-#: ../plugins/eds/gtd-panel-scheduled.c:497
-#: ../plugins/eds/gtd-panel-today.c:322
-#: ../src/views/gtd-list-selector-panel.c:700
-msgid "Clear completed tasks…"
-msgstr "Počisti končane naloge ..."
-
-#: ../plugins/eds/gtd-plugin-eds.c:249 ../plugins/eds/gtd-plugin-eds.c:253
+#: ../plugins/eds/gtd-plugin-eds.c:244 ../plugins/eds/gtd-plugin-eds.c:248
 msgid "Error loading GNOME Online Accounts"
 msgstr "Napaka nalaganja programa GNOME Spletni računi"
 
-#: ../plugins/eds/gtd-plugin-eds.c:278
+#: ../plugins/eds/gtd-plugin-eds.c:273
 msgid "Error loading Evolution-Data-Server backend"
 msgstr "Napaka nalaganja ozadja evolution-data-server"
 
-#: ../plugins/eds/gtd-plugin-eds.c:371 ../src/gtd-application.c:243
+#: ../plugins/eds/gtd-plugin-eds.c:364 ../src/gtd-application.c:243
 msgid "Error loading CSS from resource"
 msgstr "Napaka nalaganja CSS iz vira"
 
-#: ../plugins/eds/gtd-provider-eds.c:118 ../plugins/eds/gtd-provider-eds.c:122
+#: ../plugins/eds/gtd-provider-eds.c:132 ../plugins/eds/gtd-provider-eds.c:136
 msgid "Error fetching tasks from list"
 msgstr "Napaka pridobivanja nalog iz seznama"
 
-#: ../plugins/eds/gtd-provider-eds.c:182
+#: ../plugins/eds/gtd-provider-eds.c:196
 msgid "Task list source successfully connected"
 msgstr "Vir seznama nalog je uspešno povezan"
 
-#: ../plugins/eds/gtd-provider-eds.c:189 ../plugins/eds/gtd-provider-eds.c:194
+#: ../plugins/eds/gtd-provider-eds.c:203 ../plugins/eds/gtd-provider-eds.c:208
 msgid "Failed to connect to task list source"
 msgstr "Povezovanje s seznamom nalog je spodletelo"
 
-#: ../plugins/eds/gtd-provider-eds.c:306
+#: ../plugins/eds/gtd-provider-eds.c:322
 msgid "Failed to prompt for credentials"
 msgstr "Povpraševanje po poverilih za je spodletelo"
 
-#: ../plugins/eds/gtd-provider-eds.c:329
+#: ../plugins/eds/gtd-provider-eds.c:345
 msgid "Failed to prompt for credentials for"
 msgstr "Povpraševanje po poverilih za je spodletelo za"
 
-#: ../plugins/eds/gtd-provider-eds.c:383
+#: ../plugins/eds/gtd-provider-eds.c:399
 msgid "Authentication failure"
 msgstr "Overitev je spodletela"
 
-#: ../plugins/eds/gtd-provider-eds.c:435
+#: ../plugins/eds/gtd-provider-eds.c:451
 msgid "Error loading task manager"
 msgstr "Napaka nalaganja seznama nalog"
 
-#: ../plugins/eds/gtd-provider-eds.c:532 ../plugins/eds/gtd-provider-eds.c:536
+#: ../plugins/eds/gtd-provider-eds.c:550 ../plugins/eds/gtd-provider-eds.c:558
 msgid "Error creating task"
 msgstr "Napaka ustvarjanja naloge"
 
-#: ../plugins/eds/gtd-provider-eds.c:575 ../plugins/eds/gtd-provider-eds.c:579
+#: ../plugins/eds/gtd-provider-eds.c:598 ../plugins/eds/gtd-provider-eds.c:602
 msgid "Error updating task"
 msgstr "Napaka posodabljanja naloge"
 
-#: ../plugins/eds/gtd-provider-eds.c:611 ../plugins/eds/gtd-provider-eds.c:615
+#: ../plugins/eds/gtd-provider-eds.c:634 ../plugins/eds/gtd-provider-eds.c:638
 msgid "Error removing task"
 msgstr "Napaka odstranjevanja naloge"
 
-#: ../plugins/eds/gtd-provider-eds.c:639 ../plugins/eds/gtd-provider-eds.c:643
+#: ../plugins/eds/gtd-provider-eds.c:662 ../plugins/eds/gtd-provider-eds.c:666
 msgid "Error creating task list"
 msgstr "Napaka ustvarjanja seznama nalog"
 
-#: ../plugins/eds/gtd-provider-eds.c:660 ../plugins/eds/gtd-provider-eds.c:664
+#: ../plugins/eds/gtd-provider-eds.c:683 ../plugins/eds/gtd-provider-eds.c:687
 msgid "Error removing task list"
 msgstr "Napaka odstranjevanja seznama nalog"
 
-#: ../plugins/eds/gtd-provider-eds.c:721 ../plugins/eds/gtd-provider-eds.c:725
+#: ../plugins/eds/gtd-provider-eds.c:744 ../plugins/eds/gtd-provider-eds.c:748
 #: ../plugins/eds/gtd-task-list-eds.c:69
 msgid "Error saving task list"
 msgstr "Napaka shranjevanja seznama nalog"
@@ -396,6 +389,51 @@ msgstr "Na tem računalniku"
 msgid "Error creating new task list"
 msgstr "Napaka ustvarjanja novega seznama nalog"
 
+#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:67
+#: ../src/gtd-edit-pane.c:217 ../src/gtd-task-row.c:329
+msgid "No date set"
+msgstr "Datum ni nastavljen"
+
+#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:83
+#: ../src/gtd-task-row.c:307
+#, c-format
+msgid "Yesterday"
+msgid_plural "%d days ago"
+msgstr[0] "pred %d dnevi"
+msgstr[1] "pred %d dnevom"
+msgstr[2] "pred %d dnevoma"
+msgstr[3] "pred %d dnevi"
+
+#. Setup a title
+#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:342
+#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:347
+#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:479
+msgid "Scheduled"
+msgstr "V urniku"
+
+#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:484
+#: ../plugins/today-panel/gtd-panel-today.c:314
+#: ../src/views/gtd-list-selector-panel.c:713
+msgid "Clear completed tasks…"
+msgstr "Počisti končane naloge ..."
+
+#: ../plugins/score/score/__init__.py:84
+msgid "No task completed today"
+msgstr "Danes ni bilo nobene končane naloge"
+
+#. Translators: 'Unscheduled' as in 'Unscheduled tasks'
+#: ../plugins/unscheduled-panel/unscheduled-panel/__init__.py:34
+#: ../plugins/unscheduled-panel/unscheduled-panel/__init__.py:89
+msgid "Unscheduled"
+msgstr "Nedoločeno"
+
+#. Translators: 'Unscheduled' as in 'Unscheduled tasks'
+#: ../plugins/unscheduled-panel/unscheduled-panel/__init__.py:92
+#, python-format
+#| msgid "Scheduled"
+msgid "Unscheduled (%d)"
+msgstr "Nedoločeno (%d)"
+
 #: ../src/gtd-application.c:113
 #, c-format
 msgid "Copyright © %d The To Do authors"
@@ -410,6 +448,50 @@ msgstr "Avtorske pravice © %d–%d Avtorji programa To Do"
 msgid "translator-credits"
 msgstr "Matej Urbančič <mateju@svn.gnome.org>"
 
+#: ../src/gtd-empty-list-widget.c:49
+msgid "No more tasks left"
+msgstr "Ni preostalih nalog"
+
+#: ../src/gtd-empty-list-widget.c:50
+msgid "Nothing else to do here"
+msgstr "Tu ni ničesar več za narediti"
+
+#: ../src/gtd-empty-list-widget.c:51
+msgid "You made it!"
+msgstr "Uspelo vam je!"
+
+#: ../src/gtd-empty-list-widget.c:52
+msgid "Looks like there's nothing else left here"
+msgstr "Videti je, da tu ni ostalo več ničesar"
+
+#: ../src/gtd-empty-list-widget.c:57
+msgid "Get some rest now"
+msgstr "Sedaj je pravi čas za počitek"
+
+#: ../src/gtd-empty-list-widget.c:58
+msgid "Enjoy the rest of your day"
+msgstr "Uživajte v preostanku dneva"
+
+#: ../src/gtd-empty-list-widget.c:59
+msgid "Good job!"
+msgstr "Odlično opravljeno!"
+
+#: ../src/gtd-empty-list-widget.c:60
+msgid "Meanwhile, spread the love"
+msgstr "Medtem pa, razširite besedo"
+
+#: ../src/gtd-empty-list-widget.c:61
+msgid "Working hard is always rewarded"
+msgstr "Trdo delo je že samo po sebi nagrada"
+
+#: ../src/gtd-empty-list-widget.c:72
+msgid "No tasks found"
+msgstr "Ni zabeleženih nalog"
+
+#: ../src/gtd-empty-list-widget.c:73
+msgid "You can add tasks using the <b>+</b> above"
+msgstr "Naloge je mogoče dodati s klikom na gumb <b>+</b>"
+
 #: ../src/gtd-plugin-dialog-row.c:95
 msgid "Error loading plugin"
 msgstr "Napaka nalaganja vstavka"
@@ -418,20 +500,34 @@ msgstr "Napaka nalaganja vstavka"
 msgid "Error unloading plugin"
 msgstr "Napaka zaustavljanja vstavka"
 
-#: ../src/gtd-task-list-view.c:334
+#: ../src/gtd-task-list-view.c:593
+msgid "Removing this task will also remove its subtasks. Remove anyway?"
+msgstr ""
+"Z odstranjevanjem glavne naloge bodo odstranjene tudi vse podrejene. Ali "
+"želite naloge odstraniti?"
+
+#: ../src/gtd-task-list-view.c:596
+msgid "Once removed, the tasks cannot be recovered."
+msgstr "Odstranjenih nalog ni mogoče več povrniti."
+
+#: ../src/gtd-task-list-view.c:601
+msgid "Remove"
+msgstr "Odstrani"
+
+#: ../src/gtd-task-list-view.c:650
 #, c-format
 msgid "Task <b>%s</b> removed"
 msgstr "Naloga <b>%s</b> je odstranjena."
 
-#: ../src/gtd-task-list-view.c:365
+#: ../src/gtd-task-list-view.c:680
 msgid "Undo"
 msgstr "Razveljavi"
 
-#: ../src/gtd-window.c:817
+#: ../src/gtd-window.c:808
 msgid "Loading your task lists…"
 msgstr "Poteka nalaganje seznama nalog ..."
 
-#: ../src/gtd-window.c:949
+#: ../src/gtd-window.c:934
 msgid "Click a task list to select"
 msgstr "S klikom izberete seznam nalog"
 
@@ -443,17 +539,23 @@ msgstr "Ni nalog"
 msgid "Setting new color for task list"
 msgstr "Nastavljanje nove barve za seznam nalog"
 
-#: ../src/views/gtd-list-selector-panel.c:379
+#: ../src/views/gtd-list-selector-panel.c:381
 msgid "Remove the selected task lists?"
 msgstr "Ali res želite odstraniti seznam nalog?"
 
-#: ../src/views/gtd-list-selector-panel.c:382
+#: ../src/views/gtd-list-selector-panel.c:384
 msgid "Once removed, the task lists cannot be recovered."
 msgstr "Odstranjenih seznamov nalog ni mogoče več povrniti."
 
-#: ../src/views/gtd-list-selector-panel.c:394
+#: ../src/views/gtd-list-selector-panel.c:396
 msgid "Remove task lists"
 msgstr "Odstrani seznam nalog"
+
+#~ msgid "Select the default storage location to create task lists:"
+#~ msgstr "Izbor privzetega mesta shranjevanja za ustvarjene sezname nalog:"
+
+#~ msgid "Default storage location"
+#~ msgstr "Privzeto mesto shranjevanja"
 
 #~ msgid "Todo"
 #~ msgstr "ToDo"
@@ -465,9 +567,6 @@ msgstr "Odstrani seznam nalog"
 #~ "GNOME Todo is a simple task management application designed to integrate "
 #~ "with GNOME."
 #~ msgstr "GNOME ToDo je enostaven program za upravljanje nalog."
-
-#~ msgid "Clear completed task…"
-#~ msgstr "Počisti končane naloge ..."
 
 #~ msgid "Default location to add new lists to"
 #~ msgstr "Privzeto mesto za dodajanje novih seznamov"
