@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-todo master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "todo&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-06-08 19:52+0000\n"
-"PO-Revision-Date: 2017-06-09 21:12+0200\n"
+"POT-Creation-Date: 2017-07-28 11:00+0000\n"
+"PO-Revision-Date: 2017-07-28 21:32+0200\n"
 "Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -20,12 +20,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 2.0.3\n"
 "X-Project-Style: gnome\n"
 
 #: data/appdata/org.gnome.Todo.appdata.xml.in:7
 #: data/org.gnome.Todo.desktop.in:3 src/gtd-application.c:152
-#: src/gtd-application.c:178 src/gtd-window.c:950
+#: src/gtd-application.c:178 src/gtd-window.c:950 src/gtd-window.c:985
 msgid "To Do"
 msgstr "Aufgaben"
 
@@ -489,14 +489,35 @@ msgid "No task completed today"
 msgstr "Heute keine Aufgabe erledigt"
 
 # https://de.todoist.com/
-#: plugins/todoist/gtd-provider-todoist.c:67
-#| msgid "Todo.txt"
+#: plugins/todoist/gtd-provider-todoist.c:103
 msgid "Todoist"
 msgstr "Todoist"
 
-#: plugins/todoist/gtd-provider-todoist.c:73
-msgid "Todoist Plugin for GNOME To Do"
-msgstr "Todoist-Erweiterung für GNOME Aufgaben"
+#: plugins/todoist/gtd-provider-todoist.c:183
+#: plugins/todoist/gtd-provider-todoist.c:415
+msgid "Error loading Todoist tasks"
+msgstr "Fehler beim Laden der Todoist-Aufgaben"
+
+#: plugins/todoist/gtd-provider-todoist.c:198
+msgid "Error fetching Todoist account key"
+msgstr "Fehler beim Holen des Schlüssels für das Todoist-Konto"
+
+#: plugins/todoist/gtd-provider-todoist.c:199
+msgid "Please ensure that Todoist account is correctly configured."
+msgstr ""
+"Bitte stellen Sie sicher, dass das Todoist-Konto korrekt eingerichtet ist."
+
+#: plugins/todoist/gtd-provider-todoist.c:412
+#, c-format
+msgid "Bad status code (%d) received. Please check your connection."
+msgstr "Fehlerstatuscode empfangen (%d). Bitte überprüfen Sie Ihre Verbindung."
+
+# https://de.todoist.com/
+#: plugins/todoist/gtd-provider-todoist.c:768
+#, c-format
+#| msgid "Todoist"
+msgid "Todoist: %s"
+msgstr "Todoist: %s"
 
 #: plugins/todoist/ui/preferences.ui:80
 msgid "No Todoist accounts found"
