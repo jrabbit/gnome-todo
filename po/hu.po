@@ -10,20 +10,20 @@ msgstr ""
 "Project-Id-Version: gnome-todo master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "todo&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-06-09 19:13+0000\n"
-"PO-Revision-Date: 2017-06-15 10:28+0200\n"
-"Last-Translator: Meskó Balázs <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-07-28 11:00+0000\n"
+"PO-Revision-Date: 2017-07-30 13:28+0200\n"
+"Last-Translator: Meskó Balázs <meskobalazs@fedoraproject.org>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.2\n"
 
 #: data/appdata/org.gnome.Todo.appdata.xml.in:7
 #: data/org.gnome.Todo.desktop.in:3 src/gtd-application.c:152
-#: src/gtd-application.c:178 src/gtd-window.c:950
+#: src/gtd-application.c:178 src/gtd-window.c:950 src/gtd-window.c:985
 msgid "To Do"
 msgstr "Tennivalók"
 
@@ -483,13 +483,32 @@ msgstr "Befejezett feladatok törlése…"
 msgid "No task completed today"
 msgstr "Nincs ma befejezett feladat"
 
-#: plugins/todoist/gtd-provider-todoist.c:67
+#: plugins/todoist/gtd-provider-todoist.c:103
 msgid "Todoist"
 msgstr "Todoist"
 
-#: plugins/todoist/gtd-provider-todoist.c:73
-msgid "Todoist Plugin for GNOME To Do"
-msgstr "Todoist bővítmény a GNOME Tennivalókhoz"
+#: plugins/todoist/gtd-provider-todoist.c:183
+#: plugins/todoist/gtd-provider-todoist.c:415
+msgid "Error loading Todoist tasks"
+msgstr "Nem sikerült a Todoist feladatok betöltése"
+
+#: plugins/todoist/gtd-provider-todoist.c:198
+msgid "Error fetching Todoist account key"
+msgstr "Hiba a Todoist fiók kulcsának lekérésekor"
+
+#: plugins/todoist/gtd-provider-todoist.c:199
+msgid "Please ensure that Todoist account is correctly configured."
+msgstr "Ellenőrizze, hogy a Todoist fiók helyesen van beállítva."
+
+#: plugins/todoist/gtd-provider-todoist.c:412
+#, c-format
+msgid "Bad status code (%d) received. Please check your connection."
+msgstr "Hibás állapotkód (%d) fogadva. Ellenőrizze a kapcsolatát."
+
+#: plugins/todoist/gtd-provider-todoist.c:768
+#, c-format
+msgid "Todoist: %s"
+msgstr "Todoist: %s"
 
 #: plugins/todoist/ui/preferences.ui:80
 msgid "No Todoist accounts found"
@@ -599,7 +618,7 @@ msgstr "Copyright © %d-%d A Tennivalók szerzői"
 
 #: src/gtd-application.c:159
 msgid "translator-credits"
-msgstr "Meskó Balázs <meskobalazs at gmail dot com>"
+msgstr "Meskó Balázs <meskobalazs at fedoraproject dot org>"
 
 #: src/gtd-empty-list-widget.c:49
 msgid "No more tasks left"
@@ -706,6 +725,9 @@ msgstr "A törlés után a feladatlisták nem állíthatóak vissza."
 #: src/views/gtd-list-selector-panel.c:399
 msgid "Remove task lists"
 msgstr "Feladatlisták törlése"
+
+#~ msgid "Todoist Plugin for GNOME To Do"
+#~ msgstr "Todoist bővítmény a GNOME Tennivalókhoz"
 
 #~ msgid "Error while adding a task to Todo.txt"
 #~ msgstr "Hiba egy feladat hozzáadásakor a Todo.txt fájlhoz"
