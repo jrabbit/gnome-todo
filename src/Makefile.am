@@ -179,7 +179,8 @@ CLEANFILES = \
 EXTRA_DIST = \
     $(resource_files) \
     gtd-enum-types.h.template \
-    gtd-enum-types.c.template
+    gtd-enum-types.c.template \
+    meson.build
 
 -include $(top_srcdir)/git.mk
 

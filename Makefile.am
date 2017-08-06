@@ -9,7 +9,12 @@ EXTRA_DIST = \
 	README \
 	COPYING \
 	AUTHORS \
-	NEWS
+	NEWS \
+	meson.build \
+	meson_options.txt \
+	meson_post_install.py \
+	configure_meson \
+	po/meson.build
 
 DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-appstream-util \

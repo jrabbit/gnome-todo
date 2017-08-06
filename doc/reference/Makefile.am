@@ -113,8 +113,10 @@ include $(top_srcdir)/gtk-doc.make
 
 # Other files to distribute
 EXTRA_DIST += \
-	version.xml.in
-
+	version.xml.in \
+	meson.build \
+	xml/gtkdocentities.ent.in \
+	xml/meson.build
 
 if ENABLE_GTK_DOC
 

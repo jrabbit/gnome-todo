@@ -19,5 +19,5 @@ libeds_la_CFLAGS = \
 	$(GNOME_TODO_PLUGIN_WARN_CFLAGS)
 
 EXTRA_DIST = \
-	eds.plugin.in
-
+	eds.plugin.in \
+	meson.build

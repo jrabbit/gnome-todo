@@ -16,5 +16,5 @@ libtodoist_la_CFLAGS = \
 	-DPACKAGE_DATA_DIR=\""$(pkgdatadir)"\"
 
 EXTRA_DIST = \
-	todoist.plugin.in
-
+	todoist.plugin.in \
+	meson.build

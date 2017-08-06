@@ -33,3 +33,4 @@ SUBDIRS += todoist
 endif
 
 MAINTAINERCLEANFILES = Makefile.in
+EXTRA_DIST = meson.build

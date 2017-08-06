@@ -37,6 +37,8 @@ service_in_files = org.gnome.Todo.service.in
 
 EXTRA_DIST=                     \
   appdata/org.gnome.Todo.appdata.xml \
+  appdata/meson.build \
+  meson.build \
   org.gnome.Todo.Autostart.desktop \
   org.gnome.Todo.desktop \
   todo.gresource.xml \

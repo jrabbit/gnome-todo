@@ -14,4 +14,5 @@ libdarktheme_la_CFLAGS = \
 	$(GNOME_TODO_PLUGIN_WARN_CFLAGS)
 
 EXTRA_DIST = \
-	dark-theme.plugin.in
+	dark-theme.plugin.in \
+	meson.build

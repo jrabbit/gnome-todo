@@ -17,4 +17,5 @@ libbackground_la_CFLAGS = \
 
 EXTRA_DIST = \
 	$(gsettings_SCHEMAS) \
-	background.plugin.in
+	background.plugin.in \
+	meson.build

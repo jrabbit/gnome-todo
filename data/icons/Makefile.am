@@ -40,6 +40,7 @@ update-icon-cache:
 
 EXTRA_DIST = \
 	$(hicolor_icon_files) \
+	meson.build \
 	$(NULL)
 
 -include $(top_srcdir)/git.mk

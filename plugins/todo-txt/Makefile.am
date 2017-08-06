@@ -20,5 +20,5 @@ libtodotxt_la_CFLAGS = \
 
 EXTRA_DIST = \
 	$(gsettings_SCHEMAS) \
-	todo-txt.plugin.in
-
+	todo-txt.plugin.in \
+	meson.build

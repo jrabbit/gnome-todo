@@ -16,4 +16,5 @@ libtodaypanel_la_CFLAGS = \
 	$(GNOME_TODO_PLUGIN_WARN_CFLAGS)
 
 EXTRA_DIST = \
-	today-panel.plugin.in
+	today-panel.plugin.in \
+	meson.build

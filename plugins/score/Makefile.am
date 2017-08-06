@@ -7,4 +7,5 @@ nobase_score_plugin_DATA =  \
 
 EXTRA_DIST = \
 	$(plugin_DATA) \
-	$(nobase_score_plugin_DATA)
+	$(nobase_score_plugin_DATA) \
+	meson.build

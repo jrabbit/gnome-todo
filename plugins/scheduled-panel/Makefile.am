@@ -16,4 +16,5 @@ libscheduledpanel_la_CFLAGS = \
 	$(GNOME_TODO_PLUGIN_WARN_CFLAGS)
 
 EXTRA_DIST = \
-	scheduled-panel.plugin.in
+	scheduled-panel.plugin.in \
+	meson.build
