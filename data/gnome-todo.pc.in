@@ -1,8 +1,0 @@
-prefix=@prefix@
-exec_prefix=${prefix}
-includedir=@includedir@
-
-Name: Gnome To Do
-Description: Header and path for Gnome Todo Plugins
-Version: @VERSION@
-Cflags: -I${includedir}/gnome-todo

@@ -33,7 +33,7 @@ config.log
 config.lt
 config.status
 config.status.lineno
-configure
+#configure
 configure.lineno
 intltool-extract
 intltool-extract.in

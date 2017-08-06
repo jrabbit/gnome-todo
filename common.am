@@ -1,9 +1,0 @@
-plugindir = ${pkglibdir}/plugins
-
-GNOME_TODO_PLUGIN_CFLAGS = \
-	$(GNOME_TODO_CFLAGS) \
-	-I$(top_srcdir)/src
-
-GNOME_TODO_PLUGIN_WARN_CFLAGS = \
-	$(GNOME_TODO_WARN_CFLAGS)
-
