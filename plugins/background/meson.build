@@ -7,9 +7,7 @@ plugins_libs += static_library(
   sources: 'gtd-plugin-' + plugin_name + '.c',
   include_directories: plugins_incs,
   dependencies: gnome_todo_deps,
-  c_args: [
-    '-DPACKAGE_DATA_DIR="@0@"'.format(gnome_todo_pkgdatadir)
-  ]
+  c_args: '-DPACKAGE_DATA_DIR="@0@"'.format(gnome_todo_pkgdatadir)
 )
 
 install_data(

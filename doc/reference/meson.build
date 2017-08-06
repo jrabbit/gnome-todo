@@ -29,9 +29,7 @@ private_headers = [
   'gtd-types.h'
 ]
 
-html_images = [
-  'images/notification.png'
-]
+html_images = 'images/notification.png'
 
 version_conf = configuration_data()
 version_conf.set('VERSION', gnome_todo_version)
@@ -59,7 +57,7 @@ gnome.gtkdoc(
   dependencies: libgtd_dep,
   scan_args: [
     '--rebuild-types',
-    '--ignore-headers=' + ' '.join(private_headers),
+    '--ignore-headers=' + ' '.join(private_headers)
   ],
   mkdb_args: [
     '--sgml-mode',
@@ -73,7 +71,7 @@ gnome.gtkdoc(
     '--extra-dir=@0@'.format(join_paths(glib_doc_path, 'gio')),
     '--extra-dir=@0@'.format(join_paths(gtk_doc_path, 'gdk')),
     '--extra-dir=@0@'.format(join_paths(gtk_doc_path, 'gtk')),
-    '--extra-dir=@0@'.format(join_paths(gtk_doc_path, 'gtksourceview-3.0')),
+    '--extra-dir=@0@'.format(join_paths(gtk_doc_path, 'gtksourceview-3.0'))
   ],
   html_assets: html_images,
   install: true,

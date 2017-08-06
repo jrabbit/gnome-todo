@@ -155,31 +155,6 @@ check:
 	${MESONTEST} ${NINJA_OPT}
 END
 
-echo "
-
-        gnome-todo
-        ==========
-
-        meson:         ${MESON}
-        ninja:         ${NINJA}
-        prefix:        ${prefix}
-        compiler:      ${CC}
-        global flags:  ${CFLAGS} ${CPPFLAGS} ${LDFLAGS}
-        documentation: $(echooption gtk-doc)
-
-    Plugins:
-        Dark theme .............. $(echooption dark-theme-plugin)
-        Run in Background ....... $(echooption background-plugin)
-        Scheduled panel ......... $(echooption scheduled-panel-plugin)
-        Score ................... $(echooption score-plugin)
-        Today panel ............. $(echooption today-panel-plugin)
-        Unscheduled panel ....... $(echooption unscheduled-panel-plugin)
-        Todo.txt ................ $(echooption todo-txt-plugin)
-        Todoist ................. $(echooption todoist-plugin)
-
-        Now type '${NINJA} -C ${builddir}' to build
-"
-
 cmd_options=""
 for key in "${!meson_options[@]}"; do
     cmd_options="$cmd_options -Denable-$key=${meson_options[$key]}"

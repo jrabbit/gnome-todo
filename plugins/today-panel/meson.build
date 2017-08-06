@@ -11,7 +11,7 @@ plugins_libs += static_library(
   'todaypanel',
   sources: sources,
   include_directories: plugins_incs,
-  dependencies: gnome_todo_deps,
+  dependencies: gnome_todo_deps
 )
 
 plugin_data = plugin_name + '.plugin'
