@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-todo master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "todo&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-06-27 22:24+0000\n"
-"PO-Revision-Date: 2017-07-13 16:22+0200\n"
+"POT-Creation-Date: 2017-07-28 11:00+0000\n"
+"PO-Revision-Date: 2017-08-06 13:23+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/appdata/org.gnome.Todo.appdata.xml.in:7
 #: data/org.gnome.Todo.desktop.in:3 src/gtd-application.c:152
-#: src/gtd-application.c:178 src/gtd-window.c:950
+#: src/gtd-application.c:178 src/gtd-window.c:950 src/gtd-window.c:985
 msgid "To Do"
 msgstr "Úlohy"
 
@@ -495,14 +495,33 @@ msgstr "Vymazať dokončené úlohy…"
 msgid "No task completed today"
 msgstr "Dnes nebola dokončená žiadna úloha"
 
-#: plugins/todoist/gtd-provider-todoist.c:67
-#| msgid "Todo.txt"
+#: plugins/todoist/gtd-provider-todoist.c:103
 msgid "Todoist"
 msgstr "Todoist"
 
-#: plugins/todoist/gtd-provider-todoist.c:73
-msgid "Todoist Plugin for GNOME To Do"
-msgstr "Zásuvný modul Todoist pre aplikáciu Úlohy prostredia GNOME"
+#: plugins/todoist/gtd-provider-todoist.c:183
+#: plugins/todoist/gtd-provider-todoist.c:415
+msgid "Error loading Todoist tasks"
+msgstr "Chyba pri načítavaní úloh služby Todoist"
+
+#: plugins/todoist/gtd-provider-todoist.c:198
+msgid "Error fetching Todoist account key"
+msgstr "Chyba pri získavaní kľúča účtu služby Todoist"
+
+#: plugins/todoist/gtd-provider-todoist.c:199
+msgid "Please ensure that Todoist account is correctly configured."
+msgstr "Prosím, uistite sa, že je účet služby Todoist správne nastavený."
+
+#: plugins/todoist/gtd-provider-todoist.c:412
+#, c-format
+msgid "Bad status code (%d) received. Please check your connection."
+msgstr ""
+"Bol prijatý nesprávny stavový kód (%d). Prosím, skontrolujte vaše pripojenie."
+
+#: plugins/todoist/gtd-provider-todoist.c:768
+#, c-format
+msgid "Todoist: %s"
+msgstr "Todoist: %s"
 
 #: plugins/todoist/ui/preferences.ui:80
 msgid "No Todoist accounts found"
@@ -722,6 +741,9 @@ msgstr "Po odstránení už nebude možné zoznamy úloh obnoviť."
 #: src/views/gtd-list-selector-panel.c:399
 msgid "Remove task lists"
 msgstr "Odstránenie zoznamov úloh"
+
+#~ msgid "Todoist Plugin for GNOME To Do"
+#~ msgstr "Zásuvný modul Todoist pre aplikáciu Úlohy prostredia GNOME"
 
 #~ msgid "Error while adding a task to Todo.txt"
 #~ msgstr "Chyba počas pridávania úlohy do súboru Todo.txt"
