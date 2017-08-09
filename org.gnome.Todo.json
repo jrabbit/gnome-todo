@@ -99,6 +99,7 @@
             "sources": [
                 {
                     "type": "git",
+                    "branch": "librest-0-7",
                     "url": "git://git.gnome.org/librest"
                 }
             ]
