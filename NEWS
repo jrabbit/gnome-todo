@@ -1,4 +1,31 @@
 ===============
+Version 3.25.90
+===============
+
+Project:
+	* Move to Meson build system (Iñigo Martínez)
+	* Fix Flatpak build (Florian Müllner)
+	* Introduce Todoist integration (Rohit Kaushik)
+
+Translations:
+	* Belarussian (Yuras Shumovich)
+	* Catalan (Jordi Mas)
+	* Czech (Marek Cernocky)
+	* Friulian (Fabio Tomat)
+	* Galician (Fran Dieguez)
+	* German (Mario Blättermann)
+	* Hungarian (Balázs Meskó)
+	* Indonesian (Kukuh Syafaat)
+	* Kazakh (Baurzhan Muftakhidinov)
+	* Lithuanian (Aurimas Černius)
+	* Nepali (Pawan Chitrakar)
+	* Turkish (Emin Tufan Çetin)
+	* Slovak (Dušan Kazik)
+	* Slovenian (Matej Urbančič)
+	* Spanish (Daniel Mustieles)
+	* Vietnamese (Trần Ngọc Quân)
+
+===============
 Version 3.25.3
 ===============
 
