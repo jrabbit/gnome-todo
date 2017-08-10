@@ -51,6 +51,20 @@
   </kudos>
 
   <releases>
+    <release date="2017-08-10" version="3.25.90">
+      <description>
+        <p>
+          This is the second unstable release for GNOME 3.26 series. The new changes
+          are:
+        </p>
+        <ul>
+          <li>Implementation of the Todoist plugin by Rohit Kaushik. </li>
+          <li>Complete move to the Meson build system, dramatically reducing the build times by 80% or more. </li>
+        </ul>
+        <p>This release also updates translations, and adds new translations.</p>
+      </description>
+    </release>
+
     <release date="2017-06-19" version="3.25.3">
       <description>
         <p>
