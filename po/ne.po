@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-todo&keywords=I18N"
 "+L10N&component=General\n"
 "POT-Creation-Date: 2017-07-22 12:08+0000\n"
-"PO-Revision-Date: 2017-07-28 11:35+0545\n"
+"PO-Revision-Date: 2017-08-12 17:33+0545\n"
 "Language-Team: Nepali Translation Team <chautari@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,9 +25,8 @@ msgid "To Do"
 msgstr "गर्नुपर्ने"
 
 #: data/appdata/org.gnome.Todo.appdata.xml.in:8
-#, fuzzy
 msgid "Task manager for GNOME"
-msgstr "जिनोमको  प्रदर्शन प्रबन्धक"
+msgstr "जिनोमको क‍ार्य प्रबन्धक"
 
 #: data/appdata/org.gnome.Todo.appdata.xml.in:11
 msgid ""
@@ -52,9 +51,8 @@ msgid "Task lists displayed on list mode"
 msgstr ""
 
 #: data/appdata/org.gnome.Todo.appdata.xml.in:40
-#, fuzzy
 msgid "Available plugins for GNOME To Do"
-msgstr "उपलब्ध प्लगइन"
+msgstr "जिनोम टु डु को लागि उपलब्ध प्लगइन"
 
 #: data/appdata/org.gnome.Todo.appdata.xml.in:44
 msgid "Visualizing tasks for today on GNOME To Do’s Today panel"
@@ -62,7 +60,7 @@ msgstr ""
 
 #: data/gtk/menus.ui:7
 msgid "New List…"
-msgstr "नयाँ सूची"
+msgstr "नयाँ सूची…"
 
 #: data/gtk/menus.ui:20 data/ui/plugin-dialog.ui:75
 msgid "Extensions"
@@ -79,7 +77,7 @@ msgstr "_बन्द गर्नुहोस्"
 #: data/org.gnome.Todo.desktop.in:4
 #, fuzzy
 msgid "Manage your personal tasks"
-msgstr "पात्रो पहुच र ब्यवस्थापन गर्नुहोस"
+msgstr "तपाईँको प्रणालीका कार्यहरू व्यवस्थापन गर्नुहोस् "
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Todo.desktop.in:7
@@ -90,7 +88,7 @@ msgstr "org.gnome.Todo"
 #: data/org.gnome.Todo.desktop.in:13
 #, fuzzy
 msgid "Task;Productivity;Todo;"
-msgstr "कार्य"
+msgstr "उत्पादकता"
 
 #: data/org.gnome.todo.gschema.xml:6
 msgid "Window maximized"
@@ -119,7 +117,7 @@ msgstr "सन्झ्यालको स्थान (x र y)"
 #: data/org.gnome.todo.gschema.xml:21
 #, fuzzy
 msgid "First run of GNOME To Do"
-msgstr "पहिला चलाउनुहोस्"
+msgstr "पहिलो चालु स्टिकी नोट आयातकर्ता"
 
 #: data/org.gnome.todo.gschema.xml:22
 msgid "Whether it’s the first run of GNOME To Do (to run the initial setup) or not"
@@ -136,17 +134,17 @@ msgstr ""
 #: data/org.gnome.todo.gschema.xml:31
 #, fuzzy
 msgid "List of active extensions"
-msgstr "हालका सकृय जिटिके मोड्युलहरू सूची"
+msgstr "विस्तारहरू"
 
 #: data/org.gnome.todo.gschema.xml:32
 #, fuzzy
 msgid "The list of active extensions"
-msgstr "हालका सकृय जिटिके मोड्युलहरू सूची"
+msgstr "विस्तारहरू"
 
 #: data/org.gnome.todo.gschema.xml:36
 #, fuzzy
 msgid "The current list selector"
-msgstr "चयनकर्ता"
+msgstr "हालको डाइरेक्टरीमा फाइलहरू सूची गर्नुहोस्"
 
 #: data/org.gnome.todo.gschema.xml:37
 msgid "The current list selector. Can be “grid” or “list”."
@@ -259,7 +257,7 @@ msgstr "नयाँ कार्य…"
 #: data/ui/plugin-dialog.ui:118
 #, fuzzy
 msgid "No extensions found"
-msgstr "विस्तारहरू..."
+msgstr "विस्तारहरू"
 
 #: data/ui/provider-popover.ui:25
 msgid "Create _List"
@@ -272,7 +270,7 @@ msgstr "सूची नाम"
 #: data/ui/provider-popover.ui:155
 #, fuzzy
 msgid "Select a storage location"
-msgstr "_स्थान छान्नुहोस्"
+msgstr "एउटा स्थान चयन गर्नुहोस्:"
 
 #: data/ui/provider-row.ui:70
 msgid "Off"
@@ -281,7 +279,7 @@ msgstr "बन्द"
 #: data/ui/provider-selector.ui:27
 #, fuzzy
 msgid "Click to add a new Google account"
-msgstr "नयाँ बिन्दु थप्न क्लिक गर्नुहोस्-तान्नुहोस्"
+msgstr "एउटा नयाँ रङ्गदानी थप्न क्लिक गर्नुहोस्"
 
 #: data/ui/provider-selector.ui:51
 msgid "Google"
@@ -290,7 +288,7 @@ msgstr "गुगल"
 #: data/ui/provider-selector.ui:67
 #, fuzzy
 msgid "Click to add a new ownCloud account"
-msgstr "नयाँ बिन्दु थप्न क्लिक गर्नुहोस्-तान्नुहोस्"
+msgstr "एउटा नयाँ रङ्गदानी थप्न क्लिक गर्नुहोस्"
 
 #: data/ui/provider-selector.ui:91
 msgid "ownCloud"
@@ -332,9 +330,8 @@ msgid "Whether GNOME To Do should run on startup"
 msgstr ""
 
 #: plugins/background/org.gnome.todo.background.gschema.xml:11
-#, fuzzy
 msgid "Show notifications on startup"
-msgstr "सूचना देखाउनुहोस्"
+msgstr "शुरुमा सूचना देखाउनुहोस्"
 
 #: plugins/background/org.gnome.todo.background.gschema.xml:12
 msgid "Whether GNOME To Do should show notifications or not"
@@ -362,9 +359,8 @@ msgid "Notes"
 msgstr "द्रष्टव्यहरू"
 
 #: plugins/eds/edit-pane.ui:117
-#, fuzzy
 msgid "Due Date"
-msgstr "देय मिति"
+msgstr "मिति म्याद"
 
 #: plugins/eds/edit-pane.ui:177
 msgid "Priority"
@@ -383,8 +379,9 @@ msgid "Error loading Evolution-Data-Server backend"
 msgstr ""
 
 #: plugins/eds/gtd-provider-eds.c:136 plugins/eds/gtd-provider-eds.c:140
+#, fuzzy
 msgid "Error fetching tasks from list"
-msgstr ""
+msgstr "IMAP सर्भबाट सन्देश तान्दा त्रुटि: %s"
 
 #: plugins/eds/gtd-provider-eds.c:174 plugins/eds/gtd-provider-eds.c:179
 msgid "Failed to connect to task list"
@@ -411,7 +408,7 @@ msgstr "प्रमाणीकरण असफल"
 #: plugins/eds/gtd-provider-eds.c:487
 #, fuzzy
 msgid "Error loading task manager"
-msgstr "नयाँ कार्य सिर्जना त्रुटि"
+msgstr "सञ्झ्याल प्रबन्धक त्रुटि: "
 
 #: plugins/eds/gtd-provider-eds.c:573 plugins/eds/gtd-provider-eds.c:581
 msgid "Error creating task"
@@ -477,9 +474,8 @@ msgstr "भोलि"
 #: plugins/scheduled-panel/gtd-panel-scheduled.c:365
 #: plugins/scheduled-panel/gtd-panel-scheduled.c:370
 #: plugins/scheduled-panel/gtd-panel-scheduled.c:507
-#, fuzzy
 msgid "Scheduled"
-msgstr "कुनै पनि प्याकेजहरू स्थापना गर्न, हटाउन, वा अद्यावधिक गर्न कार्यतालिका बद्ध गरिएको छैन ।"
+msgstr "अनुसूचित"
 
 #: plugins/scheduled-panel/gtd-panel-scheduled.c:512 plugins/today-panel/gtd-panel-today.c:276
 #: plugins/unscheduled-panel/unscheduled-panel/__init__.py:52
@@ -491,17 +487,15 @@ msgstr "पूरा भएको कार्यहरू"
 #: plugins/score/score/__init__.py:84
 #, fuzzy
 msgid "No task completed today"
-msgstr "आज"
+msgstr "आज: "
 
 #: plugins/todoist/gtd-provider-todoist.c:103
-#, fuzzy
 msgid "Todoist"
-msgstr "गर्नुपर्ने : %s"
+msgstr "Todoist"
 
 #: plugins/todoist/gtd-provider-todoist.c:183 plugins/todoist/gtd-provider-todoist.c:415
-#, fuzzy
 msgid "Error loading Todoist tasks"
-msgstr "मद्दत पृष्ठ लोड गर्दा त्रुटि"
+msgstr "Todoist कार्य लोड गर्दा त्रुटि"
 
 #: plugins/todoist/gtd-provider-todoist.c:198
 msgid "Error fetching Todoist account key"
@@ -522,19 +516,17 @@ msgid "Todoist: %s"
 msgstr "गर्नुपर्ने : %s"
 
 #: plugins/todoist/ui/preferences.ui:80
-#, fuzzy
 msgid "No Todoist accounts found"
-msgstr "खाताहरू"
+msgstr "Todoist खाताहरू भेटिएन्"
 
 #: plugins/todoist/ui/preferences.ui:89
-#, fuzzy
 msgid "Add a Todoist account"
-msgstr "प्रयोगकर्ता खाता थप्नुहोस्"
+msgstr "Todoist खाता थप्नुहोस्"
 
 #: plugins/todo-txt/gtd-plugin-todo-txt.c:142 plugins/todo-txt/gtd-plugin-todo-txt.c:183
 #, fuzzy
 msgid "Cannot create Todo.txt file"
-msgstr "%s: नयाँ पूर्वनिर्धारित फाइल सिर्जना गर्न सकिएन\n"
+msgstr "अस्थाई फाइल सिर्जना गर्न सकिँदैन"
 
 #: plugins/todo-txt/gtd-plugin-todo-txt.c:307
 #, fuzzy
@@ -552,11 +544,12 @@ msgstr ""
 #: plugins/todo-txt/gtd-provider-todo-txt.c:81
 #, fuzzy
 msgid "On the Todo.txt file"
-msgstr "यस रूपमा फाइल गर्नुहोस्"
+msgstr "यो फाइल"
 
 #: plugins/todo-txt/gtd-provider-todo-txt.c:112 plugins/todo-txt/gtd-provider-todo-txt.c:116
+#, fuzzy
 msgid "Error while opening Todo.txt"
-msgstr ""
+msgstr "एक्स बेस फाइल खोल्दा त्रुटि"
 
 #: plugins/todo-txt/gtd-provider-todo-txt.c:263 plugins/todo-txt/gtd-provider-todo-txt.c:267
 #, fuzzy
@@ -598,19 +591,18 @@ msgstr ""
 #: plugins/todo-txt/org.gnome.todo.txt.gschema.xml:6
 #, fuzzy
 msgid "Todo.txt File"
-msgstr "यस रूपमा फाइल गर्नुहोस्"
+msgstr "यो फाइल"
 
 #: plugins/todo-txt/org.gnome.todo.txt.gschema.xml:7
 #, fuzzy
 msgid "Source of the Todo.txt file"
-msgstr "स्रोत फाइल `%.250s' खाली फाइल होइन"
+msgstr "स्रोत फाइल सिर्जना गर्न असक्षम"
 
 #. Translators: 'Unscheduled' as in 'Unscheduled tasks'
 #: plugins/unscheduled-panel/unscheduled-panel/__init__.py:34
 #: plugins/unscheduled-panel/unscheduled-panel/__init__.py:96
-#, fuzzy
 msgid "Unscheduled"
-msgstr "Unscheduled (%d)"
+msgstr "अनुसूचित नगरिएको"
 
 #. Translators: 'Unscheduled' as in 'Unscheduled tasks'
 #: plugins/unscheduled-panel/unscheduled-panel/__init__.py:99
@@ -631,16 +623,11 @@ msgstr "प्रतिलिपि अधिकार © %d–%d टु दु 
 #: src/gtd-application.c:159
 msgid "translator-credits"
 msgstr ""
-"Shiva  Pokharel <pokharelshiva@hotmail.com>,Mahesh Subedi<submanesh@hotmail.com>,Jyotshna "
-"Shrestha <jyotshna@mpp.org.np>,Jaydeep Bhusal <zaydeep@hotmail.com>,Kapil Timilsina "
-"<lipak21@gmail.com>,Bishnu Adhikari <bsn_adk@hotmail.com>,Ganesh Ghimire <gghimire@gmail.com>,"
-"Pawan Chitrakar <pawan@mpp.org.np>,Narayan Magar<narayan@mpp.org.np>\n"
-"\n"
-"Launchpad Contributions:\n"
-"  Ganesh Ghimire https://launchpad.net/~gghimire\n"
-"  Mahesh Subedi https://launchpad.net/~submanesh\n"
-"  Narayan Kumar Magar https://launchpad.net/~narayan-mpp\n"
-"  Shiva Prasad Pokharel https://launchpad.net/~pokharelshiva"
+"Pawan Chitrakar - chautari @gmail.com, Shiva  Pokharel <pokharelshiva@hotmail.com>,Mahesh "
+"Subedi<submanesh@hotmail.com>,Jyotshna Shrestha <jyotshna@mpp.org.np>,Jaydeep Bhusal "
+"<zaydeep@hotmail.com>,Kapil Timilsina <lipak21@gmail.com>,Bishnu Adhikari <bsn_adk@hotmail."
+"com>,Ganesh Ghimire <gghimire@gmail.com>,Pawan Chitrakar <pawan@mpp.org.np>,Narayan "
+"Magar<narayan@mpp.org.np>"
 
 #: src/gtd-empty-list-widget.c:49
 msgid "No more tasks left"
@@ -676,7 +663,7 @@ msgstr "राम्रो काम !"
 #: src/gtd-empty-list-widget.c:60
 #, fuzzy
 msgid "Meanwhile, spread the love"
-msgstr "फैलिनुहोस्"
+msgstr "फैलाउनुहोस्"
 
 #: src/gtd-empty-list-widget.c:61
 msgid "Working hard is always rewarded"
@@ -698,7 +685,7 @@ msgstr "युआई फाइल लोड गर्दा त्रुटि"
 #: src/gtd-plugin-dialog-row.c:95
 #, fuzzy
 msgid "Error unloading plugin"
-msgstr "प्लगइन"
+msgstr "प्लगइन सक्रिय पार्दा त्रुटि \"%s\"।"
 
 #: src/gtd-task-list-view.c:612
 msgid "Removing this task will also remove its subtasks. Remove anyway?"
@@ -731,18 +718,16 @@ msgid "Loading your task lists…"
 msgstr "चयन गरिएको कार्य सुची हटाउनुहोस् ?"
 
 #: src/gtd-window.c:944
-#, fuzzy
 msgid "Click a task list to select"
-msgstr "एउटा कार्य थप्न क्लिक गर्नुहोस्"
+msgstr "एउटा कार्य सुची चयन गर्न क्लिक गर्नुहोस्"
 
 #: src/views/gtd-list-selector-grid-item.c:234
 msgid "No tasks"
 msgstr "कार्यहरू छैन"
 
 #: src/views/gtd-list-selector-panel.c:185
-#, fuzzy
 msgid "Setting new color for task list"
-msgstr "कार्य सुची सिर्जना गर्दा त्रुटि"
+msgstr "कार्य सुची को नया रङ्ग सेट गर्नुहोस्"
 
 #: src/views/gtd-list-selector-panel.c:384
 msgid "Remove the selected task lists?"
