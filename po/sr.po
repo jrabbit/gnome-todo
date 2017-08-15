@@ -312,10 +312,10 @@ msgstr "Или само чувајте ваше задатке на овом р�
 #, c-format
 msgid "%1$s and one more task"
 msgid_plural "%1$s and %2$d other tasks"
-msgstr[0] "%1$s и још један задатак"
+msgstr[0] "%1$s и %2$d друг задатак"
 msgstr[1] "%1$s и %2$d друга задатка"
 msgstr[2] "%1$s и %2$d других задатака"
-msgstr[3] ""
+msgstr[3] "%1$s и још један задатак"
 
 #: plugins/background/gtd-plugin-background.c:247
 #, c-format
@@ -324,7 +324,7 @@ msgid_plural "You have %d tasks for today"
 msgstr[0] "Имате %d задатак за данас"
 msgstr[1] "Имате %d задатка за данас"
 msgstr[2] "Имате %d задатака за данас"
-msgstr[3] ""
+msgstr[3] "Имате један задатак за данас"
 
 #: plugins/background/org.gnome.todo.background.gschema.xml:6
 msgid "Run To Do on startup"
