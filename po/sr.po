@@ -1,6 +1,6 @@
 # Serbian translations for gnome-todo package
 # Преводи на српски језик за пакет „gnome-todo“.
-# Copyright (C) 2015 THE gnome-todo'S COPYRIGHT HOLDER
+# Copyright © 2015 THE gnome-todo'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-todo package.
 # Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail.com>, 2015—2017.
 # Милош Поповић <gpopac@gmail.com>, 2015, 2016.
@@ -10,30 +10,29 @@ msgstr ""
 "Project-Id-Version: gnome-todo\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "todo&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-03-05 13:04+0000\n"
-"PO-Revision-Date: 2017-03-05 14:23+0100\n"
-"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
-"Language-Team: Serbian <(nothing)>\n"
+"POT-Creation-Date: 2017-07-28 11:00+0000\n"
+"PO-Revision-Date: 2017-08-15 20:23+0200\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
+"Language-Team: српски <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
-"X-Generator: Poedit 1.8.12\n"
 
-#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:1
-#: ../data/org.gnome.Todo.desktop.in.in.h:1 ../src/gtd-application.c:123
-#: ../src/gtd-application.c:149 ../src/gtd-window.c:940
+#: data/appdata/org.gnome.Todo.appdata.xml.in:7
+#: data/org.gnome.Todo.desktop.in:3 src/gtd-application.c:152
+#: src/gtd-application.c:178 src/gtd-window.c:950 src/gtd-window.c:985
 msgid "To Do"
 msgstr "Роковник"
 
-#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:2
+#: data/appdata/org.gnome.Todo.appdata.xml.in:8
 msgid "Task manager for GNOME"
 msgstr "Управник задатака за Гном"
 
-#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:3
+#: data/appdata/org.gnome.Todo.appdata.xml.in:11
 msgid ""
 "GNOME To Do is a task management application designed to integrate with "
 "GNOME. It is extensible through plugins and supports custom task providers."
@@ -42,371 +41,418 @@ msgstr ""
 "Гном. Може се проширити помоћу прикључака и подржава произвољне достављаче "
 "задатака."
 
-#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:4
-msgid "GNOME To Do with the Dark theme variant"
+#: data/appdata/org.gnome.Todo.appdata.xml.in:24
+#| msgid "GNOME To Do with the Dark theme variant"
+msgid "GNOME To Do with the dark theme variant"
 msgstr "Гномов Роковник са тамном темом"
 
-#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:5
+#: data/appdata/org.gnome.Todo.appdata.xml.in:28
 msgid "Editing a tasklist with GNOME To Do"
 msgstr "Уређивање списка задатака Гномовим Роковником"
 
-#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:6
+#: data/appdata/org.gnome.Todo.appdata.xml.in:32
 msgid "Task lists displayed on grid mode"
 msgstr "Списак задатака приказан у режиму иконица"
 
-#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:7
+#: data/appdata/org.gnome.Todo.appdata.xml.in:36
 msgid "Task lists displayed on list mode"
 msgstr "Списак задатака приказан у режиму списка"
 
-#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:8
+#: data/appdata/org.gnome.Todo.appdata.xml.in:40
 msgid "Available plugins for GNOME To Do"
 msgstr "Доступни прикључци за Гномов Роковник"
 
-#: ../data/appdata/org.gnome.Todo.appdata.xml.in.h:9
+#: data/appdata/org.gnome.Todo.appdata.xml.in:44
 msgid "Visualizing tasks for today on GNOME To Do’s Today panel"
 msgstr "Приказивање задатака за данас на данашњем панелу Гномовог Роковника"
 
-#: ../data/gtk/menus.ui.h:1
+#: data/gtk/menus.ui:7
 msgid "New List…"
 msgstr "Нови списак…"
 
-#: ../data/gtk/menus.ui.h:2
-msgid "Change default storage location…"
-msgstr "Промени путању подразумеваног складишта…"
-
-#: ../data/gtk/menus.ui.h:3 ../data/ui/plugin-dialog.ui.h:1
+#: data/gtk/menus.ui:20 data/ui/plugin-dialog.ui:75
 msgid "Extensions"
 msgstr "Проширења"
 
-#: ../data/gtk/menus.ui.h:4
+#: data/gtk/menus.ui:27
 msgid "_About"
 msgstr "_О програму"
 
-#: ../data/gtk/menus.ui.h:5
+#: data/gtk/menus.ui:31
 msgid "_Quit"
 msgstr "_Изађи"
 
-#: ../data/org.gnome.Todo.desktop.in.in.h:2
+#: data/org.gnome.Todo.desktop.in:4
 msgid "Manage your personal tasks"
 msgstr "Управљајте личним задацима"
 
-#: ../data/org.gnome.Todo.desktop.in.in.h:3
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.Todo.desktop.in:7
+msgid "org.gnome.Todo"
+msgstr "org.gnome.Todo"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Todo.desktop.in:13
 msgid "Task;Productivity;Todo;"
 msgstr "задаци;продуктивност;заказано;"
 
-#: ../data/org.gnome.todo.gschema.xml.h:1
+#: data/org.gnome.todo.gschema.xml:6
 msgid "Window maximized"
 msgstr "Увећан прозор"
 
-#: ../data/org.gnome.todo.gschema.xml.h:2
+#: data/org.gnome.todo.gschema.xml:7
 msgid "Window maximized state"
 msgstr "Стање увећања прозора"
 
-#: ../data/org.gnome.todo.gschema.xml.h:3
+#: data/org.gnome.todo.gschema.xml:11
 msgid "Window size"
 msgstr "Величина прозора"
 
-#: ../data/org.gnome.todo.gschema.xml.h:4
+#: data/org.gnome.todo.gschema.xml:12
 msgid "Window size (width and height)."
 msgstr "Величина прозора (ширина и висина)."
 
-#: ../data/org.gnome.todo.gschema.xml.h:5
+#: data/org.gnome.todo.gschema.xml:16
 msgid "Window position"
 msgstr "Положај прозора"
 
-#: ../data/org.gnome.todo.gschema.xml.h:6
+#: data/org.gnome.todo.gschema.xml:17
 msgid "Window position (x and y)."
 msgstr "Положај прозора (x и y)."
 
-#: ../data/org.gnome.todo.gschema.xml.h:7
+#: data/org.gnome.todo.gschema.xml:21
 msgid "First run of GNOME To Do"
 msgstr "Прво покретање Гномовог Роковника"
 
-#: ../data/org.gnome.todo.gschema.xml.h:8
+#: data/org.gnome.todo.gschema.xml:22
 msgid ""
 "Whether it’s the first run of GNOME To Do (to run the initial setup) or not"
 msgstr ""
 "Да ли је Гномов роковник први пут покренут или не (зарад покретања почетног "
 "подешавања)"
 
-#: ../data/org.gnome.todo.gschema.xml.h:9
+#: data/org.gnome.todo.gschema.xml:26
 msgid "Default provider to add new lists to"
 msgstr "Подразумевана путања за смештај нових спискова"
 
-#: ../data/org.gnome.todo.gschema.xml.h:10
+#: data/org.gnome.todo.gschema.xml:27
 msgid "The identifier of the default provider to add new lists to"
 msgstr "Одређује место подразумеване путање за смештај нових спискова"
 
-#: ../data/org.gnome.todo.gschema.xml.h:11
+#: data/org.gnome.todo.gschema.xml:31
 msgid "List of active extensions"
 msgstr "Списак активних проширења"
 
-#: ../data/org.gnome.todo.gschema.xml.h:12
+#: data/org.gnome.todo.gschema.xml:32
 msgid "The list of active extensions"
 msgstr "Списак активних проширења"
 
-#: ../data/org.gnome.todo.gschema.xml.h:13
+#: data/org.gnome.todo.gschema.xml:36
 msgid "The current list selector"
 msgstr "Избирач текућег списка"
 
-#: ../data/org.gnome.todo.gschema.xml.h:14
+#: data/org.gnome.todo.gschema.xml:37
 msgid "The current list selector. Can be “grid” or “list”."
 msgstr "Избирач текућег списка. Може бити „grid“ (мрежа) или „list“ (списак)."
 
-#: ../data/ui/edit-pane.ui.h:1 ../plugins/eds/edit-pane.ui.h:10
+#: data/ui/edit-pane.ui:24 plugins/eds/edit-pane.ui:259
 msgctxt "taskdate"
 msgid "None"
 msgstr "Ништа"
 
-#: ../data/ui/edit-pane.ui.h:2 ../plugins/eds/edit-pane.ui.h:1
-#: ../src/gtd-window.c:542
+#: data/ui/edit-pane.ui:94 plugins/eds/edit-pane.ui:43 src/gtd-window.c:546
 msgid "Details"
 msgstr "Појединости"
 
-#: ../data/ui/edit-pane.ui.h:3
+#: data/ui/edit-pane.ui:125
 msgid "_Notes"
 msgstr "Бе_лешке"
 
-#: ../data/ui/edit-pane.ui.h:4
+#: data/ui/edit-pane.ui:168
 msgid "D_ue Date"
 msgstr "Крајњи _рок"
 
-#: ../data/ui/edit-pane.ui.h:5
+#: data/ui/edit-pane.ui:188
 msgid "_Priority"
 msgstr "_Важност"
 
-#: ../data/ui/edit-pane.ui.h:6 ../plugins/eds/edit-pane.ui.h:5
+#: data/ui/edit-pane.ui:208 plugins/eds/edit-pane.ui:195
 msgctxt "taskpriority"
 msgid "None"
 msgstr "Ништа"
 
-#: ../data/ui/edit-pane.ui.h:7 ../plugins/eds/edit-pane.ui.h:6
+#: data/ui/edit-pane.ui:209 plugins/eds/edit-pane.ui:196
 msgid "Low"
 msgstr "Мала"
 
-#: ../data/ui/edit-pane.ui.h:8 ../plugins/eds/edit-pane.ui.h:7
+#: data/ui/edit-pane.ui:210 plugins/eds/edit-pane.ui:197
 msgid "Medium"
 msgstr "Средња"
 
-#: ../data/ui/edit-pane.ui.h:9 ../plugins/eds/edit-pane.ui.h:8
+#: data/ui/edit-pane.ui:211 plugins/eds/edit-pane.ui:198
 msgid "High"
 msgstr "Велика"
 
-#: ../data/ui/edit-pane.ui.h:10 ../data/ui/list-selector-panel.ui.h:2
+#: data/ui/edit-pane.ui:222 data/ui/list-selector-panel.ui:93
 msgid "_Delete"
 msgstr "О_бриши"
 
-#: ../data/ui/edit-pane.ui.h:11
+#: data/ui/edit-pane.ui:246
 msgid "_Today"
 msgstr "_Данас"
 
-#: ../data/ui/edit-pane.ui.h:12
+#: data/ui/edit-pane.ui:257
 msgid "To_morrow"
 msgstr "С_утра"
 
-#: ../data/ui/edit-pane.ui.h:13
+#: data/ui/edit-pane.ui:268
 msgid "Next _Week"
 msgstr "Следеће с_едмице"
 
-#: ../data/ui/initial-setup.ui.h:1
+#: data/ui/initial-setup.ui:25
 msgid "Welcome"
 msgstr "Добродошли"
 
-#: ../data/ui/initial-setup.ui.h:2
-msgid "Login to online accounts to access your tasks"
-msgstr "Пријавите се на ваше налоге на мрежи зарад приступа вашим задацима"
+#: data/ui/initial-setup.ui:40
+#| msgid "Login to online accounts to access your tasks"
+msgid "Log in to online accounts to access your tasks"
+msgstr "Пријавите се на налоге на мрежи зарад приступа вашим задацима"
 
-#: ../data/ui/initial-setup.ui.h:3 ../data/ui/provider-popover.ui.h:2
-#: ../data/ui/window.ui.h:1
+#: data/ui/initial-setup.ui:70 data/ui/provider-popover.ui:43
+#: data/ui/window.ui:71
 msgid "_Cancel"
 msgstr "От_кажи"
 
-#: ../data/ui/initial-setup.ui.h:4
+#: data/ui/initial-setup.ui:80
 msgid "_Done"
 msgstr "_Готово"
 
-#: ../data/ui/list-selector-panel.ui.h:1
+#: data/ui/list-selector-panel.ui:79 data/ui/list-selector-panel.ui:173
 msgid "_Rename"
 msgstr "Пре_именуј"
 
-#: ../data/ui/list-selector-panel.ui.h:3
-#: ../src/views/gtd-list-selector-panel.c:470
+#: data/ui/list-selector-panel.ui:119 src/views/gtd-list-selector-panel.c:470
 msgid "Lists"
 msgstr "Спискови"
 
-#: ../data/ui/list-selector-panel.ui.h:4
+#: data/ui/list-selector-panel.ui:129
 msgid "Tasks"
 msgstr "Задаци"
 
-#: ../data/ui/list-selector-panel.ui.h:5
+#: data/ui/list-selector-panel.ui:147
 msgid "Name of the task list"
 msgstr "Назив новог списка са задацима"
 
-#: ../data/ui/list-selector-panel.ui.h:6
+#: data/ui/list-selector-panel.ui:263
 msgid "_New List"
 msgstr "_Нови списак"
 
-#: ../data/ui/list-view.ui.h:1
+#: data/ui/list-view.ui:111
 msgid "Show or hide completed tasks"
 msgstr "Прикажи или сакриј завршене задатке"
 
-#: ../data/ui/list-view.ui.h:2 ../src/gtd-task-list-view.c:777
+#: data/ui/list-view.ui:137 src/gtd-task-list-view.c:784
+#: src/gtd-task-list-view.c:789
 msgid "Done"
 msgstr "Готово"
 
-#: ../data/ui/new-task-row.ui.h:1
+#: data/ui/new-task-row.ui:39
 msgid "New task…"
 msgstr "Нови задатак…"
 
-#: ../data/ui/plugin-dialog.ui.h:2
+#: data/ui/plugin-dialog.ui:118
 msgid "No extensions found"
 msgstr "Нисам нашао проширења"
 
-#: ../data/ui/provider-popover.ui.h:1
+#: data/ui/provider-popover.ui:25
 msgid "Create _List"
 msgstr "Н_аправи списак"
 
-#: ../data/ui/provider-popover.ui.h:3
+#: data/ui/provider-popover.ui:59
 msgid "List Name"
 msgstr "Назив списка"
 
-#: ../data/ui/provider-popover.ui.h:4
+#: data/ui/provider-popover.ui:155
 msgid "Select a storage location"
 msgstr "Изаберите место складишта"
 
-#: ../data/ui/provider-row.ui.h:1
+#: data/ui/provider-row.ui:70
 msgid "Off"
 msgstr "Искључено"
 
-#: ../data/ui/provider-selector.ui.h:1
+#: data/ui/provider-selector.ui:27
 msgid "Click to add a new Google account"
 msgstr "Притисните да додате нови Гугл налог"
 
-#: ../data/ui/provider-selector.ui.h:2
+#: data/ui/provider-selector.ui:51
 msgid "Google"
 msgstr "Гугл"
 
-#: ../data/ui/provider-selector.ui.h:3
+#: data/ui/provider-selector.ui:67
 msgid "Click to add a new ownCloud account"
 msgstr "Притисните да додате нови налог за мојОблак"
 
-#: ../data/ui/provider-selector.ui.h:4
+#: data/ui/provider-selector.ui:91
 msgid "ownCloud"
 msgstr "мојОблак"
 
-#: ../data/ui/provider-selector.ui.h:5
+#: data/ui/provider-selector.ui:107
 msgid "Click to add a new Microsoft Exchange account"
 msgstr "Притисните да додате нови налог Мајкрософтове размене"
 
-#: ../data/ui/provider-selector.ui.h:6
+#: data/ui/provider-selector.ui:131
 msgid "Microsoft Exchange"
 msgstr "Мајкрософтова размена"
 
-#: ../data/ui/provider-selector.ui.h:7
+#: data/ui/provider-selector.ui:154
 msgid "Or you can just store your tasks on this computer"
 msgstr "Или само чувајте ваше задатке на овом рачунару"
 
-#: ../plugins/eds/edit-pane.ui.h:2
+#: plugins/background/gtd-plugin-background.c:148
+#, c-format
+msgid "%1$s and one more task"
+msgid_plural "%1$s and %2$d other tasks"
+msgstr[0] "%1$s и још један задатак"
+msgstr[1] "%1$s и %2$d друга задатка"
+msgstr[2] "%1$s и %2$d других задатака"
+msgstr[3] ""
+
+#: plugins/background/gtd-plugin-background.c:247
+#, c-format
+msgid "You have %d task for today"
+msgid_plural "You have %d tasks for today"
+msgstr[0] "Имате %d задатак за данас"
+msgstr[1] "Имате %d задатка за данас"
+msgstr[2] "Имате %d задатака за данас"
+msgstr[3] ""
+
+#: plugins/background/org.gnome.todo.background.gschema.xml:6
+msgid "Run To Do on startup"
+msgstr "Покреће Роковник са системом"
+
+#: plugins/background/org.gnome.todo.background.gschema.xml:7
+msgid "Whether GNOME To Do should run on startup"
+msgstr "Да ли Гномов Роковник треба да се покрене са системом"
+
+#: plugins/background/org.gnome.todo.background.gschema.xml:11
+msgid "Show notifications on startup"
+msgstr "Приказ обавештења при покретању"
+
+#: plugins/background/org.gnome.todo.background.gschema.xml:12
+msgid "Whether GNOME To Do should show notifications or not"
+msgstr "Да ли Гномов Роковник треба да прикаже обавештења или не"
+
+#: plugins/background/ui/preferences.ui:53
+msgid "Run on Startup"
+msgstr "Покрени са системом"
+
+#: plugins/background/ui/preferences.ui:66
+msgid "Run To Do automatically when you log in"
+msgstr "Аутоматски покрените Роковник када се пријавите"
+
+#: plugins/background/ui/preferences.ui:122
+msgid "Show Notifications"
+msgstr "Прикажи обавештења"
+
+#: plugins/background/ui/preferences.ui:135
+msgid "When To Do runs, show a startup notification"
+msgstr "Када ради Роковник, показаће обавештење при покретању"
+
+#: plugins/eds/edit-pane.ui:76
 msgid "Notes"
 msgstr "Белешке"
 
-#: ../plugins/eds/edit-pane.ui.h:3
+#: plugins/eds/edit-pane.ui:117
 msgid "Due Date"
 msgstr "Крајњи рок"
 
-#: ../plugins/eds/edit-pane.ui.h:4
+#: plugins/eds/edit-pane.ui:177
 msgid "Priority"
 msgstr "Важност"
 
-#: ../plugins/eds/edit-pane.ui.h:9
+#: plugins/eds/edit-pane.ui:209
 msgid "Delete"
 msgstr "Обриши"
 
-#: ../plugins/eds/gtd-plugin-eds.c:244 ../plugins/eds/gtd-plugin-eds.c:248
+#: plugins/eds/gtd-plugin-eds.c:243 plugins/eds/gtd-plugin-eds.c:247
 msgid "Error loading GNOME Online Accounts"
 msgstr "Грешка приликом учитавања Гномових налога на мрежи"
 
-#: ../plugins/eds/gtd-plugin-eds.c:273
+#: plugins/eds/gtd-plugin-eds.c:274
 msgid "Error loading Evolution-Data-Server backend"
 msgstr "Грешка приликом учитавања позадинца сервера података Еволуције"
 
-#: ../plugins/eds/gtd-plugin-eds.c:364 ../src/gtd-application.c:243
-msgid "Error loading CSS from resource"
-msgstr "Грешка приликом учитавања ЦСС-а из ресурса"
-
-#: ../plugins/eds/gtd-provider-eds.c:132 ../plugins/eds/gtd-provider-eds.c:136
+#: plugins/eds/gtd-provider-eds.c:136 plugins/eds/gtd-provider-eds.c:140
 msgid "Error fetching tasks from list"
 msgstr "Грешка приликом добављања задатака из списка"
 
-#: ../plugins/eds/gtd-provider-eds.c:196
-msgid "Task list source successfully connected"
-msgstr "Извор списка са задацима је успешно повезан"
-
-#: ../plugins/eds/gtd-provider-eds.c:203 ../plugins/eds/gtd-provider-eds.c:208
+#: plugins/eds/gtd-provider-eds.c:174 plugins/eds/gtd-provider-eds.c:179
 msgid "Failed to connect to task list"
 msgstr "Неуспех повезивања са списком задатака"
 
-#: ../plugins/eds/gtd-provider-eds.c:322
+#: plugins/eds/gtd-provider-eds.c:227
+msgid "Task list source successfully connected"
+msgstr "Извор списка са задацима је успешно повезан"
+
+#: plugins/eds/gtd-provider-eds.c:336
 msgid "Failed to prompt for credentials"
 msgstr "Неуспех упита за приступне параметре"
 
-#: ../plugins/eds/gtd-provider-eds.c:345
+#: plugins/eds/gtd-provider-eds.c:359
 msgid "Failed to prompt for credentials for"
 msgstr "Неуспех упита за приступне параметре за"
 
-#: ../plugins/eds/gtd-provider-eds.c:399
+#: plugins/eds/gtd-provider-eds.c:413
 msgid "Authentication failure"
 msgstr "Неуспех приликом пријављивања"
 
-#: ../plugins/eds/gtd-provider-eds.c:451
+#: plugins/eds/gtd-provider-eds.c:487
 msgid "Error loading task manager"
 msgstr "Грешка приликом учитавања управника задатака"
 
-#: ../plugins/eds/gtd-provider-eds.c:550 ../plugins/eds/gtd-provider-eds.c:558
+#: plugins/eds/gtd-provider-eds.c:573 plugins/eds/gtd-provider-eds.c:581
 msgid "Error creating task"
 msgstr "Грешка приликом прављења задатка"
 
-#: ../plugins/eds/gtd-provider-eds.c:598 ../plugins/eds/gtd-provider-eds.c:602
+#: plugins/eds/gtd-provider-eds.c:623 plugins/eds/gtd-provider-eds.c:627
 msgid "Error updating task"
 msgstr "Грешка приликом ажурирања задатка"
 
-#: ../plugins/eds/gtd-provider-eds.c:634 ../plugins/eds/gtd-provider-eds.c:638
+#: plugins/eds/gtd-provider-eds.c:661 plugins/eds/gtd-provider-eds.c:665
 msgid "Error removing task"
 msgstr "Грешка приликом уклањања задатка"
 
-#: ../plugins/eds/gtd-provider-eds.c:662 ../plugins/eds/gtd-provider-eds.c:666
+#: plugins/eds/gtd-provider-eds.c:691 plugins/eds/gtd-provider-eds.c:695
 msgid "Error creating task list"
 msgstr "Грешка приликом прављења списка са задацима"
 
-#: ../plugins/eds/gtd-provider-eds.c:683 ../plugins/eds/gtd-provider-eds.c:687
+#: plugins/eds/gtd-provider-eds.c:716 plugins/eds/gtd-provider-eds.c:720
 msgid "Error removing task list"
 msgstr "Грешка приликом уклањања списка са задацима"
 
-#: ../plugins/eds/gtd-provider-eds.c:744 ../plugins/eds/gtd-provider-eds.c:748
-#: ../plugins/eds/gtd-task-list-eds.c:69
+#: plugins/eds/gtd-provider-eds.c:779 plugins/eds/gtd-provider-eds.c:783
+#: plugins/eds/gtd-task-list-eds.c:69
 msgid "Error saving task list"
 msgstr "Грешка приликом чувања списка са задацима"
 
-#: ../plugins/eds/gtd-provider-local.c:60
+#: plugins/eds/gtd-provider-local.c:61
 msgid "Local"
 msgstr "Локално"
 
-#: ../plugins/eds/gtd-provider-local.c:66
+#: plugins/eds/gtd-provider-local.c:67
 msgid "On This Computer"
 msgstr "На овом рачунару"
 
-#: ../plugins/eds/gtd-provider-local.c:133
-#: ../plugins/eds/gtd-provider-local.c:137
+#: plugins/eds/gtd-provider-local.c:134 plugins/eds/gtd-provider-local.c:138
 msgid "Error creating new task list"
 msgstr "Грешка приликом прављења новог списка са задацима"
 
-#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:67
-#: ../src/gtd-edit-pane.c:217 ../src/gtd-task-row.c:323
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:93 src/gtd-edit-pane.c:217
+#: src/gtd-task-row.c:374
 msgid "No date set"
 msgstr "Није постављен датум"
 
-#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:83
-#: ../src/gtd-task-row.c:301
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:101 src/gtd-task-row.c:352
 #, c-format
 msgid "Yesterday"
 msgid_plural "%d days ago"
@@ -416,108 +462,122 @@ msgstr[2] "Пре %d дана"
 msgstr[3] "Пре једног дана"
 
 #. Setup a title
-#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:87
-#: ../plugins/score/score/__init__.py:95
-#: ../plugins/today-panel/gtd-panel-today.c:135
-#: ../plugins/today-panel/gtd-panel-today.c:140
-#: ../plugins/today-panel/gtd-panel-today.c:308 ../src/gtd-task-row.c:293
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:105
+#: plugins/score/score/__init__.py:95 plugins/today-panel/gtd-panel-today.c:132
+#: plugins/today-panel/gtd-panel-today.c:137
+#: plugins/today-panel/gtd-panel-today.c:271 src/gtd-task-row.c:344
 msgid "Today"
 msgstr "Данас"
 
-#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:91
-#: ../src/gtd-task-row.c:297
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:109 src/gtd-task-row.c:348
 msgid "Tomorrow"
 msgstr "Сутра"
 
 #. Setup a title
-#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:342
-#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:347
-#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:479
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:365
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:370
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:507
 msgid "Scheduled"
 msgstr "Заказано"
 
-#: ../plugins/scheduled-panel/gtd-panel-scheduled.c:484
-#: ../plugins/today-panel/gtd-panel-today.c:313
-#: ../plugins/unscheduled-panel/unscheduled-panel/__init__.py:52
-#: ../src/views/gtd-list-selector-panel.c:716
+#: plugins/scheduled-panel/gtd-panel-scheduled.c:512
+#: plugins/today-panel/gtd-panel-today.c:276
+#: plugins/unscheduled-panel/unscheduled-panel/__init__.py:52
+#: src/views/gtd-list-selector-panel.c:716
 msgid "Clear completed tasks…"
 msgstr "Очисти завршене задатке…"
 
-#: ../plugins/score/score/__init__.py:84
+#: plugins/score/score/__init__.py:84
 msgid "No task completed today"
 msgstr "Ниједан задатак није завршен данас"
 
-#: ../plugins/todo-txt/gtd-plugin-todo-txt.c:100
-msgid "Error while opening the file monitor. Todo.txt will not be monitored"
-msgstr "Грешка отварања пратиоца датотека. Датотека Роковника се неће пратити"
+#: plugins/todoist/gtd-provider-todoist.c:103
+#| msgid "Todo.txt"
+msgid "Todoist"
+msgstr "Роковник"
 
-#: ../plugins/todo-txt/gtd-plugin-todo-txt.c:125
-msgid "Error while converting the default Todo.txt path to an URI"
-msgstr "Грешка претварања основне путање Роковника у јединствену путању"
+#: plugins/todoist/gtd-provider-todoist.c:183
+#: plugins/todoist/gtd-provider-todoist.c:415
+#| msgid "Error loading task manager"
+msgid "Error loading Todoist tasks"
+msgstr "Грешка учитавања задатака Роковника"
 
-#: ../plugins/todo-txt/gtd-plugin-todo-txt.c:146
+#: plugins/todoist/gtd-provider-todoist.c:198
+msgid "Error fetching Todoist account key"
+msgstr "Грешка добављања кључа налога Роковника"
+
+#: plugins/todoist/gtd-provider-todoist.c:199
+#| msgid "Please make sure the date in Todo.txt is valid."
+msgid "Please ensure that Todoist account is correctly configured."
+msgstr "Проверите да ли је налог Роковника исправно подешен."
+
+#: plugins/todoist/gtd-provider-todoist.c:412
+#, c-format
+msgid "Bad status code (%d) received. Please check your connection."
+msgstr "Примих лош код стања (%d). Проверите вашу везу."
+
+#: plugins/todoist/gtd-provider-todoist.c:768
+#, c-format
+msgid "Todoist: %s"
+msgstr "Роковник: %s"
+
+#: plugins/todoist/ui/preferences.ui:80
+#| msgid "No tasks found"
+msgid "No Todoist accounts found"
+msgstr "Нисам нашао налоге Роковника"
+
+#: plugins/todoist/ui/preferences.ui:89
+msgid "Add a Todoist account"
+msgstr "Додајте налог Роковника"
+
+#: plugins/todo-txt/gtd-plugin-todo-txt.c:142
+#: plugins/todo-txt/gtd-plugin-todo-txt.c:183
 msgid "Cannot create Todo.txt file"
 msgstr "Не могу да направим датотеку Роковника"
 
-#: ../plugins/todo-txt/gtd-plugin-todo-txt.c:362
+#: plugins/todo-txt/gtd-plugin-todo-txt.c:307
 msgid "Select a Todo.txt-formatted file:"
 msgstr "Изаберите датотеку обликовану као „Роковник.txt“:"
 
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:76
+#: plugins/todo-txt/gtd-plugin-todo-txt.c:308
+msgid "Select a file"
+msgstr "Изаберите датотеку"
+
+#: plugins/todo-txt/gtd-provider-todo-txt.c:75
 msgid "Todo.txt"
 msgstr "Роковник.txt"
 
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:82
+#: plugins/todo-txt/gtd-provider-todo-txt.c:81
 msgid "On the Todo.txt file"
 msgstr "На датотеци Роковника"
 
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:129
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:133
+#: plugins/todo-txt/gtd-provider-todo-txt.c:112
+#: plugins/todo-txt/gtd-provider-todo-txt.c:116
 msgid "Error while opening Todo.txt"
 msgstr "Грешка отварања датотеке Роковника"
 
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:335
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:339
+#: plugins/todo-txt/gtd-provider-todo-txt.c:263
+#: plugins/todo-txt/gtd-provider-todo-txt.c:267
 msgid "Error while reading a line from Todo.txt"
 msgstr "Грешка читања реда из датотеке Роковника"
 
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:402
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:406
-msgid "Error while adding a task to Todo.txt"
-msgstr "Грешка додавања задатака у датотеку Роковника"
+#: plugins/todo-txt/gtd-provider-todo-txt.c:384
+msgid "Error while opening the file monitor. Todo.txt will not be monitored"
+msgstr "Грешка отварања пратиоца датотека. Датотека Роковника се неће пратити"
 
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:543
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:547
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:659
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:663
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:863
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:867
-msgid "Error while reading tasks from Todo.txt"
-msgstr "Грешка читања задатка из датотеке Роковника"
-
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:724
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:728
-msgid "Error while creating a Todo.txt list"
-msgstr "Грешка прављења списка датотеке Роковника"
-
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:975
-#: ../plugins/todo-txt/gtd-provider-todo-txt.c:979
-msgid "Error while reading task lists from Todo.txt"
-msgstr "Грешка читања списка задатака из датотеке Роковника"
-
-#: ../plugins/todo-txt/gtd-todo-txt-parser.c:347
+#: plugins/todo-txt/gtd-todo-txt-parser.c:309
 msgid "Incorrect date"
 msgstr "Неисправан датум"
 
-#: ../plugins/todo-txt/gtd-todo-txt-parser.c:348
+#: plugins/todo-txt/gtd-todo-txt-parser.c:310
 msgid "Please make sure the date in Todo.txt is valid."
 msgstr "Исправите датум у датотеци Роковника."
 
-#: ../plugins/todo-txt/gtd-todo-txt-parser.c:377
+#: plugins/todo-txt/gtd-todo-txt-parser.c:341
 msgid "Unrecognized token in a Todo.txt line"
 msgstr "Непознат симбол у реду датотеке Роковника"
 
-#: ../plugins/todo-txt/gtd-todo-txt-parser.c:378
+#: plugins/todo-txt/gtd-todo-txt-parser.c:342
 msgid ""
 "To Do cannot recognize some tags in your Todo.txt file. Some tasks may not "
 "be loaded"
@@ -525,11 +585,11 @@ msgstr ""
 "Роковник не може да препозна неке ознаке у вашој датотеци Роковника. Неки "
 "задаци неће бити учитани"
 
-#: ../plugins/todo-txt/gtd-todo-txt-parser.c:387
+#: plugins/todo-txt/gtd-todo-txt-parser.c:353
 msgid "No task list found for some tasks"
 msgstr "Нисам нашао списак задатака за неке задатке"
 
-#: ../plugins/todo-txt/gtd-todo-txt-parser.c:388
+#: plugins/todo-txt/gtd-todo-txt-parser.c:354
 msgid ""
 "Some of the tasks in your Todo.txt file do not have a task list. To Do "
 "supports tasks with a task list. Please add a list to all your tasks"
@@ -537,37 +597,37 @@ msgstr ""
 "Неки од задатака у вашој датотеци Роковника немају списак задатака. Роковник "
 "подржава задатке са списком задатака. Додајте списак свим вашим задацима"
 
-#: ../plugins/todo-txt/org.gnome.todo.txt.gschema.xml.h:1
+#: plugins/todo-txt/org.gnome.todo.txt.gschema.xml:6
 msgid "Todo.txt File"
 msgstr "Датотека Роковника"
 
-#: ../plugins/todo-txt/org.gnome.todo.txt.gschema.xml.h:2
+#: plugins/todo-txt/org.gnome.todo.txt.gschema.xml:7
 msgid "Source of the Todo.txt file"
 msgstr "Извор датотеке Роковника"
 
 #. Translators: 'Unscheduled' as in 'Unscheduled tasks'
-#: ../plugins/unscheduled-panel/unscheduled-panel/__init__.py:34
-#: ../plugins/unscheduled-panel/unscheduled-panel/__init__.py:91
+#: plugins/unscheduled-panel/unscheduled-panel/__init__.py:34
+#: plugins/unscheduled-panel/unscheduled-panel/__init__.py:96
 msgid "Unscheduled"
 msgstr "Незаказано"
 
 #. Translators: 'Unscheduled' as in 'Unscheduled tasks'
-#: ../plugins/unscheduled-panel/unscheduled-panel/__init__.py:94
+#: plugins/unscheduled-panel/unscheduled-panel/__init__.py:99
 #, python-format
 msgid "Unscheduled (%d)"
 msgstr "Незаказано (%d"
 
-#: ../src/gtd-application.c:113
+#: src/gtd-application.c:142
 #, c-format
 msgid "Copyright © %d The To Do authors"
 msgstr "Ауторска права © %d аутори Гномовог роковника"
 
-#: ../src/gtd-application.c:118
+#: src/gtd-application.c:147
 #, c-format
 msgid "Copyright © %d–%d The To Do authors"
 msgstr "Ауторска права © %d–%d аутори Гномовог роковника"
 
-#: ../src/gtd-application.c:130
+#: src/gtd-application.c:159
 msgid "translator-credits"
 msgstr ""
 "Марко М. Костић <marko.m.kostic@gmail.com>\n"
@@ -575,111 +635,132 @@ msgstr ""
 "\n"
 "http://prevod.org — превод на српски језик"
 
-#: ../src/gtd-empty-list-widget.c:49
+#: src/gtd-empty-list-widget.c:49
 msgid "No more tasks left"
 msgstr "Нема више задатака"
 
-#: ../src/gtd-empty-list-widget.c:50
+#: src/gtd-empty-list-widget.c:50
 msgid "Nothing else to do here"
 msgstr "Овде је све одрађено"
 
-#: ../src/gtd-empty-list-widget.c:51
+#: src/gtd-empty-list-widget.c:51
 msgid "You made it!"
 msgstr "Урадили сте га!"
 
-#: ../src/gtd-empty-list-widget.c:52
+#: src/gtd-empty-list-widget.c:52
 msgid "Looks like there’s nothing else left here"
 msgstr "Изгледа да овде нема више ничега"
 
-#: ../src/gtd-empty-list-widget.c:57
+#: src/gtd-empty-list-widget.c:57
 msgid "Get some rest now"
 msgstr "Одморите се малко, попијте кафицу"
 
-#: ../src/gtd-empty-list-widget.c:58
+#: src/gtd-empty-list-widget.c:58
 msgid "Enjoy the rest of your day"
 msgstr "Уживајте у остатку предивног дана"
 
-#: ../src/gtd-empty-list-widget.c:59
+#: src/gtd-empty-list-widget.c:59
 msgid "Good job!"
 msgstr "Одличан посао!"
 
-#: ../src/gtd-empty-list-widget.c:60
+#: src/gtd-empty-list-widget.c:60
 msgid "Meanwhile, spread the love"
 msgstr "У међувремену, певушите неку песмицу"
 
-#: ../src/gtd-empty-list-widget.c:61
+#: src/gtd-empty-list-widget.c:61
 msgid "Working hard is always rewarded"
 msgstr "Тежак рад се увек исплати"
 
-#: ../src/gtd-empty-list-widget.c:72
+#: src/gtd-empty-list-widget.c:72
 msgid "No tasks found"
 msgstr "Нема задатака"
 
-#: ../src/gtd-empty-list-widget.c:73
+#: src/gtd-empty-list-widget.c:73
 msgid "You can add tasks using the <b>+</b> above"
 msgstr "Можете додати задатке користећи знак <b>+</b>"
 
-#: ../src/gtd-plugin-dialog-row.c:95
+#: src/gtd-plugin-dialog-row.c:95
 msgid "Error loading plugin"
 msgstr "Не могу да учитам прикључак"
 
-#: ../src/gtd-plugin-dialog-row.c:95
+#: src/gtd-plugin-dialog-row.c:95
 msgid "Error unloading plugin"
 msgstr "Не могу да искључим прикључакџ"
 
-#: ../src/gtd-task-list-view.c:606
+#: src/gtd-task-list-view.c:612
 msgid "Removing this task will also remove its subtasks. Remove anyway?"
 msgstr ""
 "Уклањање овог задатка уклониће и све његове подзадатке. Да уклоним ипак?"
 
-#: ../src/gtd-task-list-view.c:609
+#: src/gtd-task-list-view.c:615
 msgid "Once removed, the tasks cannot be recovered."
 msgstr "Након уклањања, задатак не може да се поврати."
 
-#: ../src/gtd-task-list-view.c:612 ../src/views/gtd-list-selector-panel.c:391
+#: src/gtd-task-list-view.c:618 src/views/gtd-list-selector-panel.c:391
 msgid "Cancel"
 msgstr "Откажи"
 
-#: ../src/gtd-task-list-view.c:614
+#: src/gtd-task-list-view.c:620
 msgid "Remove"
 msgstr "Уклони"
 
-#: ../src/gtd-task-list-view.c:663
+#: src/gtd-task-list-view.c:669
 #, c-format
 msgid "Task <b>%s</b> removed"
 msgstr "Задатак <b>%s</b> уклоњен"
 
-#: ../src/gtd-task-list-view.c:693
+#: src/gtd-task-list-view.c:699
 msgid "Undo"
 msgstr "Опозови"
 
-#: ../src/gtd-window.c:808
+#: src/gtd-window.c:818
 msgid "Loading your task lists…"
 msgstr "Учитавам ваше спискове са задацима…"
 
-#: ../src/gtd-window.c:934
+#: src/gtd-window.c:944
 msgid "Click a task list to select"
 msgstr "Кликните на списак са задацима да бисте га изабрали"
 
-#: ../src/views/gtd-list-selector-grid-item.c:234
+#: src/views/gtd-list-selector-grid-item.c:234
 msgid "No tasks"
 msgstr "Нема задатака"
 
-#: ../src/views/gtd-list-selector-panel.c:185
+#: src/views/gtd-list-selector-panel.c:185
 msgid "Setting new color for task list"
 msgstr "Постављам нову боју списка са задацима"
 
-#: ../src/views/gtd-list-selector-panel.c:384
+#: src/views/gtd-list-selector-panel.c:384
 msgid "Remove the selected task lists?"
 msgstr "Да уклоним изабране спискове са задацима?"
 
-#: ../src/views/gtd-list-selector-panel.c:387
+#: src/views/gtd-list-selector-panel.c:387
 msgid "Once removed, the task lists cannot be recovered."
 msgstr "Након уклањања, списак са задацима не може да се поврати."
 
-#: ../src/views/gtd-list-selector-panel.c:399
+#: src/views/gtd-list-selector-panel.c:399
 msgid "Remove task lists"
 msgstr "Уклони спискове са задацима"
+
+#~ msgid "Change default storage location…"
+#~ msgstr "Промени путању подразумеваног складишта…"
+
+#~ msgid "Error loading CSS from resource"
+#~ msgstr "Грешка приликом учитавања ЦСС-а из ресурса"
+
+#~ msgid "Error while converting the default Todo.txt path to an URI"
+#~ msgstr "Грешка претварања основне путање Роковника у јединствену путању"
+
+#~ msgid "Error while adding a task to Todo.txt"
+#~ msgstr "Грешка додавања задатака у датотеку Роковника"
+
+#~ msgid "Error while reading tasks from Todo.txt"
+#~ msgstr "Грешка читања задатка из датотеке Роковника"
+
+#~ msgid "Error while creating a Todo.txt list"
+#~ msgstr "Грешка прављења списка датотеке Роковника"
+
+#~ msgid "Error while reading task lists from Todo.txt"
+#~ msgstr "Грешка читања списка задатака из датотеке Роковника"
 
 #~ msgid "Error while opening the default Todo.txt directory"
 #~ msgstr "Грешка отварања основног директоријума Роковника"
