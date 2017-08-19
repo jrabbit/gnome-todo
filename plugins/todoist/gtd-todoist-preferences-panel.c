@@ -108,7 +108,7 @@ add_account_button_clicked (GtdTodoistPreferencesPanel *self)
 {
   g_return_if_fail (GOA_IS_CLIENT (self->client));
 
-  spawn_goa_with_args (NULL, NULL);
+  spawn_goa_with_args ("add", "todoist");
 }
 
 static void
