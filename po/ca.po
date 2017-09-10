@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Jordi Mas i Hernàndez <jmas@softcatala.org>, 2015
+# Jordi Serratosa <jordis@softcatala.cat>, 2017.
 #
 # To Do -> Per fer
 # Backend -> dorsal
@@ -12,7 +13,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "todo&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-08-30 08:49+0000\n"
+"POT-Creation-Date: 2017-09-06 00:23+0000\n"
 "PO-Revision-Date: 2017-09-01 01:03+0200\n"
 "Last-Translator: Jordi Mas <jmas@softcaatala.org>\n"
 "Language-Team: \n"
@@ -372,11 +373,11 @@ msgstr "Suprimeix"
 
 #: plugins/eds/gtd-plugin-eds.c:243 plugins/eds/gtd-plugin-eds.c:247
 msgid "Error loading GNOME Online Accounts"
-msgstr "S'ha produït un error carregant els comptes en línia del GNOME"
+msgstr "S'ha produït un error en carregar els comptes en línia del GNOME"
 
 #: plugins/eds/gtd-plugin-eds.c:274
 msgid "Error loading Evolution-Data-Server backend"
-msgstr "S'ha produït un error carregant el dorsal Evolution-Data-Server"
+msgstr "S'ha produït un error en carregar el dorsal Evolution-Data-Server"
 
 #: plugins/eds/gtd-provider-eds.c:136 plugins/eds/gtd-provider-eds.c:140
 msgid "Error fetching tasks from list"
@@ -429,7 +430,7 @@ msgstr "S'ha produït un error en suprimir la llista de tasques"
 #: plugins/eds/gtd-provider-eds.c:779 plugins/eds/gtd-provider-eds.c:783
 #: plugins/eds/gtd-task-list-eds.c:69
 msgid "Error saving task list"
-msgstr "S'ha produït un error desant la llista de tasques"
+msgstr "S'ha produït un error en desar la llista de tasques"
 
 #: plugins/eds/gtd-provider-local.c:61
 msgid "Local"
@@ -679,7 +680,7 @@ msgstr "S'ha produït un error en descarregar connector"
 #: src/gtd-task-list-view.c:612
 msgid "Removing this task will also remove its subtasks. Remove anyway?"
 msgstr ""
-"Si es suprimeix aquesta tasca també se suprimiran les seves subtasques. "
+"Si se suprimeix aquesta tasca també se suprimiran les seves subtasques. "
 "Voleu suprimir-la?"
 
 #: src/gtd-task-list-view.c:615
@@ -705,7 +706,7 @@ msgstr "Desfés"
 
 #: src/gtd-window.c:818
 msgid "Loading your task lists…"
-msgstr "S'està carregat la llista de tasques…"
+msgstr "S'està carregant la llista de tasques…"
 
 #: src/gtd-window.c:944
 msgid "Click a task list to select"
