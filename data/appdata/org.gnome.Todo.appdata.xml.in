@@ -51,6 +51,18 @@
   </kudos>
 
   <releases>
+    <release date="2017-09-11" version="3.26.0">
+      <description>
+        <p>
+          We're proud to annouce GNOME To Do 3.26, the first release in the 3.26 stable
+          series! This release, thanks to the hard work of a Google Summer of Code student,
+          we have synchronization with Todoist in place.
+        </p>
+        <p>This release also updates translations, and adds new translations.</p>
+        <p>Thanks to everyone that contributed to GNOME To Do this cycle!</p>
+      </description>
+    </release>
+
     <release date="2017-08-10" version="3.25.90">
       <description>
         <p>
