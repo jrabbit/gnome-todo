@@ -1,6 +1,6 @@
 project(
   'gnome-todo', 'c',
-  version: '3.26.0',
+  version: '3.27.0',
   license: 'GPL3+',
   default_options: [
     'buildtype=debugoptimized',
