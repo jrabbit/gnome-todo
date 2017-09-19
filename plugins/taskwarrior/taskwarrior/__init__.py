@@ -4,20 +4,24 @@ gi.require_version('Gtd',  '1.0')
 gi.require_version('Peas', '1.0')
 
 from gi.repository import Gio, GLib, GObject, Gtd, Gtk, Peas
-
 from gettext import gettext as _
 
 
+from taskc.simple import TaskdConnection
+
+def get_tasks():
+    tc = TaskdConnection()
+    tc = TaskdConnection.from_taskrc()
+    resp = tc.pull()
+    return resp
+
 class TaskwarriorPopover(Gtk.Popover):
-    def __init__(self, button, manager):
+    def __init__(self, button):
         Gtk.Popover.__init__(self, relative_to=button)
 
         button.set_popover(self)
 
-        self.manager = manager
-
         self._setup_listbox()
-        self._setup_manager()
 
     def _setup_listbox(self):
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL,
@@ -45,34 +49,6 @@ class TaskwarriorPopover(Gtk.Popover):
 
         self.add(vbox)
 
-    def _setup_manager(self):
-        self.manager.connect('score-added', self._score_added)
-        self.manager.connect('score-removed', self._score_removed)
-
-    def _score_added(self, manager, score, task):
-
-        row = Gtk.ListBoxRow(border_width=6)
-
-        row.add(Gtk.Label(label="<b>"+task.get_title()+"</b> completed",
-                          use_markup=True,
-                          hexpand=True,
-                          xalign=0))
-        row.show_all()
-
-        self.listbox.add(row)
-
-    def _score_removed(self, manager, score, task):
-
-        row = Gtk.ListBoxRow(border_width=6)
-
-        row.add(Gtk.Label(label="<b>"+task.get_title()+"</b> readded",
-                          use_markup=True,
-                          hexpand=True,
-                          xalign=0))
-        row.show_all()
-
-        self.listbox.add(row)
-
 
 class TaskwarriorPlugin(GObject.Object, Gtd.Activatable):
 
@@ -91,9 +67,8 @@ class TaskwarriorPlugin(GObject.Object, Gtd.Activatable):
         # self.manager.connect('score-added', self._score_changed)
         # self.manager.connect('score-removed', self._score_changed)
 
-        self.popover = TaskwarriorPopover(self.header_button, self.manager)
-        print("Hello console?")
-
+        self.popover = TaskwarriorPopover(self.header_button)
+        print(get_tasks().data)
     # def _score_changed(self, manager, score, task):
     #     print(score)
     #     self.header_button.set_label(str(score))
