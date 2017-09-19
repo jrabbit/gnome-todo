@@ -208,5 +208,6 @@ output += '        Today panel ............. ' + get_option('enable-today-panel-
 output += '        Unscheduled panel ....... ' + get_option('enable-unscheduled-panel-plugin').to_string() + '\n'
 output += '        Todo.txt ................ ' + get_option('enable-todo-txt-plugin').to_string() + '\n'
 output += '        Todoist ................. ' + get_option('enable-todoist-plugin').to_string() + '\n'
+output += '        Taskwarrior ................. ' + get_option('enable-taskwarrior-plugin').to_string() + '\n'
 output += '        Now type \'ninja -C ' + meson.build_root() + '\' to build ' + meson.project_name()
 message(output)

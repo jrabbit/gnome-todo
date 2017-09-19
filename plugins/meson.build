@@ -40,3 +40,7 @@ endif
 if get_option('enable-todoist-plugin')
   subdir('todoist')
 endif
+
+if get_option('enable-taskwarrior-plugin')
+  subdir('taskwarrior')
+endif

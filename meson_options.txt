@@ -6,5 +6,6 @@ option('enable-today-panel-plugin', type: 'boolean', value: true, description: '
 option('enable-unscheduled-panel-plugin', type: 'boolean', value: true, description: 'enable Unscheduled Tasks Panel plugin')
 option('enable-todo-txt-plugin', type: 'boolean', value: true, description: 'enable Todo.Txt plugin')
 option('enable-todoist-plugin', type: 'boolean', value: true, description: 'enable Todoist plugin')
+option('enable-taskwarrior-plugin', type: 'boolean', value: true, description: 'enable Taskwarrior plugin')
 option('enable-gtk-doc', type: 'boolean', value: false, description: 'use gtk-doc to build documentation')
 option('enable-introspection', type: 'boolean', value: true, description: 'Enable GObject Introspection (depends on GObject)')
