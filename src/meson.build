@@ -98,7 +98,7 @@ cflags = [
   '-DUI_DATA_DIR="@0@"'.format(join_paths(gnome_todo_pkgdatadir, 'style'))
 ]
 
-ldflags = []
+ldflags = [ '-Wl,--export-dynamic' ]
 
 if host_machine.system().contains('linux')
   foreach ldflag: plugins_ldflags
@@ -107,6 +107,11 @@ if host_machine.system().contains('linux')
     endif
   endforeach
 endif
+
+
+##############
+# gnome-todo #
+##############
 
 gnome_todo = executable(
   meson.project_name(),
@@ -119,6 +124,11 @@ gnome_todo = executable(
               install: true,
           install_dir: gnome_todo_bindir
 )
+
+
+###################
+# Private library #
+###################
 
 libgtd = shared_library(
                 'gtd',

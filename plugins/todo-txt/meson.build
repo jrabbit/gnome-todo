@@ -10,9 +10,9 @@ sources = files(
 
 plugins_libs += static_library(
   'todotxt',
-  sources: sources,
+              sources: sources,
   include_directories: plugins_incs,
-  dependencies: gnome_todo_deps
+         dependencies: gnome_todo_deps
 )
 
 install_data(
@@ -23,7 +23,7 @@ install_data(
 plugin_data = plugin_name + '.plugin'
 
 plugins_confs += configure_file(
-  input: plugin_data + '.in',
-  output: plugin_data,
+          input: plugin_data + '.in',
+         output: plugin_data,
   configuration: plugins_conf
 )

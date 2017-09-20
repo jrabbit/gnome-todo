@@ -37,8 +37,8 @@ version_conf.set('VERSION', gnome_todo_version)
 version_xml = 'version.xml'
 
 configure_file(
-  input: version_xml + '.in',
-  output: version_xml,
+          input: version_xml + '.in',
+         output: version_xml,
   configuration: version_conf
 )
 
@@ -52,19 +52,19 @@ doc_path = join_paths(gnome_todo_datadir, 'gtk-doc', 'html', meson.project_name(
 
 gnome.gtkdoc(
   meson.project_name(),
-  main_sgml: meson.project_name() + '-docs.sgml',
-  src_dir: src_inc,
-  dependencies: libgtd_dep,
-  scan_args: [
+          main_sgml: meson.project_name() + '-docs.sgml',
+            src_dir: src_inc,
+       dependencies: libgtd_dep,
+          mkdb_args: [ '--sgml-mode', '--output-format=xml' ],
+        html_assets: html_images,
+            install: true,
+        install_dir: doc_path
+  gobject_typesfile: meson.project_name() + '.types',
+          scan_args: [
     '--rebuild-types',
     '--ignore-headers=' + ' '.join(private_headers)
   ],
-  mkdb_args: [
-    '--sgml-mode',
-    '--output-format=xml'
-  ],
-  gobject_typesfile: meson.project_name() + '.types',
-  fixxref_args: [
+       fixxref_args: [
     '--extra-dir=@0@'.format(join_paths(glib_doc_path, 'glib')),
     '--extra-dir=@0@'.format(join_paths(glib_doc_path, 'gmodule')),
     '--extra-dir=@0@'.format(join_paths(glib_doc_path, 'gobject')),
@@ -73,7 +73,4 @@ gnome.gtkdoc(
     '--extra-dir=@0@'.format(join_paths(gtk_doc_path, 'gtk')),
     '--extra-dir=@0@'.format(join_paths(gtk_doc_path, 'gtksourceview-3.0'))
   ],
-  html_assets: html_images,
-  install: true,
-  install_dir: doc_path
 )

@@ -134,7 +134,7 @@ if gnome_todo_debug
     '-Wswitch-enum',
     '-Wundef',
     '-Wunused-but-set-variable',
-    '-Wwrite-strings'
+    '-Wwrite-strings',
   ]
 
   foreach cflag: test_cflags

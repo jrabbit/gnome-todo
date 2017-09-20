@@ -1584,7 +1584,12 @@ gtd_task_list_view_class_init (GtdTaskListViewClass *klass)
 
   widget_class->map = gtd_task_list_view_map;
 
+  g_type_ensure (GTD_TYPE_ARROW_FRAME);
+  g_type_ensure (GTD_TYPE_EDIT_PANE);
+  g_type_ensure (GTD_TYPE_NEW_TASK_ROW);
   g_type_ensure (GTD_TYPE_TASK_ROW);
+  g_type_ensure (GTD_TYPE_DND_ROW);
+  g_type_ensure (GTD_TYPE_EMPTY_LIST_WIDGET);
 
   /**
    * GtdTaskListView::color:

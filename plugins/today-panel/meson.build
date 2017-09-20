@@ -8,16 +8,17 @@ sources = files(
 )
 
 plugins_libs += static_library(
-  'todaypanel',
-  sources: sources,
+         'todaypanel',
+              sources: sources,
   include_directories: plugins_incs,
-  dependencies: gnome_todo_deps
+         dependencies: gnome_todo_deps,
+                  pic: true,
 )
 
 plugin_data = plugin_name + '.plugin'
 
 plugins_confs += configure_file(
-  input: plugin_data + '.in',
-  output: plugin_data,
+          input: plugin_data + '.in',
+         output: plugin_data,
   configuration: plugins_conf
 )

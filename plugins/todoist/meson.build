@@ -14,16 +14,16 @@ todoist_deps = gnome_todo_deps + [
 ]
 
 plugins_libs += static_library(
-  plugin_name,
-  sources: sources,
+          plugin_name,
+              sources: sources,
   include_directories: plugins_incs,
-  dependencies: todoist_deps
+         dependencies: todoist_deps
 )
 
 plugin_data = plugin_name + '.plugin'
 
 plugins_confs += configure_file(
-  input: plugin_data + '.in',
-  output: plugin_data,
+          input: plugin_data + '.in',
+         output: plugin_data,
   configuration: plugins_conf
 )
