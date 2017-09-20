@@ -63,12 +63,19 @@ class TaskwarriorPlugin(GObject.Object, Gtd.Activatable):
 
         self.header_button.get_style_context().add_class('image-button')
 
-        # self.manager = TaskwarriorManager()
+
         # self.manager.connect('score-added', self._score_changed)
         # self.manager.connect('score-removed', self._score_changed)
 
         self.popover = TaskwarriorPopover(self.header_button)
         print(get_tasks().data)
+        manager = Gtd.Manager.get_default()
+
+        for tasklist in manager.get_task_lists():
+            print(tasklist.get_tasks())
+            for task in tasklist.get_tasks():
+                print("??????")
+                print(task.get_description())
     # def _score_changed(self, manager, score, task):
     #     print(score)
     #     self.header_button.set_label(str(score))
