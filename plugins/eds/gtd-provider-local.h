@@ -19,11 +19,11 @@
 #ifndef GTD_PROVIDER_LOCAL_H
 #define GTD_PROVIDER_LOCAL_H
 
+#include "gnome-todo.h"
 #include "gtd-provider-eds.h"
 
 #include <glib.h>
 
-#include <gnome-todo.h>
 #include <libecal/libecal.h>
 #include <libedataserverui/libedataserverui.h>
 

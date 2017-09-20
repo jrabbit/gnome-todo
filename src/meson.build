@@ -1,27 +1,12 @@
-install_headers(
-  'engine/gtd-manager.h',
-  subdir: join_paths(meson.project_name(), 'engine')
-)
-
-interfaces_headers = files(
-  'interfaces/gtd-activatable.h',
-  'interfaces/gtd-panel.h',
-  'interfaces/gtd-provider.h'
-)
-
-install_headers(
-  interfaces_headers,
-  subdir: join_paths(meson.project_name(), 'interfaces')
-)
-
-install_headers(
-  'notification/gtd-notification.h',
-  subdir: join_paths(meson.project_name(), 'notification')
-)
 
 enum_headers = files('gtd-enums.h')
 
 headers = enum_headers + files(
+  'engine/gtd-manager.h',
+  'interfaces/gtd-activatable.h',
+  'interfaces/gtd-panel.h',
+  'interfaces/gtd-provider.h',
+  'notification/gtd-notification.h',
   'gtd-object.h',
   'gtd-task.h',
   'gtd-task-list.h',
@@ -32,10 +17,12 @@ headers = enum_headers + files(
   'gnome-todo.h'
 )
 
-install_headers(
-  headers,
-  subdir: meson.project_name()
-)
+install_headers(headers, subdir: meson.project_name())
+
+
+################
+# Source files #
+################
 
 sources = files(
   'engine/gtd-manager.c',
@@ -77,20 +64,17 @@ sources = files(
 sources += gnome.compile_resources(
   'gtd-resources',
   join_paths(data_dir, 'todo.gresource.xml'),
-  source_dir: [
-    data_dir,
-    join_paths(meson.build_root(), 'plugins')
-  ],
-  c_name: 'todo',
+    source_dir: [ data_dir, join_paths(meson.build_root(), 'plugins') ],
+        c_name: 'todo',
   dependencies: plugins_confs,
-  export: true
+        export: true
 )
 
 enum = 'gtd-enum-types'
 
 sources += gnome.mkenums(
-  enum,
-  sources: enum_headers,
+        enum,
+     sources: enum_headers,
   c_template: enum + '.c.template',
   h_template: enum + '.h.template'
 )
@@ -126,42 +110,52 @@ endif
 
 gnome_todo = executable(
   meson.project_name(),
-  sources,
+               sources,
   include_directories: incs,
-  dependencies: gnome_todo_deps,
-  c_args: cflags,
-  link_with: plugins_libs,
-  link_args: ldflags,
-  install: true,
-  install_dir: gnome_todo_bindir
+         dependencies: gnome_todo_deps,
+               c_args: cflags,
+            link_with: plugins_libs,
+            link_args: ldflags,
+              install: true,
+          install_dir: gnome_todo_bindir
 )
 
 libgtd = shared_library(
-  'gtd',
-  sources: sources,
-  version: libversion,
-  soversion: soversion,
+                'gtd',
+              sources: sources,
+              version: libversion,
+            soversion: soversion,
   include_directories: incs,
-  dependencies: gnome_todo_deps,
-  c_args: cflags
+         dependencies: gnome_todo_deps,
+               c_args: cflags
 )
 
 libgtd_dep = declare_dependency(
-  link_with: libgtd,
+            link_with: libgtd,
   include_directories: src_inc,
-  dependencies: gnome_todo_deps
+         dependencies: gnome_todo_deps
 )
 
+
+##############
+# pkg-config #
+##############
+
 pkg.generate(
-  libraries: libgtd,
-  version: gnome_todo_version,
-  name: 'Gnome To Do',
+    libraries: libgtd,
+      version: gnome_todo_version,
+         name: 'Gnome To Do',
   description: 'Header and path for Gnome Todo Plugins',
-  filebase: meson.project_name(),
-  subdirs: meson.project_name(),
-  variables: 'exec_prefix=' + gnome_todo_libexecdir,
+     filebase: meson.project_name(),
+      subdirs: meson.project_name(),
+    variables: 'exec_prefix=' + gnome_todo_libexecdir,
   install_dir: join_paths(gnome_todo_libdir, 'pkgconfig')
 )
+
+
+#########################
+# GObject-Introspection #
+#########################
 
 if get_option('enable-introspection')
   gir_sources = files(
@@ -203,17 +197,17 @@ if get_option('enable-introspection')
   typelib_dir = join_paths(gnome_todo_libdir, '@0@-@1@'.format('girepository', gnome_todo_gir_version))
 
   gnome.generate_gir(
-    gnome_todo,
-    sources: gir_sources,
-    namespace: gnome_todo_gir_namespace,
-    nsversion: gnome_todo_gir_version,
-    identifier_prefix: gnome_todo_gir_namespace,
-    symbol_prefix: gnome_todo_gir_namespace.to_lower(),
-    includes: gir_incs,
+             gnome_todo,
+                sources: gir_sources,
+              namespace: gnome_todo_gir_namespace,
+              nsversion: gnome_todo_gir_version,
+      identifier_prefix: gnome_todo_gir_namespace,
+          symbol_prefix: gnome_todo_gir_namespace.to_lower(),
+               includes: gir_incs,
     include_directories: incs,
-    extra_args: gir_extra_args,
-    install: true,
-    install_dir_gir: gir_dir,
-    install_dir_typelib: typelib_dir
+             extra_args: gir_extra_args,
+                install: true,
+        install_dir_gir: gir_dir,
+    install_dir_typelib: typelib_dir,
   )
 endif

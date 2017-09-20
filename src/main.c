@@ -17,13 +17,12 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <config.h>
-#include <glib/gi18n.h>
-#include <gtk/gtk.h>
 #include "gtd-application.h"
 
-int
-main (int argc,
+#include <config.h>
+
+gint
+main (gint  argc,
       char *argv[])
 {
   GtdApplication *app;

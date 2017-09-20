@@ -16,10 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "gnome-todo.h"
+
 #include "gtd-panel-scheduled.h"
 
 #include <glib/gi18n.h>
-#include <gnome-todo.h>
 #include <math.h>
 
 struct _GtdPanelScheduled

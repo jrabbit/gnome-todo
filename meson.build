@@ -1,12 +1,10 @@
 project(
-  'gnome-todo', 'c',
-  version: '3.27.0',
-  license: 'GPL3+',
-  default_options: [
-    'buildtype=debugoptimized',
-    'warning_level=1'
-  ],
-  meson_version: '>= 0.41.0'
+     'gnome-todo',
+              'c',
+          version: '3.27.0',
+          license: 'GPL3+',
+  default_options: [ 'buildtype=debugoptimized', 'warning_level=1' ],
+    meson_version: '>= 0.41.0'
 )
 
 gnome_todo_version = meson.project_version()
@@ -175,7 +173,7 @@ i18n = import('i18n')
 pkg = import('pkgconfig')
 
 top_inc = include_directories('.')
-src_inc = include_directories('src')
+src_inc = include_directories('src', 'src/engine', 'src/interfaces', 'src/notification')
 
 data_dir = join_paths(meson.source_root(), 'data')
 po_dir = join_paths(meson.source_root(), 'po')

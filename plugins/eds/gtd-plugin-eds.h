@@ -19,8 +19,9 @@
 #ifndef GTD_EDS_PLUGIN_H
 #define GTD_EDS_PLUGIN_H
 
+#include "gnome-todo.h"
+
 #include <glib.h>
-#include <gnome-todo.h>
 
 G_BEGIN_DECLS
 
