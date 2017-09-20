@@ -78,29 +78,19 @@ taskrow {
     background-color: @transparent;
 }
 
-taskrow.priority-low {
-    background-color: alpha(#3465a4, 0.2);
+taskrow frame.priority-low {
+    background-color: #3465a4;
+    box-shadow: 0 0 2px alpha(black, 0.25);
 }
 
-taskrow.priority-low:hover {
-    background-color: alpha(#3465a4, 0.4);
+taskrow frame.priority-medium {
+    background-color: #f57900;
+    box-shadow: 0 0 2px alpha(black, 0.25);
 }
 
-
-taskrow.priority-medium {
-    background-color: alpha(#f57900, 0.2);
-}
-
-taskrow.priority-medium:hover {
-    background-color: alpha(#f57900, 0.4);
-}
-
-taskrow.priority-hight {
-    background-color: alpha(#cc0000, 0.2);
-}
-
-taskrow.priority-hight:hover {
-    background-color: alpha(#cc0000, 0.4);
+taskrow frame.priority-hight {
+    background-color: #cc0000;
+    box-shadow: 0 0 2px alpha(black, 0.25);
 }
 
 taskrow.complete label {

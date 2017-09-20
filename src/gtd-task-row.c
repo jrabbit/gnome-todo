@@ -32,8 +32,8 @@ struct _GtdTaskRow
   /*<private>*/
   GtkRevealer               *revealer;
 
-  /* new task widgets */
-  GtkStack                  *done_check;
+  GtkWidget                 *done_check;
+  GtkWidget                 *priority_frame;
 
   /* task widgets */
   GtkEntry                  *title_entry;
@@ -224,9 +224,7 @@ gtd_task_row__priority_changed_cb (GtdTaskRow *row,
   GtkStyleContext *context;
   gint priority;
 
-  g_return_if_fail (GTD_IS_TASK_ROW (row));
-
-  context = gtk_widget_get_style_context (GTK_WIDGET (row));
+  context = gtk_widget_get_style_context (row->priority_frame);
   priority = gtd_task_get_priority (GTD_TASK (object));
 
   /* remove all styles */
@@ -583,6 +581,7 @@ gtd_task_row_class_init (GtdTaskRowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, dnd_event_box);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, dnd_icon);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, done_check);
+  gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, priority_frame);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, revealer);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, task_date_label);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, task_list_label);
@@ -812,6 +811,7 @@ gtd_task_row_set_handle_subtasks (GtdTaskRow *self,
   self->handle_subtasks = handle_subtasks;
 
   gtk_widget_set_visible (self->dnd_box, handle_subtasks);
+  gtk_widget_set_visible (self->dnd_event_box, handle_subtasks);
   depth_changed_cb (self, NULL, self->task);
 
   g_object_notify (G_OBJECT (self), "handle-subtasks");
