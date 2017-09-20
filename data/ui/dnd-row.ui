@@ -9,7 +9,7 @@
       <object class="GtkBox" id="box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_start">24</property>
+        <property name="margin_start">20</property>
         <property name="spacing">12</property>
         <child>
           <object class="GtkImage" id="icon">
@@ -32,9 +32,9 @@
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="margin_end">24</property>
-                <property name="margin_top">24</property>
-                <property name="margin_bottom">24</property>
+                <property name="margin_end">20</property>
+                <property name="margin_top">20</property>
+                <property name="margin_bottom">20</property>
               </object>
             </child>
           </object>
