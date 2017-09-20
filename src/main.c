@@ -20,6 +20,7 @@
 #include "gtd-application.h"
 
 #include <config.h>
+#include <glib/gi18n.h>
 
 gint
 main (gint  argc,
@@ -28,11 +29,9 @@ main (gint  argc,
   GtdApplication *app;
   int status;
 
-#ifdef ENABLE_NLS
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
-#endif
 
   app = gtd_application_new ();
   g_application_set_default (G_APPLICATION (app));
