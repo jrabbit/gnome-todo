@@ -33,15 +33,11 @@ struct _GtdTaskRow
   GtkRevealer               *revealer;
 
   GtkWidget                 *done_check;
-  GtkWidget                 *priority_frame;
 
   /* task widgets */
   GtkEntry                  *title_entry;
   GtkLabel                  *task_date_label;
   GtkLabel                  *task_list_label;
-  GtkStack                  *task_stack;
-  GtkSpinner                *task_loading_spinner;
-  GtkLabel                  *title_label;
 
   /* dnd widgets */
   GtkWidget                 *dnd_box;
@@ -224,7 +220,7 @@ gtd_task_row__priority_changed_cb (GtdTaskRow *row,
   GtkStyleContext *context;
   gint priority;
 
-  context = gtk_widget_get_style_context (row->priority_frame);
+  context = gtk_widget_get_style_context (GTK_WIDGET (row));
   priority = gtd_task_get_priority (GTD_TASK (object));
 
   /* remove all styles */
@@ -313,8 +309,8 @@ depth_changed_cb (GtdTaskRow *self,
                   GParamSpec *pspec,
                   GtdTask    *task)
 {
-  gtk_widget_set_margin_start (self->dnd_box,
-                               self->handle_subtasks ? 32 * gtd_task_get_depth (task) : 0);
+  gtk_widget_set_margin_start (GTK_WIDGET (self),
+                               self->handle_subtasks ? 32 * gtd_task_get_depth (task) + 3: 3);
 }
 
 static gboolean
@@ -581,14 +577,10 @@ gtd_task_row_class_init (GtdTaskRowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, dnd_event_box);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, dnd_icon);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, done_check);
-  gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, priority_frame);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, revealer);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, task_date_label);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, task_list_label);
-  gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, task_stack);
-  gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, task_loading_spinner);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, title_entry);
-  gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, title_label);
 
   gtk_widget_class_bind_template_callback (widget_class, button_press_event);
   gtk_widget_class_bind_template_callback (widget_class, complete_check_toggled_cb);
@@ -661,22 +653,10 @@ gtd_task_row_set_task (GtdTaskRow *row,
                                   G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
           g_object_bind_property (task,
-                                  "title",
-                                  row->title_label,
-                                  "label",
-                                  G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
-
-          g_object_bind_property (task,
                                   "complete",
                                   row->done_check,
                                   "active",
                                   G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
-
-          g_object_bind_property (task,
-                                  "ready",
-                                  row->task_loading_spinner,
-                                  "visible",
-                                  G_BINDING_INVERT_BOOLEAN | G_BINDING_SYNC_CREATE);
 
           g_object_bind_property_full (task,
                                        "due-date",
@@ -838,14 +818,8 @@ gtd_task_row_set_active (GtdTaskRow *self,
 
   if (active)
     {
-      gtk_stack_set_visible_child_name (self->task_stack, "title");
       gtk_widget_grab_focus (GTK_WIDGET (self->title_entry));
-
       g_signal_emit (self, signals[ENTER], 0);
-    }
-  else
-    {
-      gtk_stack_set_visible_child_name (self->task_stack, "label");
     }
 }
 
