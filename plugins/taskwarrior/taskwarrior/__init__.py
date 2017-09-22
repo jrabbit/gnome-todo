@@ -2,6 +2,7 @@ import gi
 import logging
 import uuid
 import datetime
+import json
 
 gi.require_version('Gtd',  '1.0')
 gi.require_version('Peas', '1.0')
@@ -29,15 +30,17 @@ class TaskDManager(GObject.Object):
 
         manager = Gtd.Manager.get_default()
 
-        manager.connect('list-added', self._setup_list)
+        manager.connect('task-added', self._task_added)
 
         for tasklist in manager.get_task_lists():
-            self._setup_list(manager, tasklist)
+            for task in tasklist.get_tasks():
+                task.connect('notify::complete', self._task_complete)
 
-    def _setup_list(self, manager, tasklist):
-        tasklist.connect('task-added', self._task_added)
-        for task in tasklist.get_tasks():
-            task.connect('notify::complete', self._task_complete)
+
+    # def _setup_list(self, manager, tasklist):
+    #     tasklist.connect('task-added', self._task_added)
+    #     for task in tasklist.get_tasks():
+    #         task.connect('notify::complete', self._task_complete)
 
     def _task_added(self, tasklist, task):
         self.send(task)
@@ -50,6 +53,9 @@ class TaskDManager(GObject.Object):
     def send(self, task):
         "Take a Gnome To-do task and convert and send it to taskd"
         twjson = self.to_twjson(task)
+        tc = TaskdConnection()
+        tc = TaskdConnection.from_taskrc()
+        tc.put(json.dumps(twjson))
         logger.info(twjson)
 
     def to_twjson(self, task):
