@@ -125,6 +125,8 @@ gtd_empty_list_widget_class_init (GtdEmptyListWidgetClass *klass)
   gtk_widget_class_bind_template_child (widget_class, GtdEmptyListWidget, icon);
   gtk_widget_class_bind_template_child (widget_class, GtdEmptyListWidget, subtitle_label);
   gtk_widget_class_bind_template_child (widget_class, GtdEmptyListWidget, title_label);
+
+  gtk_widget_class_set_css_name (widget_class, "emptylistwidget");
 }
 
 static void

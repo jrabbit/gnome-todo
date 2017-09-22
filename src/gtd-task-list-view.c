@@ -1614,7 +1614,7 @@ gtd_task_list_view_class_init (GtdTaskListViewClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, task_row_entered_cb);
   gtk_widget_class_bind_template_callback (widget_class, task_row_exited_cb);
 
-  gtk_widget_class_set_css_name (widget_class, "task-list-view");
+  gtk_widget_class_set_css_name (widget_class, "tasklistview");
 }
 
 static void

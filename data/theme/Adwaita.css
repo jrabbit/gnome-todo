@@ -110,3 +110,16 @@ editpane entry.title {
     font-size: 1.1rem;
     font-weight: bold;
 }
+
+/*
+ * Tasklist view
+ */
+tasklistview.dark emptylistwidget label,
+tasklistview.dark emptylistwidget image {
+    color: white;
+}
+
+tasklistview.light emptylistwidget label,
+tasklistview.light emptylistwidget image {
+    color: black;
+}
