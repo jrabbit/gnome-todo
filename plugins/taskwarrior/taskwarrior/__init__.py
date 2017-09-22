@@ -1,4 +1,5 @@
 import gi
+import logging
 
 gi.require_version('Gtd',  '1.0')
 gi.require_version('Peas', '1.0')
@@ -9,11 +10,40 @@ from gettext import gettext as _
 
 from taskc.simple import TaskdConnection
 
+
+logger = logging.getLogger(__name__)
+
 def get_tasks():
     tc = TaskdConnection()
     tc = TaskdConnection.from_taskrc()
     resp = tc.pull()
     return resp
+
+
+class TaskDManager(GObject.Object):
+
+    def __init__(self):
+        GObject.Object.__init__(self)
+
+        manager = Gtd.Manager.get_default()
+
+        manager.connect('list-added', self._setup_list)
+
+        for tasklist in manager.get_task_lists():
+            self._setup_list(manager, tasklist)
+
+    def _setup_list(self, manager, tasklist):
+        tasklist.connect('task-added', self._task_added)
+        for task in tasklist.get_tasks():
+            task.connect('notify::complete', self._task_complete)
+
+    def _task_added(self, tasklist, task):
+        task.connect('notify::complete', self._task_complete)
+
+    def _task_complete(self, task, data):
+        logger.info(task.get_title())
+        logger.info("%s, %s", task, data)
+
 
 class TaskwarriorPopover(Gtk.Popover):
     def __init__(self, button):
@@ -56,6 +86,7 @@ class TaskwarriorPlugin(GObject.Object, Gtd.Activatable):
 
     def __init__(self):
         GObject.Object.__init__(self)
+        logging.basicConfig(level=logging.DEBUG)
         self.header_button = Gtk.MenuButton()
         self.header_button.set_halign(Gtk.Align.END)
         self.header_button.set_label('TASKD SYNC')
@@ -63,22 +94,18 @@ class TaskwarriorPlugin(GObject.Object, Gtd.Activatable):
 
         self.header_button.get_style_context().add_class('image-button')
 
-
-        # self.manager.connect('score-added', self._score_changed)
-        # self.manager.connect('score-removed', self._score_changed)
-
+        self.manager = TaskDManager()
         self.popover = TaskwarriorPopover(self.header_button)
-        print(get_tasks().data)
-        manager = Gtd.Manager.get_default()
-
-        for tasklist in manager.get_task_lists():
-            print(tasklist.get_tasks())
-            for task in tasklist.get_tasks():
-                print("??????")
-                print(task.get_description())
+        logger.info(get_tasks().data)
+        # self.manager = Gtd.Manager.get_default()
     # def _score_changed(self, manager, score, task):
     #     print(score)
     #     self.header_button.set_label(str(score))
+
+    # def setup(self):
+    #     for tasklist in self.manager.get_task_lists():
+    #         for task in tasklist.get_tasks():
+    #             print(task.get_description())
 
     def do_activate(self):
         pass
