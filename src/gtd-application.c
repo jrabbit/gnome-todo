@@ -132,6 +132,7 @@ gtd_application_show_about (GSimpleAction *simple,
   static const gchar *artists[] = {
     "Allan Day <allanpday@gmail.com>",
     "Jakub Steiner <jimmac@gmail.com>",
+    "Tobias Bernard <tbernard@gnome.org>",
     NULL
   };
 
