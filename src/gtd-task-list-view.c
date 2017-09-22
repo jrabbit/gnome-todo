@@ -64,10 +64,7 @@
 
 typedef struct
 {
-  GtdArrowFrame         *arrow_frame;
   GtkWidget             *dnd_row;
-  GtdEditPane           *edit_pane;
-  GtkRevealer           *edit_revealer;
   GtkWidget             *empty_box;
   GtkListBox            *listbox;
   GtkListBoxRow         *new_task_row;
@@ -635,19 +632,18 @@ ask_subtask_removal_warning (GtdTaskListView *self)
 }
 
 static void
-gtd_task_list_view__remove_task_cb (GtdEditPane *pane,
-                                    GtdTask     *task,
-                                    gpointer     user_data)
+remove_task_cb (GtdTaskRow      *row,
+                GtdTaskListView *self)
 {
   GtdTaskListViewPrivate *priv;
   GtdNotification *notification;
   RemoveTaskData *data;
   GtdWindow *window;
+  GtdTask *task;
   GList *subtasks;
   gchar *text;
 
-  g_return_if_fail (GTD_IS_TASK_LIST_VIEW (user_data));
-
+  task = gtd_task_row_get_task (row);
   subtasks = gtd_task_get_subtasks (task);
 
   /*
@@ -658,35 +654,29 @@ gtd_task_list_view__remove_task_cb (GtdEditPane *pane,
     {
       gboolean should_remove_task;
 
-      should_remove_task = ask_subtask_removal_warning (user_data);
+      should_remove_task = ask_subtask_removal_warning (self);
 
       /* The user canceled the operation, do nothing */
       if (!should_remove_task)
         goto out;
     }
 
-  priv = GTD_TASK_LIST_VIEW (user_data)->priv;
+  priv = self->priv;
   text = g_strdup_printf (_("Task <b>%s</b> removed"), gtd_task_get_title (task));
-  window = GTD_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (user_data)));
+  window = GTD_WINDOW (gtk_widget_get_toplevel (GTK_WIDGET (self)));
 
   data = g_new0 (RemoveTaskData, 1);
-  data->view = user_data;
+  data->view = self;
   data->task = task;
 
   /* Always remove tasks and subtasks */
-  iterate_subtasks (user_data,
-                    task,
-                    remove_task_from_list,
-                    FALSE);
+  iterate_subtasks (self, task, remove_task_from_list, FALSE);
 
   /*
    * Reset the DnD row, to avoid getting into an inconsistent state where
    * the DnD row points to a row that is not present anymore.
    */
   gtd_dnd_row_set_row_above (GTD_DND_ROW (priv->dnd_row), NULL);
-
-  /* Hide the edit panel */
-  gtk_revealer_set_reveal_child (priv->edit_revealer, FALSE);
 
   /* Notify about the removal */
   notification = gtd_notification_new (text, 7500.0);
@@ -703,37 +693,12 @@ gtd_task_list_view__remove_task_cb (GtdEditPane *pane,
   gtd_window_notify (window, notification);
 
   /* Clear the active row */
-  set_active_row (user_data, NULL);
+  set_active_row (self, NULL);
 
   g_clear_pointer (&text, g_free);
 
 out:
   g_clear_pointer (&subtasks, g_list_free);
-}
-
-static void
-gtd_task_list_view__edit_task_finished (GtdEditPane *pane,
-                                        GtdTask     *task,
-                                        gpointer     user_data)
-{
-  GtdTaskListViewPrivate *priv;
-
-  g_return_if_fail (GTD_IS_TASK (task));
-  g_return_if_fail (GTD_IS_EDIT_PANE (pane));
-  g_return_if_fail (GTD_IS_TASK_LIST_VIEW (user_data));
-
-  priv = GTD_TASK_LIST_VIEW (user_data)->priv;
-
-  set_active_row (user_data, NULL);
-
-  gtk_revealer_set_reveal_child (priv->edit_revealer, FALSE);
-
-  gtd_task_save (task);
-
-  gtd_manager_update_task (gtd_manager_get_default (), task);
-  real_save_task (GTD_TASK_LIST_VIEW (user_data), task);
-
-  gtk_list_box_invalidate_sort (priv->listbox);
 }
 
 static void
@@ -835,31 +800,7 @@ static void
 task_row_entered_cb (GtdTaskListView *self,
                      GtdTaskRow      *row)
 {
-  GtdTaskListViewPrivate *priv = self->priv;
-  GtdTask *old_task;
-
-  old_task = gtd_edit_pane_get_task (priv->edit_pane);
-
-  /* Save the task previously edited */
-  if (old_task)
-    {
-      gtd_manager_update_task (gtd_manager_get_default (), old_task);
-      real_save_task (self, old_task);
-    }
-
   set_active_row (self, GTK_WIDGET (row));
-
-  /* If we focused the new task row, only activate it */
-  if (GTD_IS_NEW_TASK_ROW (row))
-    {
-      gtk_revealer_set_reveal_child (priv->edit_revealer, FALSE);
-      return;
-    }
-
-  gtd_edit_pane_set_task (priv->edit_pane, gtd_task_row_get_task (row));
-
-  gtk_revealer_set_reveal_child (priv->edit_revealer, TRUE);
-  gtd_arrow_frame_set_row (priv->arrow_frame, row);
 }
 
 static void
@@ -867,21 +808,6 @@ task_row_exited_cb (GtdTaskListView *self,
                     GtdTaskRow      *row)
 {
   GtdTaskListViewPrivate *priv = self->priv;
-  GtdTask *old_task;
-
-  old_task = gtd_edit_pane_get_task (priv->edit_pane);
-
-  /* Save the task previously edited */
-  if (old_task)
-    {
-      gtd_manager_update_task (gtd_manager_get_default (), old_task);
-      real_save_task (self, old_task);
-    }
-
-  gtd_edit_pane_set_task (priv->edit_pane, NULL);
-
-  gtk_revealer_set_reveal_child (priv->edit_revealer, FALSE);
-  gtd_arrow_frame_set_row (priv->arrow_frame, NULL);
 
   if (GTK_WIDGET (row) == priv->active_row &&
       priv->active_row != GTK_WIDGET (priv->new_task_row))
@@ -929,9 +855,12 @@ insert_task (GtdTaskListView *self,
                             G_CALLBACK (task_row_exited_cb),
                             self);
 
-  gtk_list_box_insert (priv->listbox,
-                       new_row,
-                       0);
+  g_signal_connect (new_row,
+                    "remove-task",
+                    G_CALLBACK (remove_task_cb),
+                    self);
+
+  gtk_list_box_insert (priv->listbox, new_row, 0);
 
   /*
    * Setup a sizegroup to let all the tasklist labels have
@@ -965,8 +894,6 @@ remove_task (GtdTaskListView *view,
   GList *children;
   GList *l;
 
-  gtd_arrow_frame_set_row (view->priv->arrow_frame, NULL);
-
   children = gtk_container_get_children (GTK_CONTAINER (view->priv->listbox));
 
   for (l = children; l != NULL; l = l->next)
@@ -990,7 +917,6 @@ remove_task (GtdTaskListView *view,
     }
 
   gtk_revealer_set_reveal_child (priv->revealer, FALSE);
-  gtk_revealer_set_reveal_child (priv->edit_revealer, FALSE);
 
   g_list_free (children);
 }
@@ -1112,17 +1038,6 @@ task_completed_cb (GtdTask         *task,
   else
     priv->complete_tasks--;
 
-  /*
-   * If we're editing the task and it get completed, hide the edit
-   * pane and the task.
-   */
-  if (task_complete &&
-      task == gtd_edit_pane_get_task (priv->edit_pane))
-    {
-      gtk_revealer_set_reveal_child (priv->edit_revealer, FALSE);
-      gtd_edit_pane_set_task (priv->edit_pane, NULL);
-    }
-
   if (!priv->show_completed)
     {
       IterateSubtaskFunc func;
@@ -1158,10 +1073,10 @@ gtd_task_list_view__task_added (GtdTaskList     *list,
 }
 
 static void
-gtd_task_list_view__create_task (GtdTaskRow  *row,
-                                 GtdTask     *task,
-                                 GtdTaskList *list,
-                                 gpointer     user_data)
+create_task_cb (GtdTaskRow  *row,
+                GtdTask     *task,
+                GtdTaskList *list,
+                gpointer     user_data)
 {
   GtdTaskListViewPrivate *priv;
 
@@ -1678,11 +1593,8 @@ gtd_task_list_view_class_init (GtdTaskListViewClass *klass)
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/todo/ui/list-view.ui");
 
-  gtk_widget_class_bind_template_child_private (widget_class, GtdTaskListView, arrow_frame);
   gtk_widget_class_bind_template_child_private (widget_class, GtdTaskListView, dnd_row);
   gtk_widget_class_bind_template_child_private (widget_class, GtdTaskListView, due_date_sizegroup);
-  gtk_widget_class_bind_template_child_private (widget_class, GtdTaskListView, edit_pane);
-  gtk_widget_class_bind_template_child_private (widget_class, GtdTaskListView, edit_revealer);
   gtk_widget_class_bind_template_child_private (widget_class, GtdTaskListView, empty_box);
   gtk_widget_class_bind_template_child_private (widget_class, GtdTaskListView, listbox);
   gtk_widget_class_bind_template_child_private (widget_class, GtdTaskListView, revealer);
@@ -1693,10 +1605,8 @@ gtd_task_list_view_class_init (GtdTaskListViewClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, GtdTaskListView, viewport);
   gtk_widget_class_bind_template_child_private (widget_class, GtdTaskListView, scrolled_window);
 
-  gtk_widget_class_bind_template_callback (widget_class, gtd_task_list_view__create_task);
+  gtk_widget_class_bind_template_callback (widget_class, create_task_cb);
   gtk_widget_class_bind_template_callback (widget_class, gtd_task_list_view__done_button_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, gtd_task_list_view__edit_task_finished);
-  gtk_widget_class_bind_template_callback (widget_class, gtd_task_list_view__remove_task_cb);
   gtk_widget_class_bind_template_callback (widget_class, listbox_drag_drop);
   gtk_widget_class_bind_template_callback (widget_class, listbox_drag_leave);
   gtk_widget_class_bind_template_callback (widget_class, listbox_drag_motion);
@@ -1911,7 +1821,6 @@ gtd_task_list_view_set_task_list (GtdTaskListView *view,
 
   if (!list)
     {
-      gtd_edit_pane_set_task (GTD_EDIT_PANE (priv->edit_pane), NULL);
       gtd_task_list_view_set_list (view, NULL);
       return;
     }
@@ -1939,7 +1848,6 @@ gtd_task_list_view_set_task_list (GtdTaskListView *view,
   task_list = gtd_task_list_get_tasks (list);
 
   gtd_task_list_view_set_list (view, task_list);
-  gtd_edit_pane_set_task (priv->edit_pane, NULL);
 
   g_list_free (task_list);
 

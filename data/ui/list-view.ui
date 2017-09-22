@@ -46,7 +46,7 @@
                         <child>
                           <object class="GtdNewTaskRow" id="new_task_row">
                             <property name="visible">True</property>
-                            <signal name="create-task" handler="gtd_task_list_view__create_task" object="GtdTaskListView" swapped="no" />
+                            <signal name="create-task" handler="create_task_cb" object="GtdTaskListView" swapped="no" />
                             <signal name="enter" handler="task_row_entered_cb" object="GtdTaskListView" swapped="yes" />
                             <signal name="exit" handler="task_row_exited_cb" object="GtdTaskListView" swapped="yes" />
                           </object>
@@ -164,26 +164,6 @@
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
-        </child>
-      </object>
-    </child>
-    <child type="overlay">
-      <object class="GtkRevealer" id="edit_revealer">
-        <property name="visible">True</property>
-        <property name="halign">end</property>
-        <property name="transition_type">slide-left</property>
-        <property name="transition_duration">150</property>
-        <child>
-          <object class="GtdArrowFrame" id="arrow_frame">
-            <property name="visible">True</property>
-            <child>
-              <object class="GtdEditPane" id="edit_pane">
-                <property name="visible">True</property>
-                <signal name="edit-finished" handler="gtd_task_list_view__edit_task_finished" object="GtdTaskListView" swapped="no" />
-                <signal name="remove-task" handler="gtd_task_list_view__remove_task_cb" object="GtdTaskListView" swapped="no" />
-              </object>
-            </child>
-          </object>
         </child>
       </object>
     </child>

@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "gtd-edit-pane.h"
+#include "gtd-manager.h"
 #include "gtd-provider.h"
 #include "gtd-task-row.h"
 #include "gtd-task.h"
@@ -33,9 +35,11 @@ struct _GtdTaskRow
   GtkRevealer               *revealer;
 
   GtkWidget                 *done_check;
+  GtkWidget                 *edit_panel;
+  GtkWidget                 *stack;
 
   /* task widgets */
-  GtkEntry                  *title_entry;
+  GtkEntry                  *title_label;
   GtkLabel                  *task_date_label;
   GtkLabel                  *task_list_label;
 
@@ -64,10 +68,12 @@ G_DEFINE_TYPE (GtdTaskRow, gtd_task_row, GTK_TYPE_LIST_BOX_ROW)
 enum {
   ENTER,
   EXIT,
+  REMOVE_TASK,
   NUM_SIGNALS
 };
 
-enum {
+enum
+{
   PROP_0,
   PROP_HANDLE_SUBTASKS,
   PROP_TASK,
@@ -82,6 +88,11 @@ typedef enum
 } CursorType;
 
 static guint signals[NUM_SIGNALS] = { 0, };
+
+
+/*
+ * Auxiliary methods
+ */
 
 static void
 set_dnd_cursor (GtkWidget  *widget,
@@ -152,6 +163,27 @@ get_dnd_icon (GtdTaskRow *self)
   return surface;
 }
 
+
+/*
+ * Callbacks
+ */
+
+static void
+edit_finished_cb (GtdEditPane *edit_panel,
+                  GtdTask     *task,
+                  GtdTaskRow  *self)
+{
+  gtd_task_row_set_active (self, FALSE);
+}
+
+static void
+remove_task_cb (GtdEditPane *edit_panel,
+                GtdTask     *task,
+                GtdTaskRow  *self)
+{
+  g_signal_emit (self, signals[REMOVE_TASK], 0);
+}
+
 static gboolean
 mouse_out_event (GtkWidget  *widget,
                  GdkEvent   *event,
@@ -213,9 +245,9 @@ drag_failed_cb (GtkWidget	*widget,
 }
 
 static void
-gtd_task_row__priority_changed_cb (GtdTaskRow *row,
-                                   GParamSpec *spec,
-                                   GObject    *object)
+priority_changed_cb (GtdTaskRow *row,
+                     GParamSpec *spec,
+                     GObject    *object)
 {
   GtkStyleContext *context;
   gint priority;
@@ -383,13 +415,10 @@ gtd_task_row__destroy_cb (GtkWidget *row)
   return G_SOURCE_REMOVE;
 }
 
-GtkWidget*
-gtd_task_row_new (GtdTask *task)
-{
-  return g_object_new (GTD_TYPE_TASK_ROW,
-                       "task", task,
-                       NULL);
-}
+
+/*
+ * GtkWidget overrides
+ */
 
 static gboolean
 gtd_task_row__key_press_event (GtkWidget   *row,
@@ -416,6 +445,11 @@ gtd_task_row_focus_in_event (GtkWidget     *widget,
   return GDK_EVENT_PROPAGATE;
 }
 
+
+/*
+ * GObject overrides
+ */
+
 static void
 gtd_task_row_finalize (GObject *object)
 {
@@ -437,17 +471,10 @@ gtd_task_row_dispose (GObject *object)
 
   if (task)
     {
-      g_signal_handlers_disconnect_by_func (task,
-                                        depth_changed_cb,
-                                        self);
+      g_signal_handlers_disconnect_by_func (task, depth_changed_cb, self);
+      g_signal_handlers_disconnect_by_func (task, complete_changed_cb, self);
 
-      g_signal_handlers_disconnect_by_func (task,
-                                            complete_changed_cb,
-                                            self);
-
-      g_signal_handlers_disconnect_by_func (task,
-                                            gtd_task_row__priority_changed_cb,
-                                            self);
+      g_signal_handlers_disconnect_by_func (task, priority_changed_cb, self);
     }
 
   G_OBJECT_CLASS (gtd_task_row_parent_class)->dispose (object);
@@ -571,23 +598,42 @@ gtd_task_row_class_init (GtdTaskRowClass *klass)
                                 G_TYPE_NONE,
                                 0);
 
+  /**
+   * GtdTaskRow::remove-task:
+   *
+   * Emitted when the user wants to delete the task represented by this row.
+   */
+  signals[REMOVE_TASK] = g_signal_new ("remove-task",
+                                       GTD_TYPE_TASK_ROW,
+                                       G_SIGNAL_RUN_LAST,
+                                       0,
+                                       NULL,
+                                       NULL,
+                                       NULL,
+                                       G_TYPE_NONE,
+                                       0);
+
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/todo/ui/task-row.ui");
 
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, dnd_box);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, dnd_event_box);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, dnd_icon);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, done_check);
+  gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, edit_panel);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, revealer);
+  gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, stack);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, task_date_label);
   gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, task_list_label);
-  gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, title_entry);
+  gtk_widget_class_bind_template_child (widget_class, GtdTaskRow, title_label);
 
   gtk_widget_class_bind_template_callback (widget_class, button_press_event);
   gtk_widget_class_bind_template_callback (widget_class, complete_check_toggled_cb);
   gtk_widget_class_bind_template_callback (widget_class, drag_begin_cb);
   gtk_widget_class_bind_template_callback (widget_class, drag_failed_cb);
+  gtk_widget_class_bind_template_callback (widget_class, edit_finished_cb);
   gtk_widget_class_bind_template_callback (widget_class, mouse_out_event);
   gtk_widget_class_bind_template_callback (widget_class, mouse_over_event);
+  gtk_widget_class_bind_template_callback (widget_class, remove_task_cb);
 
   gtk_widget_class_set_css_name (widget_class, "taskrow");
 }
@@ -605,6 +651,14 @@ gtd_task_row_init (GtdTaskRow *self)
                        NULL,
                        0,
                        GDK_ACTION_COPY);
+}
+
+GtkWidget*
+gtd_task_row_new (GtdTask *task)
+{
+  return g_object_new (GTD_TYPE_TASK_ROW,
+                       "task", task,
+                       NULL);
 }
 
 /**
@@ -638,63 +692,65 @@ gtd_task_row_set_task (GtdTaskRow *row,
 {
   g_return_if_fail (GTD_IS_TASK_ROW (row));
 
-  if (g_set_object (&row->task, task))
+  if (!g_set_object (&row->task, task))
+    return;
+
+  if (task)
     {
-      if (task)
-        {
-          gtk_label_set_label (row->task_list_label, gtd_task_list_get_name (gtd_task_get_list (task)));
+      gtk_label_set_label (row->task_list_label, gtd_task_list_get_name (gtd_task_get_list (task)));
 
-          g_signal_handlers_block_by_func (row->done_check, complete_check_toggled_cb, row);
+      g_signal_handlers_block_by_func (row->done_check, complete_check_toggled_cb, row);
 
-          g_object_bind_property (task,
-                                  "title",
-                                  row->title_entry,
-                                  "text",
-                                  G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
+      g_object_bind_property (task,
+                              "title",
+                              row->title_label,
+                              "label",
+                              G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
-          g_object_bind_property (task,
-                                  "complete",
-                                  row->done_check,
-                                  "active",
-                                  G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
+      g_object_bind_property (task,
+                              "complete",
+                              row->done_check,
+                              "active",
+                              G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE);
 
-          g_object_bind_property_full (task,
-                                       "due-date",
-                                       row->task_date_label,
-                                       "label",
-                                       G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
-                                       gtd_task_row__date_changed_binding,
-                                       NULL,
-                                       row,
-                                       NULL);
+      g_object_bind_property_full (task,
+                                   "due-date",
+                                   row->task_date_label,
+                                   "label",
+                                   G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE,
+                                   gtd_task_row__date_changed_binding,
+                                   NULL,
+                                   row,
+                                   NULL);
 
-          /*
-           * Here we generate a false callback call just to reuse the method to
-           * sync the initial state of the priority icon.
-           */
-          gtd_task_row__priority_changed_cb (row, NULL, G_OBJECT (task));
-          g_signal_connect_swapped (task,
-                                    "notify::priority",
-                                    G_CALLBACK (gtd_task_row__priority_changed_cb),
-                                    row);
+      /*
+       * Here we generate a false callback call just to reuse the method to
+       * sync the initial state of the priority icon.
+       */
+      priority_changed_cb (row, NULL, G_OBJECT (task));
+      g_signal_connect_swapped (task,
+                                "notify::priority",
+                                G_CALLBACK (priority_changed_cb),
+                                row);
 
-          complete_changed_cb (row, NULL, task);
-          g_signal_connect_swapped (task,
-                                    "notify::complete",
-                                    G_CALLBACK (complete_changed_cb),
-                                    row);
+      complete_changed_cb (row, NULL, task);
+      g_signal_connect_swapped (task,
+                                "notify::complete",
+                                G_CALLBACK (complete_changed_cb),
+                                row);
 
-          depth_changed_cb (row, NULL, task);
-          g_signal_connect_swapped (task,
-                                    "notify::depth",
-                                    G_CALLBACK (depth_changed_cb),
-                                    row);
+      depth_changed_cb (row, NULL, task);
+      g_signal_connect_swapped (task,
+                                "notify::depth",
+                                G_CALLBACK (depth_changed_cb),
+                                row);
 
-          g_signal_handlers_unblock_by_func (row->done_check, complete_check_toggled_cb, row);
-        }
+      g_signal_handlers_unblock_by_func (row->done_check, complete_check_toggled_cb, row);
 
-      g_object_notify (G_OBJECT (row), "task");
+      gtd_edit_pane_set_task (GTD_EDIT_PANE (row->edit_panel), task);
     }
+
+  g_object_notify (G_OBJECT (row), "task");
 }
 
 /**
@@ -816,10 +872,17 @@ gtd_task_row_set_active (GtdTaskRow *self,
 
   self->active = active;
 
+  gtk_list_box_row_set_activatable (GTK_LIST_BOX_ROW (self), !active);
+  gtk_widget_set_can_focus (GTK_WIDGET (self), !active);
+
   if (active)
     {
-      gtk_widget_grab_focus (GTK_WIDGET (self->title_entry));
+      gtk_stack_set_visible_child_name (GTK_STACK (self->stack), "edit");
       g_signal_emit (self, signals[ENTER], 0);
+    }
+  else
+    {
+      gtk_stack_set_visible_child_name (GTK_STACK (self->stack), "unfocused");
     }
 }
 

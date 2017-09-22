@@ -29,13 +29,12 @@ typedef struct
   GtkLabel          *date_label;
   GtkTextView       *notes_textview;
   GtkComboBoxText   *priority_combo;
+  GtkWidget         *title_entry;
 
   /* task bindings */
   GBinding          *notes_binding;
   GBinding          *priority_binding;
-
-  /* flags */
-  gint               should_save_task : 1;
+  GBinding          *title_binding;
 
   GtdTask           *task;
 } GtdEditPanePrivate;
@@ -56,7 +55,8 @@ enum {
   LAST_PROP
 };
 
-enum {
+enum
+{
   EDIT_FINISHED,
   REMOVE_TASK,
   NUM_SIGNALS
@@ -64,8 +64,8 @@ enum {
 
 static guint signals[NUM_SIGNALS] = { 0, };
 
-static void             gtd_edit_pane__date_selected              (GtkCalendar      *calendar,
-                                                                   gpointer          user_data);
+static void             date_selected_cb                          (GtkCalendar      *calendar,
+                                                                   GtdEditPane      *self);
 
 static void             gtd_edit_pane_update_date                 (GtdEditPane      *pane);
 
@@ -83,6 +83,19 @@ gtd_edit_pane__no_date_button_clicked (GtkButton *button,
 }
 
 static void
+save_task (GtdEditPane *self)
+{
+  GtdEditPanePrivate *priv;
+  GtdManager *manager;
+
+  priv = gtd_edit_pane_get_instance_private (self);
+  manager = gtd_manager_get_default ();
+
+  gtd_task_save (priv->task);
+  gtd_manager_update_task (manager, priv->task);
+}
+
+static void
 gtd_edit_pane__delete_button_clicked (GtkButton *button,
                                       gpointer   user_data)
 {
@@ -93,23 +106,17 @@ gtd_edit_pane__delete_button_clicked (GtkButton *button,
   priv = GTD_EDIT_PANE (user_data)->priv;
 
   g_signal_emit (user_data, signals[REMOVE_TASK], 0, priv->task);
-
-  priv->should_save_task = FALSE;
-  gtd_edit_pane_set_task (GTD_EDIT_PANE (user_data), NULL);
 }
 
 static void
-gtd_edit_pane__close_button_clicked (GtkButton *button,
-                                     gpointer   user_data)
+close_button_clicked_cb (GtkButton   *button,
+                         GtdEditPane *self)
 {
-  GtdEditPanePrivate *priv;
+  GtdEditPanePrivate *priv = gtd_edit_pane_get_instance_private (self);
 
-  g_return_if_fail (GTD_IS_EDIT_PANE (user_data));
+  save_task (self);
 
-  priv = GTD_EDIT_PANE (user_data)->priv;
-
-  priv->should_save_task = TRUE;
-  gtd_edit_pane_set_task (GTD_EDIT_PANE (user_data), NULL);
+  g_signal_emit (self, signals[EDIT_FINISHED], 0, priv->task);
 }
 
 static void
@@ -125,6 +132,8 @@ today_button_clicked (GtkButton   *button,
 
   gtd_task_set_due_date (priv->task, new_dt);
   gtd_edit_pane_update_date (self);
+
+  save_task (self);
 
   g_clear_pointer (&new_dt, g_date_time_unref);
 }
@@ -144,6 +153,8 @@ tomorrow_button_clicked (GtkButton   *button,
 
   gtd_task_set_due_date (priv->task, new_dt);
   gtd_edit_pane_update_date (self);
+
+  save_task (self);
 
   g_clear_pointer (&current_date, g_date_time_unref);
   g_clear_pointer (&new_dt, g_date_time_unref);
@@ -165,6 +176,8 @@ next_week_button_clicked (GtkButton   *button,
   gtd_task_set_due_date (priv->task, new_dt);
   gtd_edit_pane_update_date (self);
 
+  save_task (self);
+
   g_clear_pointer (&current_date, g_date_time_unref);
   g_clear_pointer (&new_dt, g_date_time_unref);
 }
@@ -183,7 +196,7 @@ gtd_edit_pane_update_date (GtdEditPane *pane)
   text = dt ? g_date_time_format (dt, "%x") : NULL;
 
   g_signal_handlers_block_by_func (priv->calendar,
-                                   gtd_edit_pane__date_selected,
+                                   date_selected_cb,
                                    pane);
 
   if (dt)
@@ -211,7 +224,7 @@ gtd_edit_pane_update_date (GtdEditPane *pane)
     }
 
   g_signal_handlers_unblock_by_func (priv->calendar,
-                                     gtd_edit_pane__date_selected,
+                                     date_selected_cb,
                                      pane);
 
   gtk_label_set_label (priv->date_label, text ? text : _("No date set"));
@@ -220,8 +233,8 @@ gtd_edit_pane_update_date (GtdEditPane *pane)
 }
 
 static void
-gtd_edit_pane__date_selected (GtkCalendar *calendar,
-                              gpointer     user_data)
+date_selected_cb (GtkCalendar *calendar,
+                  GtdEditPane *self)
 {
   GtdEditPanePrivate *priv;
   GDateTime *new_dt;
@@ -230,9 +243,7 @@ gtd_edit_pane__date_selected (GtkCalendar *calendar,
   guint month;
   guint day;
 
-  g_return_if_fail (GTD_IS_EDIT_PANE (user_data));
-
-  priv = GTD_EDIT_PANE (user_data)->priv;
+  priv = self->priv;
 
   gtk_calendar_get_date (calendar,
                          &year,
@@ -250,7 +261,6 @@ gtd_edit_pane__date_selected (GtkCalendar *calendar,
 
   gtd_task_set_due_date (priv->task, new_dt);
   gtk_label_set_label (priv->date_label, text);
-  priv->should_save_task = TRUE;
 
   g_date_time_unref (new_dt);
   g_free (text);
@@ -375,14 +385,17 @@ gtd_edit_pane_class_init (GtdEditPaneClass *klass)
   gtk_widget_class_bind_template_child_private (widget_class, GtdEditPane, date_label);
   gtk_widget_class_bind_template_child_private (widget_class, GtdEditPane, notes_textview);
   gtk_widget_class_bind_template_child_private (widget_class, GtdEditPane, priority_combo);
+  gtk_widget_class_bind_template_child_private (widget_class, GtdEditPane, title_entry);
 
-  gtk_widget_class_bind_template_callback (widget_class, gtd_edit_pane__close_button_clicked);
-  gtk_widget_class_bind_template_callback (widget_class, gtd_edit_pane__date_selected);
+  gtk_widget_class_bind_template_callback (widget_class, close_button_clicked_cb);
+  gtk_widget_class_bind_template_callback (widget_class, date_selected_cb);
   gtk_widget_class_bind_template_callback (widget_class, gtd_edit_pane__delete_button_clicked);
   gtk_widget_class_bind_template_callback (widget_class, gtd_edit_pane__no_date_button_clicked);
   gtk_widget_class_bind_template_callback (widget_class, next_week_button_clicked);
   gtk_widget_class_bind_template_callback (widget_class, today_button_clicked);
   gtk_widget_class_bind_template_callback (widget_class, tomorrow_button_clicked);
+
+  gtk_widget_class_set_css_name (widget_class, "editpane");
 }
 
 static void
@@ -415,15 +428,6 @@ gtd_edit_pane_get_task (GtdEditPane *pane)
   return pane->priv->task;
 }
 
-static void
-gtd_edit_pane__task_changed_cb (GObject    *gobject,
-                                GParamSpec *pspec,
-                                gpointer    user_data)
-{
-  GtdEditPanePrivate *priv = GTD_EDIT_PANE (user_data)->priv;
-  priv->should_save_task = TRUE;
-}
-
 /**
  * gtd_edit_pane_set_task:
  * @pane: a #GtdEditPane
@@ -444,23 +448,7 @@ gtd_edit_pane_set_task (GtdEditPane *pane,
   if (priv->task == task)
     return;
 
-  if (priv->task)
-    {
-      if (G_IS_BINDING (priv->notes_binding))
-        g_clear_pointer (&priv->notes_binding, g_binding_unbind);
-      if (G_IS_BINDING (priv->priority_binding))
-        g_clear_pointer (&priv->priority_binding, g_binding_unbind);
-      g_signal_handlers_disconnect_by_func (gtk_text_view_get_buffer (priv->notes_textview),
-                                            gtd_edit_pane__task_changed_cb, pane);
-      g_signal_handlers_disconnect_by_func (priv->priority_combo,
-                                            gtd_edit_pane__task_changed_cb, pane);
-
-      if (priv->should_save_task)
-        g_signal_emit (pane, signals[EDIT_FINISHED], 0, priv->task);
-    }
-
   priv->task = task;
-  priv->should_save_task = FALSE;
 
   if (task)
     {
@@ -479,22 +467,22 @@ gtd_edit_pane_set_task (GtdEditPane *pane,
                                                     task,
                                                     "description",
                                                     G_BINDING_BIDIRECTIONAL);
-      g_signal_connect (buffer, "notify::text",
-                        G_CALLBACK (gtd_edit_pane__task_changed_cb),
-                        pane);
 
       /* priority */
-      gtk_combo_box_set_active (GTK_COMBO_BOX (priv->priority_combo), CLAMP (gtd_task_get_priority (task),
-                                                                             0,
-                                                                             3));
+      gtk_combo_box_set_active (GTK_COMBO_BOX (priv->priority_combo),
+                                CLAMP (gtd_task_get_priority (task), 0, 3));
       priv->priority_binding = g_object_bind_property (task,
                                                        "priority",
                                                        priv->priority_combo,
                                                        "active",
                                                        G_BINDING_BIDIRECTIONAL);
-      g_signal_connect (priv->priority_combo, "notify::active",
-                        G_CALLBACK (gtd_edit_pane__task_changed_cb),
-                        pane);
+
+      /* title */
+      priv->priority_binding = g_object_bind_property (task,
+                                                       "title",
+                                                       priv->title_entry,
+                                                       "text",
+                                                       G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
     }
 

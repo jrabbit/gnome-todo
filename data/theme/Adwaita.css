@@ -60,6 +60,7 @@ taskrow {
     border-radius: 2px;
     background-color: @theme_base_color;
     box-shadow: 0 0 2px alpha(black, 0.33);
+    min-height: 2.7rem;
 }
 
 taskrow:dir(ltr) { padding-left: 6px;  }
@@ -67,17 +68,16 @@ taskrow:dir(rtl) { padding-right: 6px; }
 
 taskrow entry {
     padding: 6px;
-    border-top: none;
-    border-bottom: none;
+    border: none;
 }
 
-taskrow.priority-low:dir(ltr)    { border-left: solid 6px #3465a4;  padding-left: 0;  }
+taskrow.priority-low:dir(ltr)    { border-left:  solid 6px #3465a4; padding-left:  0; }
 taskrow.priority-low:dir(rtl)    { border-right: solid 6px #3465a4; padding-right: 0; }
 
-taskrow.priority-medium:dir(ltr) { border-left: solid 6px #f57900;  padding-left: 0;  }
+taskrow.priority-medium:dir(ltr) { border-left:  solid 6px #f57900; padding-left:  0; }
 taskrow.priority-medium:dir(rtl) { border-right: solid 6px #f57900; padding-right: 0; }
 
-taskrow.priority-hight:dir(ltr)  { border-left: solid 6px #cc0000;  padding-left: 0;  }
+taskrow.priority-hight:dir(ltr)  { border-left:  solid 6px #cc0000; padding-left:  0; }
 taskrow.priority-hight:dir(rtl)  { border-right: solid 6px #cc0000; padding-right: 0; }
 
 taskrow.complete label { text-decoration-line: line-through; }
@@ -101,4 +101,13 @@ list.extension-list row {
 /* circle button */
 button.circle {
     border-radius: 20px;
+}
+
+/*
+ * Edit Pane
+ */
+
+editpane entry.title {
+    font-size: 1.1rem;
+    font-weight: bold;
 }

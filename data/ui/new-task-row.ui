@@ -41,6 +41,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="hexpand">True</property>
+                <property name="has-frame">False</property>
                 <property name="placeholder-text" translatable="yes">New task…</property>
                 <signal name="activate" handler="entry_activated_cb" object="GtdNewTaskRow" swapped="yes" />
                 <style>

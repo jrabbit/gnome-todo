@@ -152,7 +152,6 @@ create_label (const gchar *text,
   box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 
   gtk_container_add (GTK_CONTAINER (box), label);
-  gtk_container_add (GTK_CONTAINER (box), gtk_separator_new (GTK_ORIENTATION_HORIZONTAL));
 
   gtk_widget_show_all (box);
 
