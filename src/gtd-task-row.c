@@ -80,13 +80,6 @@ enum
   LAST_PROP
 };
 
-typedef enum
-{
-  CURSOR_NONE,
-  CURSOR_GRAB,
-  CURSOR_GRABBING
-} CursorType;
-
 static guint signals[NUM_SIGNALS] = { 0, };
 
 
@@ -95,8 +88,8 @@ static guint signals[NUM_SIGNALS] = { 0, };
  */
 
 static void
-set_dnd_cursor (GtkWidget  *widget,
-                CursorType  type)
+set_cursor (GtkWidget   *widget,
+            const gchar *cursor_name)
 {
   GdkDisplay *display;
   GdkCursor *cursor;
@@ -104,25 +97,11 @@ set_dnd_cursor (GtkWidget  *widget,
   if (!gtk_widget_get_realized (widget))
     return;
 
+  cursor = NULL;
   display = gtk_widget_get_display (widget);
 
-  switch (type)
-    {
-    case CURSOR_NONE:
-      cursor = NULL;
-      break;
-
-    case CURSOR_GRAB:
-      cursor = gdk_cursor_new_from_name (display, "grab");
-      break;
-
-    case CURSOR_GRABBING:
-      cursor = gdk_cursor_new_from_name (display, "grabbing");
-      break;
-
-    default:
-      cursor = NULL;
-    }
+  if (cursor_name)
+    cursor = gdk_cursor_new_from_name (display, cursor_name);
 
   gdk_window_set_cursor (gtk_widget_get_window (widget), cursor);
   gdk_display_flush (display);
@@ -185,21 +164,42 @@ remove_task_cb (GtdEditPane *edit_panel,
 }
 
 static gboolean
-mouse_out_event (GtkWidget  *widget,
-                 GdkEvent   *event,
-                 GtdTaskRow *self)
+mouse_out_event_cb (GtkWidget  *widget,
+                    GdkEvent   *event,
+                    GtdTaskRow *self)
 {
-  set_dnd_cursor (widget, CURSOR_NONE);
+  set_cursor (widget, NULL);
 
   return GDK_EVENT_STOP;
 }
 
 static gboolean
-mouse_over_event (GtkWidget  *widget,
-                  GdkEvent   *event,
-                  GtdTaskRow *self)
+mouse_over_event_cb (GtkWidget  *widget,
+                     GdkEvent   *event,
+                     GtdTaskRow *self)
 {
-  set_dnd_cursor (widget, CURSOR_GRAB);
+  set_cursor (widget, "pointer");
+
+  return GDK_EVENT_STOP;
+}
+
+
+static gboolean
+mouse_out_dnd_event_cb (GtkWidget  *widget,
+                        GdkEvent   *event,
+                        GtdTaskRow *self)
+{
+  set_cursor (widget, NULL);
+
+  return GDK_EVENT_STOP;
+}
+
+static gboolean
+mouse_over_dnd_event_cb (GtkWidget  *widget,
+                         GdkEvent   *event,
+                         GtdTaskRow *self)
+{
+  set_cursor (widget, "grab");
 
   return GDK_EVENT_STOP;
 }
@@ -224,7 +224,7 @@ drag_begin_cb (GtkWidget      *widget,
 
   surface = get_dnd_icon (self);
 
-  set_dnd_cursor (widget, CURSOR_GRABBING);
+  set_cursor (widget, "grabbing");
 
   gtk_drag_set_icon_surface (context, surface);
 
@@ -631,8 +631,10 @@ gtd_task_row_class_init (GtdTaskRowClass *klass)
   gtk_widget_class_bind_template_callback (widget_class, drag_begin_cb);
   gtk_widget_class_bind_template_callback (widget_class, drag_failed_cb);
   gtk_widget_class_bind_template_callback (widget_class, edit_finished_cb);
-  gtk_widget_class_bind_template_callback (widget_class, mouse_out_event);
-  gtk_widget_class_bind_template_callback (widget_class, mouse_over_event);
+  gtk_widget_class_bind_template_callback (widget_class, mouse_out_event_cb);
+  gtk_widget_class_bind_template_callback (widget_class, mouse_out_dnd_event_cb);
+  gtk_widget_class_bind_template_callback (widget_class, mouse_over_event_cb);
+  gtk_widget_class_bind_template_callback (widget_class, mouse_over_dnd_event_cb);
   gtk_widget_class_bind_template_callback (widget_class, remove_task_cb);
 
   gtk_widget_class_set_css_name (widget_class, "taskrow");
