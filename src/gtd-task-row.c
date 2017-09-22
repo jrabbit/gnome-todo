@@ -885,6 +885,7 @@ gtd_task_row_set_active (GtdTaskRow *self,
   else
     {
       gtk_stack_set_visible_child_name (GTK_STACK (self->stack), "unfocused");
+      g_signal_emit (self, signals[EXIT], 0);
     }
 }
 
