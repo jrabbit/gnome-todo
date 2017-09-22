@@ -11,7 +11,7 @@ from gettext import gettext as _
 from taskc.simple import TaskdConnection
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("gnome-todo-plugin:"+__name__)
 
 def get_tasks():
     tc = TaskdConnection()
