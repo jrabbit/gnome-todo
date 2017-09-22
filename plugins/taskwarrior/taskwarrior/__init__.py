@@ -1,5 +1,7 @@
 import gi
 import logging
+import uuid
+import datetime
 
 gi.require_version('Gtd',  '1.0')
 gi.require_version('Peas', '1.0')
@@ -21,7 +23,7 @@ def get_tasks():
 
 
 class TaskDManager(GObject.Object):
-
+    UUID_NAMESPACE = "d9e2c023-85ef-4df4-bff5-b917b40aac27"
     def __init__(self):
         GObject.Object.__init__(self)
 
@@ -38,11 +40,34 @@ class TaskDManager(GObject.Object):
             task.connect('notify::complete', self._task_complete)
 
     def _task_added(self, tasklist, task):
+        self.send(task)
         task.connect('notify::complete', self._task_complete)
 
     def _task_complete(self, task, data):
         logger.info(task.get_title())
         logger.info("%s, %s", task, data)
+
+    def send(self, task):
+        "Take a Gnome To-do task and convert and send it to taskd"
+        twjson = self.to_twjson(task)
+        logger.info(twjson)
+
+    def to_twjson(self, task):
+        task_date = "%Y%m%dT%H%M%SZ"
+        out = dict()
+        out['description'] = task.get_title()
+        out['status'] = "completed" if task.get_complete() else "pending"
+        out['uuid'] = str(uuid.uuid5(uuid.UUID(self.UUID_NAMESPACE), task.get_title()))
+        created =  task.get_creation_date()
+        if created:
+            logging.info("Got creation_date: %s", created)
+            out['entry'] = datetime.datetime.utcfromtimestamp(created.to_unix()).strftime(task_date) # if you run this after 2038 here be dragons?
+        else:
+            out['entry'] = datetime.datetime.now().strftime(task_date)
+        # if i['due_date_utc']:
+        #     out['due'] = datetime.datetime.strptime(i['due_date_utc'][:-6], todoist_date).strftime(task_date)
+        out['modified'] = out['entry']
+        return out
 
 
 class TaskwarriorPopover(Gtk.Popover):
