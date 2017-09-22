@@ -30,22 +30,6 @@ class TaskDManager(GObject.Object):
 
         manager = Gtd.Manager.get_default()
 
-        manager.connect('task-added', self._task_added)
-
-        for tasklist in manager.get_task_lists():
-            for task in tasklist.get_tasks():
-                task.connect('notify::complete', self._task_complete)
-
-
-    # def _setup_list(self, manager, tasklist):
-    #     tasklist.connect('task-added', self._task_added)
-    #     for task in tasklist.get_tasks():
-    #         task.connect('notify::complete', self._task_complete)
-
-    def _task_added(self, tasklist, task):
-        self.send(task)
-        task.connect('notify::complete', self._task_complete)
-
     def _task_complete(self, task, data):
         logger.info(task.get_title())
         logger.info("%s, %s", task, data)
@@ -110,6 +94,28 @@ class TaskwarriorPopover(Gtk.Popover):
 
         self.add(vbox)
 
+class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
+    name = GObject.Property()
+    id = GObject.Property()
+    icon = GObject.Property()
+    enabled = GObject.Property()
+    description = GObject.Property()
+    default_task_list = GObject.Property()
+
+    def __init__(self):
+        Gtd.Object.__init__(self)
+
+    def do_create_task(self, provider, task):
+        pass
+    def do_update_task(self, provider, task):
+        pass
+    def do_remove_task(self, provider, task):
+        pass
+    def do_create_task_list(self, provider, list):
+        pass
+    def do_update_task_list(self, provider, list):
+        pass
+
 
 class TaskwarriorPlugin(GObject.Object, Gtd.Activatable):
 
@@ -127,6 +133,8 @@ class TaskwarriorPlugin(GObject.Object, Gtd.Activatable):
 
         self.manager = TaskDManager()
         self.popover = TaskwarriorPopover(self.header_button)
+
+        self.provider = TaskwarriorProvider()
         logger.info(get_tasks().data)
         # self.manager = Gtd.Manager.get_default()
     # def _score_changed(self, manager, score, task):
@@ -154,4 +162,4 @@ class TaskwarriorPlugin(GObject.Object, Gtd.Activatable):
         return None
 
     def do_get_providers(self):
-        return None
+        return [self.provider]
