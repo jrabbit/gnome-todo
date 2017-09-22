@@ -60,7 +60,6 @@ taskrow {
     border-radius: 2px;
     background-color: @theme_base_color;
     box-shadow: 0 0 2px alpha(black, 0.33);
-    min-height: 2.7rem;
 }
 
 taskrow:dir(ltr) { padding-left: 6px;  }
