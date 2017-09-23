@@ -17,6 +17,7 @@
  */
 
 #include "gtd-provider-eds.h"
+#include "gtd-task-eds.h"
 #include "gtd-task-list-eds.h"
 
 #include <glib/gi18n.h>
@@ -121,7 +122,7 @@ gtd_provider_eds_fill_task_list (GObject      *client,
         {
           GtdTask *task;
 
-          task = gtd_task_new (l->data);
+          task = gtd_task_eds_new (l->data);
           gtd_task_set_list (task, list);
 
           gtd_task_list_save_task (list, task);
@@ -879,7 +880,7 @@ gtd_provider_eds_create_task (GtdProviderEds *provider,
   tasklist = GTD_TASK_LIST_EDS (gtd_task_get_list (task));
   source = gtd_task_list_eds_get_source (tasklist);
   client = g_hash_table_lookup (priv->clients, source);
-  component = gtd_task_get_component (task);
+  component = gtd_task_eds_get_component (GTD_TASK_EDS (task));
 
   /* Temporary data for async operation */
   data = task_data_new (provider, (gpointer) task);
@@ -912,7 +913,9 @@ gtd_provider_eds_update_task (GtdProviderEds *provider,
   tasklist = GTD_TASK_LIST_EDS (gtd_task_get_list (task));
   source = gtd_task_list_eds_get_source (tasklist);
   client = g_hash_table_lookup (priv->clients, source);
-  component = gtd_task_get_component (task);
+  component = gtd_task_eds_get_component (GTD_TASK_EDS (task));
+
+  e_cal_component_commit_sequence (component);
 
   /* Temporary data for async operation */
   data = task_data_new (provider, (gpointer) task);
@@ -948,7 +951,7 @@ gtd_provider_eds_remove_task (GtdProviderEds *provider,
   tasklist = GTD_TASK_LIST_EDS (gtd_task_get_list (task));
   source = gtd_task_list_eds_get_source (tasklist);
   client = g_hash_table_lookup (priv->clients, source);
-  component = gtd_task_get_component (task);
+  component = gtd_task_eds_get_component (GTD_TASK_EDS (task));
   id = e_cal_component_get_id (component);
 
   /* Temporary data for async operation */

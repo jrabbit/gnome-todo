@@ -80,6 +80,9 @@ void                    gtd_task_list_remove_task               (GtdTaskList    
 gboolean                gtd_task_list_contains                  (GtdTaskList            *list,
                                                                  GtdTask                *task);
 
+GtdTask*                gtd_task_list_get_task_by_id            (GtdTaskList            *self,
+                                                                 const gchar            *id);
+
 G_END_DECLS
 
 #endif /* GTD_TASK_LIST_H */

@@ -331,7 +331,6 @@ parse_array_to_task (GtdProviderTodoist *self,
     {
       JsonObject *object;
       GtdTaskList *list;
-      ECalComponent *component;
       GtdTask *task;
       const gchar *title;
       const gchar *due_date;
@@ -340,10 +339,6 @@ parse_array_to_task (GtdProviderTodoist *self,
       guint32 project_id;
       gint priority;
       guint is_complete;
-
-      component = e_cal_component_new ();
-      e_cal_component_set_new_vtype (component, E_CAL_COMPONENT_TODO);
-      e_cal_component_set_uid (component, e_cal_component_gen_uid ());
 
       object = json_node_get_object (l->data);
 
@@ -358,7 +353,7 @@ parse_array_to_task (GtdProviderTodoist *self,
       uid = g_strdup_printf ("%u", id);
 
       /* Setup the task */
-      task = gtd_task_new (component);
+      task = gtd_task_new ();
       gtd_object_set_uid (GTD_OBJECT (task), uid);
       gtd_task_set_title (task, title);
       gtd_task_set_list (task, list);

@@ -142,9 +142,8 @@ entry_activated_cb (GtdNewTaskRow *self)
   if (gtk_entry_get_text_length (self->entry) == 0)
     return;
 
-  new_task = gtd_task_new (NULL);
+  new_task = gtd_task_new ();
   gtd_task_set_title (new_task, gtk_entry_get_text (self->entry));
-  gtd_task_save (new_task);
 
   g_signal_emit (self, signals[CREATE_TASK], 0, new_task, self->selected_tasklist);
 

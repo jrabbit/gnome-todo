@@ -16,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "gtd-task-eds.h"
 #include "gtd-task-list-eds.h"
 
 #include <glib/gi18n.h>
@@ -26,8 +27,16 @@ struct _GtdTaskListEds
 
   ESource            *source;
 
+  GPtrArray           *pending_subtasks;
+
   GCancellable       *cancellable;
 };
+
+typedef struct
+{
+  GtdTask            *child;
+  gchar              *parent_uid;
+} PendingSubtaskData;
 
 G_DEFINE_TYPE (GtdTaskListEds, gtd_task_list_eds, GTD_TYPE_TASK_LIST)
 
@@ -36,6 +45,90 @@ enum {
   PROP_SOURCE,
   N_PROPS
 };
+
+
+/*
+ * Auxiliary methods
+ */
+
+static PendingSubtaskData*
+pending_subtask_data_new (GtdTask     *child,
+                          const gchar *parent_uid)
+{
+  PendingSubtaskData *data;
+
+  data = g_new0 (PendingSubtaskData, 1);
+  data->child = child;
+  data->parent_uid = g_strdup (parent_uid);
+
+  return data;
+}
+
+static void
+pending_subtask_data_free (PendingSubtaskData *data)
+{
+  g_free (data->parent_uid);
+  g_free (data);
+}
+
+static void
+setup_parent_task (GtdTaskListEds *self,
+                   GtdTask        *task)
+{
+  ECalComponent *component;
+  icalcomponent *ical_comp;
+  icalproperty *property;
+  GtdTask *parent_task;
+  const gchar *parent_uid;
+
+  component = gtd_task_eds_get_component (GTD_TASK_EDS (task));
+  ical_comp = e_cal_component_get_icalcomponent (component);
+  property = icalcomponent_get_first_property (ical_comp, ICAL_RELATEDTO_PROPERTY);
+
+  if (!property)
+    return;
+
+  parent_uid = icalproperty_get_relatedto (property);
+  parent_task = gtd_task_list_get_task_by_id (GTD_TASK_LIST (self), parent_uid);
+
+  if (parent_task)
+    {
+      gtd_task_add_subtask (parent_task, task);
+    }
+  else
+    {
+      PendingSubtaskData *data;
+
+      data = pending_subtask_data_new (task, parent_uid);
+
+      g_ptr_array_add (self->pending_subtasks, data);
+    }
+}
+
+static void
+process_pending_subtasks (GtdTaskListEds *self,
+                          GtdTask        *task)
+{
+  const gchar *uid;
+  guint i;
+
+  uid = gtd_object_get_uid (GTD_OBJECT (task));
+
+  for (i = 0; i < self->pending_subtasks->len; i++)
+    {
+      PendingSubtaskData *data;
+
+      data = g_ptr_array_index (self->pending_subtasks, i);
+
+      if (g_strcmp0 (uid, data->parent_uid) == 0)
+        {
+          gtd_task_add_subtask (task, data->child);
+          g_ptr_array_remove (self->pending_subtasks, data);
+          i--;
+        }
+    }
+}
+
 
 static void
 source_removable_changed (GtdTaskListEds *list)
@@ -123,6 +216,25 @@ string_to_color (GBinding     *binding,
   return TRUE;
 }
 
+
+/*
+ * GtdTaskList overrides
+ */
+static void
+gtd_task_list_eds_task_added (GtdTaskList *list,
+                              GtdTask     *task)
+{
+  GtdTaskListEds *self = GTD_TASK_LIST_EDS (list);
+
+  process_pending_subtasks (self, task);
+  setup_parent_task (self, task);
+}
+
+
+/*
+ * GObject overrides
+ */
+
 static void
 gtd_task_list_eds_finalize (GObject *object)
 {
@@ -178,6 +290,9 @@ static void
 gtd_task_list_eds_class_init (GtdTaskListEdsClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  GtdTaskListClass *task_list_class = GTD_TASK_LIST_CLASS (klass);
+
+  task_list_class->task_added = gtd_task_list_eds_task_added;
 
   object_class->finalize = gtd_task_list_eds_finalize;
   object_class->get_property = gtd_task_list_eds_get_property;
@@ -200,6 +315,7 @@ gtd_task_list_eds_class_init (GtdTaskListEdsClass *klass)
 static void
 gtd_task_list_eds_init (GtdTaskListEds *self)
 {
+  self->pending_subtasks = g_ptr_array_new_with_free_func ((GDestroyNotify) pending_subtask_data_free);
 }
 
 GtdTaskListEds*

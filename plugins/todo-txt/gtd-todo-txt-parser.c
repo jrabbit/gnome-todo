@@ -175,7 +175,7 @@ gtd_todo_txt_parser_parse_tokens (GList *tokens)
 
   dt = NULL;
   l = NULL;
-  task = create_task ();
+  task = gtd_task_new ();
   list_name = g_string_new (NULL);
   title = g_string_new (NULL);
   root_task_name = g_string_new (NULL);

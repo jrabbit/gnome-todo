@@ -205,22 +205,6 @@ create_list (GtdProviderTodoTxt *self,
   return task_list;
 }
 
-GtdTask*
-create_task (void)
-{
-  ECalComponent *component;
-  GtdTask *task;
-
-  component = e_cal_component_new ();
-
-  e_cal_component_set_new_vtype (component, E_CAL_COMPONENT_TODO);
-  e_cal_component_set_uid (component, e_cal_component_gen_uid ());
-
-  task = gtd_task_new (component);
-
-  return task;
-}
-
 static void
 gtd_provider_todo_txt_load_tasks (GtdProviderTodoTxt *self)
 {
@@ -305,7 +289,7 @@ gtd_provider_todo_txt_load_tasks (GtdProviderTodoTxt *self)
                 }
               else
                 {
-                  parent_task = create_task ();
+                  parent_task = gtd_task_new ();
                   gtd_task_set_list (parent_task, list);
                   gtd_task_set_title (parent_task, g_object_get_data (G_OBJECT (task), "root_task_name"));
 
