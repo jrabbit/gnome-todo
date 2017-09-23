@@ -95,18 +95,31 @@ class TaskwarriorPopover(Gtk.Popover):
         self.add(vbox)
 
 class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
-    name = GObject.Property()
-    id = GObject.Property()
-    icon = GObject.Property()
-    enabled = GObject.Property()
-    description = GObject.Property()
-    default_task_list = GObject.Property()
+    name = GObject.Property(type=str, default="taskwarrior")
+    id = GObject.Property(type=str, default="_")
+    icon = GObject.Property(type=Gio.Icon)
+    enabled = GObject.Property(type=bool, default=True)
+    description = GObject.Property(type=str, default="a client for taskd")
 
     def __init__(self):
         Gtd.Object.__init__(self)
 
-    def do_create_task(self, provider, task):
+    @GObject.Property(type=Gtd.TaskList)
+    def default_task_list(self):
         pass
+
+    def get_name(selfq):
+        return self.name
+
+    def get_id(self):
+        return "_"
+
+    def get_task_lists(self):
+        twtasks = get_tasks()
+        return twtasks
+
+    def do_create_task(self, provider, task):
+        logger.info(task)
     def do_update_task(self, provider, task):
         pass
     def do_remove_task(self, provider, task):
@@ -135,16 +148,7 @@ class TaskwarriorPlugin(GObject.Object, Gtd.Activatable):
         self.popover = TaskwarriorPopover(self.header_button)
 
         self.provider = TaskwarriorProvider()
-        logger.info(get_tasks().data)
-        # self.manager = Gtd.Manager.get_default()
-    # def _score_changed(self, manager, score, task):
-    #     print(score)
-    #     self.header_button.set_label(str(score))
-
-    # def setup(self):
-    #     for tasklist in self.manager.get_task_lists():
-    #         for task in tasklist.get_tasks():
-    #             print(task.get_description())
+        # logger.info(get_tasks().data)
 
     def do_activate(self):
         pass
