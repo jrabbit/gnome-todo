@@ -25,7 +25,6 @@ def get_tasks():
 
 
 class TaskDManager(GObject.Object):
-    UUID_NAMESPACE = "d9e2c023-85ef-4df4-bff5-b917b40aac27"
 
     def __init__(self):
         GObject.Object.__init__(self)
@@ -36,32 +35,6 @@ class TaskDManager(GObject.Object):
         logger.info(task.get_title())
         logger.info("%s, %s", task, data)
 
-    def send(self, task):
-        "Take a Gnome To-do task and convert and send it to taskd"
-        twjson = self.to_twjson(task)
-        tc = TaskdConnection()
-        tc = TaskdConnection.from_taskrc()
-        tc.put(json.dumps(twjson))
-        logger.info(twjson)
-
-    def to_twjson(self, task):
-        task_date = "%Y%m%dT%H%M%SZ"
-        out = dict()
-        out['description'] = task.get_title()
-        out['status'] = "completed" if task.get_complete() else "pending"
-        out['uuid'] = str(uuid.uuid5(
-            uuid.UUID(self.UUID_NAMESPACE), task.get_title()))
-        created = task.get_creation_date()
-        if created:
-            logging.info("Got creation_date: %s", created)
-            out['entry'] = datetime.datetime.utcfromtimestamp(created.to_unix()).strftime(
-                task_date)  # if you run this after 2038 here be dragons?
-        else:
-            out['entry'] = datetime.datetime.now().strftime(task_date)
-        # if i['due_date_utc']:
-        #     out['due'] = datetime.datetime.strptime(i['due_date_utc'][:-6], todoist_date).strftime(task_date)
-        out['modified'] = out['entry']
-        return out
 
 
 class TaskwarriorPopover(Gtk.Popover):
@@ -106,6 +79,7 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
     icon = GObject.Property(type=Gio.Icon)
     enabled = GObject.Property(type=bool, default=True)
     description = GObject.Property(type=str, default="a client for taskd")
+    UUID_NAMESPACE = "d9e2c023-85ef-4df4-bff5-b917b40aac27"
 
     def __init__(self):
         Gtd.Object.__init__(self)
@@ -135,13 +109,43 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
     def do_get_enabled(self):
         return self.enabled
 
-    def do_create_task(self, provider, task):
-        logger.info(task)
+    def do_create_task(self, task):
+        logger.info("do_create_task: %s", task.get_title())
+        self.send(task)
 
-    def do_update_task(self, provider, task):
-        pass
+    def send(self, task):
+        "Take a Gnome To-do task and convert and send it to taskd"
+        twjson = self.to_twjson(task)
+        tc = TaskdConnection()
+        tc = TaskdConnection.from_taskrc()
+        finalized = "\n\n"+json.dumps(twjson) # no synckey support yet
+        tc.put(finalized)
+        logger.info(twjson)
 
-    def do_remove_task(self, provider, task):
+    def to_twjson(self, task):
+        task_date = "%Y%m%dT%H%M%SZ"
+        out = dict()
+        out['description'] = task.get_title()
+        out['status'] = "completed" if task.get_complete() else "pending"
+        out['uuid'] = str(uuid.uuid5(
+            uuid.UUID(self.UUID_NAMESPACE), task.get_title()))
+        created = task.get_creation_date()
+        if created:
+            logging.info("Got creation_date: %s", created)
+            out['entry'] = datetime.datetime.utcfromtimestamp(created.to_unix()).strftime(
+                task_date)  # if you run this after 2038 here be dragons?
+        else:
+            out['entry'] = datetime.datetime.now().strftime(task_date)
+        # if i['due_date_utc']:
+        #     out['due'] = datetime.datetime.strptime(i['due_date_utc'][:-6], todoist_date).strftime(task_date)
+        out['modified'] = out['entry']
+        return out
+
+    def do_update_task(self, task):
+        logger.info("do_update_task: %s", task.get_title())
+        self.send(task)
+
+    def do_remove_task(self, task):
         pass
 
     def do_create_task_list(self, gtdlist):
@@ -152,7 +156,7 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
         self.emit("list-added", gtdlist)
 
 
-    def do_update_task_list(self, provider, list):
+    def do_update_task_list(self, list):
         pass
 
 
@@ -165,7 +169,7 @@ class TaskwarriorPlugin(GObject.Object, Gtd.Activatable):
         logging.basicConfig(level=logging.DEBUG)
         self.header_button = Gtk.MenuButton()
         self.header_button.set_halign(Gtk.Align.END)
-        self.header_button.set_label('TASKD SYNC')
+        self.header_button.set_label('Taskd Sync')
         self.header_button.show_all()
 
         self.header_button.get_style_context().add_class('image-button')
