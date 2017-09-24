@@ -153,13 +153,20 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
         """TW doesn't really have tasklists so idk what to do here entirely
         Looks like we're expected to emit a signal tho?"""
         logger.info(gtdlist.get_name())
+        gtdlist.set_is_removable(True)
         self.lists.append(gtdlist)
         self.emit("list-added", gtdlist)
 
 
-    def do_update_task_list(self, list):
-        pass
+    def do_update_task_list(self, gtdlist):
+        self.emit("list-changed", gtdlist)
 
+    def do_remove_task_list(self, gtdlist):
+        "archive each task in tw"
+        subtasks = gtdlist.get_tasks()
+        if not subtasks:
+            logger.info("Got to be lazy there were no tasks")
+            self.emit("list-removed", gtdlist)
 
 class TaskwarriorPlugin(GObject.Object, Gtd.Activatable):
 
