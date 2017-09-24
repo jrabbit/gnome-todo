@@ -102,7 +102,7 @@ class TaskwarriorPopover(Gtk.Popover):
 
 class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
     name = GObject.Property(type=str, default="taskwarrior")
-    id = GObject.Property(type=str, default="_")
+    id = GObject.Property(type=str, default="taskwarrior")
     icon = GObject.Property(type=Gio.Icon)
     enabled = GObject.Property(type=bool, default=True)
     description = GObject.Property(type=str, default="a client for taskd")
@@ -110,6 +110,10 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
     def __init__(self):
         Gtd.Object.__init__(self)
         self.lists = []
+
+    def do_get_description(self):
+        tc = TaskdConnection.from_taskrc()
+        return "TaskWarrior on {}".format(tc.server)
 
     @GObject.Property(type=Gtd.TaskList)
     def default_task_list(self):
@@ -119,7 +123,7 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
         return self.name
 
     def do_get_id(self):
-        return "_"
+        return "taskwarrior"
 
     def do_get_icon(self):
         return self.icon
@@ -141,7 +145,12 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
         pass
 
     def do_create_task_list(self, gtdlist):
-        logger.info(gtdlist)
+        """TW doesn't really have tasklists so idk what to do here entirely
+        Looks like we're expected to emit a signal tho?"""
+        logger.info(gtdlist.get_name())
+        self.lists.append(gtdlist)
+        self.emit("list-added", gtdlist)
+
 
     def do_update_task_list(self, provider, list):
         pass
