@@ -16,6 +16,7 @@ from taskc.simple import TaskdConnection
 
 logger = logging.getLogger("gnome-todo-plugin:"+__name__)
 
+
 def get_tasks():
     tc = TaskdConnection()
     tc = TaskdConnection.from_taskrc()
@@ -25,6 +26,7 @@ def get_tasks():
 
 class TaskDManager(GObject.Object):
     UUID_NAMESPACE = "d9e2c023-85ef-4df4-bff5-b917b40aac27"
+
     def __init__(self):
         GObject.Object.__init__(self)
 
@@ -47,11 +49,13 @@ class TaskDManager(GObject.Object):
         out = dict()
         out['description'] = task.get_title()
         out['status'] = "completed" if task.get_complete() else "pending"
-        out['uuid'] = str(uuid.uuid5(uuid.UUID(self.UUID_NAMESPACE), task.get_title()))
-        created =  task.get_creation_date()
+        out['uuid'] = str(uuid.uuid5(
+            uuid.UUID(self.UUID_NAMESPACE), task.get_title()))
+        created = task.get_creation_date()
         if created:
             logging.info("Got creation_date: %s", created)
-            out['entry'] = datetime.datetime.utcfromtimestamp(created.to_unix()).strftime(task_date) # if you run this after 2038 here be dragons?
+            out['entry'] = datetime.datetime.utcfromtimestamp(created.to_unix()).strftime(
+                task_date)  # if you run this after 2038 here be dragons?
         else:
             out['entry'] = datetime.datetime.now().strftime(task_date)
         # if i['due_date_utc']:
@@ -61,6 +65,7 @@ class TaskDManager(GObject.Object):
 
 
 class TaskwarriorPopover(Gtk.Popover):
+
     def __init__(self, button):
         Gtk.Popover.__init__(self, relative_to=button)
 
@@ -94,6 +99,7 @@ class TaskwarriorPopover(Gtk.Popover):
 
         self.add(vbox)
 
+
 class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
     name = GObject.Property(type=str, default="taskwarrior")
     id = GObject.Property(type=str, default="_")
@@ -103,29 +109,40 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
 
     def __init__(self):
         Gtd.Object.__init__(self)
+        self.lists = []
 
     @GObject.Property(type=Gtd.TaskList)
     def default_task_list(self):
-        pass
+        return self.lists[0]
 
-    def get_name(selfq):
+    def do_get_name(self):
         return self.name
 
-    def get_id(self):
+    def do_get_id(self):
         return "_"
 
-    def get_task_lists(self):
+    def do_get_icon(self):
+        return self.icon
+
+    def do_get_task_lists(self):
         twtasks = get_tasks()
         return twtasks
 
+    def do_get_enabled(self):
+        return self.enabled
+
     def do_create_task(self, provider, task):
         logger.info(task)
+
     def do_update_task(self, provider, task):
         pass
+
     def do_remove_task(self, provider, task):
         pass
-    def do_create_task_list(self, provider, list):
-        pass
+
+    def do_create_task_list(self, gtdlist):
+        logger.info(gtdlist)
+
     def do_update_task_list(self, provider, list):
         pass
 
