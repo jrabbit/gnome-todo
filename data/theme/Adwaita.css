@@ -2,10 +2,6 @@
     background-color: transparent;
 }
 
-taskrow {
-    border-bottom: 1px solid alpha(@borders, 0.4);
-}
-
 row.thumbnail {
     border: solid 1px @borders;
     box-shadow: 0px 0px 3px alpha(@borders, 0.8);;
@@ -29,28 +25,12 @@ grid-item {
     background-color: transparent;
 }
 
-grid-item.light,
-task-list-view.light taskrow label {
+grid-item.light {
     color: #000003;
 }
 
-task-list-view taskrow:hover {
-    background-color: alpha(#ededed, 0.4);
-}
-
-grid-item.dark,
-task-list-view.dark taskrow,
-task-list-view.dark overlay label,
-task-list-view.dark overlay image {
+grid-item.dark {
     color: #eeeeec;
-}
-
-task-list-view taskrow image {
-    color: #333333;
-}
-
-task-list-view.dark taskrow:hover {
-    background-color: alpha(#393f3f, 0.4);
 }
 
 arrow-frame {
@@ -73,39 +53,33 @@ label.main-title {
     font-size: 28px;
 }
 
-/* priority icons */
+
+/* GtdTaskRow */
+
 taskrow {
-    background-color: @transparent;
+    border-radius: 2px;
+    background-color: @theme_base_color;
+    box-shadow: 0 0 2px alpha(black, 0.33);
 }
 
-taskrow.priority-low {
-    background-color: alpha(#3465a4, 0.2);
+taskrow:dir(ltr) { padding-left: 6px;  }
+taskrow:dir(rtl) { padding-right: 6px; }
+
+taskrow entry {
+    padding: 6px;
+    border: none;
 }
 
-taskrow.priority-low:hover {
-    background-color: alpha(#3465a4, 0.4);
-}
+taskrow.priority-low:dir(ltr)    { border-left:  solid 6px #3465a4; padding-left:  0; }
+taskrow.priority-low:dir(rtl)    { border-right: solid 6px #3465a4; padding-right: 0; }
 
+taskrow.priority-medium:dir(ltr) { border-left:  solid 6px #f57900; padding-left:  0; }
+taskrow.priority-medium:dir(rtl) { border-right: solid 6px #f57900; padding-right: 0; }
 
-taskrow.priority-medium {
-    background-color: alpha(#f57900, 0.2);
-}
+taskrow.priority-hight:dir(ltr)  { border-left:  solid 6px #cc0000; padding-left:  0; }
+taskrow.priority-hight:dir(rtl)  { border-right: solid 6px #cc0000; padding-right: 0; }
 
-taskrow.priority-medium:hover {
-    background-color: alpha(#f57900, 0.4);
-}
-
-taskrow.priority-hight {
-    background-color: alpha(#cc0000, 0.2);
-}
-
-taskrow.priority-hight:hover {
-    background-color: alpha(#cc0000, 0.4);
-}
-
-taskrow.complete label {
-    text-decoration-line: line-through;
-}
+taskrow.complete label { text-decoration-line: line-through; }
 
 /* dnd row */
 dndrow {
@@ -126,4 +100,26 @@ list.extension-list row {
 /* circle button */
 button.circle {
     border-radius: 20px;
+}
+
+/*
+ * Edit Pane
+ */
+
+editpane entry.title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/*
+ * Tasklist view
+ */
+tasklistview.dark emptylistwidget label,
+tasklistview.dark emptylistwidget image {
+    color: white;
+}
+
+tasklistview.light emptylistwidget label,
+tasklistview.light emptylistwidget image {
+    color: black;
 }

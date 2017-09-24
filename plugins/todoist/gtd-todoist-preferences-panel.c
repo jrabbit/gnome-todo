@@ -17,6 +17,7 @@
  */
 
 #include "gtd-todoist-preferences-panel.h"
+
 #include <glib/gi18n.h>
 
 struct _GtdTodoistPreferencesPanel

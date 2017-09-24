@@ -16,9 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "gtd-todo-txt-parser.h"
+#include "gtd-provider-todo-txt.h"
+
 #include <glib/gi18n.h>
-#include <gtd-todo-txt-parser.h>
-#include <gtd-provider-todo-txt.h>
 
 struct _GtdTodoTxtParser
 {

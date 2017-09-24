@@ -21,8 +21,9 @@
 
 #define GOA_API_IS_SUBJECT_TO_CHANGE
 
+#include "gnome-todo.h"
+
 #include <glib.h>
-#include <gnome-todo.h>
 #include <goa/goa.h>
 
 G_BEGIN_DECLS

@@ -20,6 +20,7 @@
 
 #include "gtd-provider-todoist.h"
 #include "gtd-plugin-todoist.h"
+
 #include <rest/oauth2-proxy.h>
 #include <json-glib/json-glib.h>
 #include <string.h>

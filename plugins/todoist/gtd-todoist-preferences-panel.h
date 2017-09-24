@@ -21,8 +21,9 @@
 #ifndef GTD_TODOIST_PREFERENCES_PANEL_H
 #define GTD_TODOIST_PREFERENCES_PANEL_H
 
+#include "gnome-todo.h"
+
 #include <glib.h>
-#include <gnome-todo.h>
 #include <goa/goa.h>
 
 G_BEGIN_DECLS

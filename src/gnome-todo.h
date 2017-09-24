@@ -19,13 +19,13 @@
 #ifndef GNOME_TODO_H
 #define GNOME_TODO_H
 
-#include "engine/gtd-manager.h"
-#include "interfaces/gtd-activatable.h"
-#include "interfaces/gtd-panel.h"
-#include "interfaces/gtd-provider.h"
-#include "notification/gtd-notification.h"
+#include "gtd-activatable.h"
 #include "gtd-enums.h"
+#include "gtd-manager.h"
+#include "gtd-notification.h"
 #include "gtd-object.h"
+#include "gtd-panel.h"
+#include "gtd-provider.h"
 #include "gtd-task.h"
 #include "gtd-task-list.h"
 #include "gtd-task-list-view.h"

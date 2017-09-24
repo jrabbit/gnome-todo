@@ -196,6 +196,8 @@ gtd_provider_popover_class_init (GtdProviderPopoverClass *klass)
   object_class->finalize = gtd_provider_popover_finalize;
   object_class->constructed = gtd_provider_popover_constructed;
 
+  g_type_ensure (GTD_TYPE_PROVIDER_SELECTOR);
+
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/todo/ui/provider-popover.ui");
 
   gtk_widget_class_bind_template_child (widget_class, GtdProviderPopover, change_location_button);

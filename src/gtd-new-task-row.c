@@ -33,7 +33,6 @@ struct _GtdNewTaskRow
   GtkLabel           *list_name_label;
   GtkWidget          *list_selector_button;
   GtkSizeGroup       *sizegroup;
-  GtkStack           *stack;
   GtkListBox         *tasklist_list;
   GtkPopover         *tasklist_popover;
 
@@ -340,7 +339,6 @@ gtd_new_task_row_class_init (GtdNewTaskRowClass *klass)
   gtk_widget_class_bind_template_child (widget_class, GtdNewTaskRow, list_name_label);
   gtk_widget_class_bind_template_child (widget_class, GtdNewTaskRow, list_selector_button);
   gtk_widget_class_bind_template_child (widget_class, GtdNewTaskRow, sizegroup);
-  gtk_widget_class_bind_template_child (widget_class, GtdNewTaskRow, stack);
   gtk_widget_class_bind_template_child (widget_class, GtdNewTaskRow, tasklist_list);
   gtk_widget_class_bind_template_child (widget_class, GtdNewTaskRow, tasklist_popover);
 
@@ -393,7 +391,7 @@ gtd_new_task_row_get_active (GtdNewTaskRow *self)
 {
   g_return_val_if_fail (GTD_IS_NEW_TASK_ROW (self), FALSE);
 
-  return g_str_equal (gtk_stack_get_visible_child_name (self->stack), "entry");
+  return gtk_widget_has_focus (GTK_WIDGET (self->entry));
 }
 
 void
@@ -404,14 +402,8 @@ gtd_new_task_row_set_active (GtdNewTaskRow *self,
 
   if (active)
     {
-      gtk_stack_set_visible_child_name (self->stack, "entry");
       gtk_widget_grab_focus (GTK_WIDGET (self->entry));
       g_signal_emit (self, signals[ENTER], 0);
-    }
-  else
-    {
-      gtk_stack_set_visible_child_name (self->stack, "label");
-      gtk_widget_grab_focus (GTK_WIDGET (self->entry));
     }
 }
 

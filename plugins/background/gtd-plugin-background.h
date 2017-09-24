@@ -19,8 +19,9 @@
 #ifndef GTD_PLUGIN_BACKGROUND_H
 #define GTD_PLUGIN_BACKGROUND_H
 
+#include "gnome-todo.h"
+
 #include <glib.h>
-#include <gnome-todo.h>
 
 G_BEGIN_DECLS
 

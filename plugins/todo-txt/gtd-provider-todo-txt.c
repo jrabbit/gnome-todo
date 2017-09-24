@@ -19,9 +19,9 @@
 #include "gtd-provider-todo-txt.h"
 #include "gtd-plugin-todo-txt.h"
 #include "gtd-todo-txt-parser.h"
+
 #include <string.h>
 #include <stdlib.h>
-
 #include <glib/gi18n.h>
 
 

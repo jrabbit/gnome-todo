@@ -790,6 +790,8 @@ gtd_window_class_init (GtdWindowClass *klass)
                            GTD_WINDOW_MODE_NORMAL,
                            G_PARAM_READWRITE));
 
+  g_type_ensure (GTD_TYPE_NOTIFICATION_WIDGET);
+
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/todo/ui/window.ui");
 
   gtk_widget_class_bind_template_child_private (widget_class, GtdWindow, cancel_selection_button);

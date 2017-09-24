@@ -16,8 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "interfaces/gtd-panel.h"
-#include "interfaces/gtd-provider.h"
 #include "gtd-enum-types.h"
 #include "gtd-list-selector.h"
 #include "gtd-list-selector-grid.h"
@@ -25,6 +23,9 @@
 #include "gtd-list-selector-list.h"
 #include "gtd-list-selector-panel.h"
 #include "gtd-manager.h"
+#include "gtd-panel.h"
+#include "gtd-provider.h"
+#include "gtd-provider-popover.h"
 #include "gtd-task-list.h"
 #include "gtd-task-list-view.h"
 #include "gtd-window.h"
@@ -579,17 +580,9 @@ gtd_list_selector_panel_class_init (GtdListSelectorPanelClass *klass)
   object_class->set_property = gtd_list_selector_panel_set_property;
   object_class->finalize = gtd_list_selector_panel_finalize;
 
-  g_object_class_override_property (object_class,
-                                    PROP_MENU,
-                                    "menu");
-
-  g_object_class_override_property (object_class,
-                                    PROP_NAME,
-                                    "name");
-
-  g_object_class_override_property (object_class,
-                                    PROP_TITLE,
-                                    "title");
+  g_object_class_override_property (object_class, PROP_MENU, "menu");
+  g_object_class_override_property (object_class, PROP_NAME, "name");
+  g_object_class_override_property (object_class, PROP_TITLE, "title");
 
   /**
    * GtdListSelectorPanel::mode:
@@ -620,6 +613,9 @@ gtd_list_selector_panel_class_init (GtdListSelectorPanelClass *klass)
                                                       GTD_TYPE_LIST_SELECTOR_VIEW_TYPE,
                                                       GTD_LIST_SELECTOR_VIEW_GRID,
                                                       G_PARAM_READWRITE));
+
+  g_type_ensure (GTD_TYPE_TASK_LIST_VIEW);
+  g_type_ensure (GTD_TYPE_PROVIDER_POPOVER);
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/todo/ui/list-selector-panel.ui");
 

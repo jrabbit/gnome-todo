@@ -19,8 +19,9 @@
 #ifndef GTD_PLUGIN_TODAY_PANEL_H
 #define GTD_PLUGIN_TODAY_PANEL_H
 
+#include "gnome-todo.h"
+
 #include <glib.h>
-#include <gnome-todo.h>
 
 G_BEGIN_DECLS
 

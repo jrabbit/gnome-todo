@@ -21,10 +21,10 @@
 
 #define GOA_API_IS_SUBJECT_TO_CHANGE 1
 
+#include "gnome-todo.h"
 #include "gtd-provider-eds.h"
 
 #include <glib.h>
-#include <gnome-todo.h>
 #include <goa/goa.h>
 
 G_BEGIN_DECLS
