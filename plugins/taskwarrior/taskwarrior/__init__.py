@@ -100,6 +100,7 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
         return "taskwarrior"
 
     def do_get_icon(self):
+        self.icon = Gio.Icon.new_for_string('network-server-symbolic')
         return self.icon
 
     def do_get_task_lists(self):
