@@ -36,7 +36,6 @@ class TaskDManager(GObject.Object):
         logger.info("%s, %s", task, data)
 
 
-
 class TaskwarriorPopover(Gtk.Popover):
 
     def __init__(self, button):
@@ -80,10 +79,19 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
     enabled = GObject.Property(type=bool, default=True)
     description = GObject.Property(type=str, default="a client for taskd")
     UUID_NAMESPACE = "d9e2c023-85ef-4df4-bff5-b917b40aac27"
-
+    INBOX_NAME = "TW inbox"
     def __init__(self):
         Gtd.Object.__init__(self)
         self.lists = []
+        self.create_inbox()
+
+    def create_inbox(self):
+        # manager = Gtd.Manager.get_default()
+        new_list = Gtd.TaskList.new(self)
+        new_list.set_name(self.INBOX_NAME)
+        # inbox = manager.create_task_list(new_list)
+        self.lists.append(new_list)
+        self.emit("list-added", new_list)
 
     def do_get_description(self):
         tc = TaskdConnection.from_taskrc()
@@ -104,8 +112,7 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
         return self.icon
 
     def do_get_task_lists(self):
-        twtasks = get_tasks()
-        return twtasks
+        return self.lists
 
     def do_get_enabled(self):
         return self.enabled
@@ -119,7 +126,7 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
         twjson = self.to_twjson(task)
         tc = TaskdConnection()
         tc = TaskdConnection.from_taskrc()
-        finalized = "\n\n"+json.dumps(twjson) # no synckey support yet
+        finalized = "\n\n"+json.dumps(twjson)  # no synckey support yet
         tc.put(finalized)
         logger.info(twjson)
 
@@ -128,6 +135,9 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
         out = dict()
         out['description'] = task.get_title()
         out['status'] = "completed" if task.get_complete() else "pending"
+        inlist = task.get_list().get_name()
+        if inlist is not self.INBOX_NAME:
+            out['project'] = inlist
         out['uuid'] = str(uuid.uuid5(
             uuid.UUID(self.UUID_NAMESPACE), task.get_title()))
         created = task.get_creation_date()
@@ -142,12 +152,21 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
         out['modified'] = out['entry']
         return out
 
+    def delete_task(self, task):
+        twjson = self.to_twjson(task)
+        tc = TaskdConnection.from_taskrc()
+        twjson["status"] = "deleted"
+        finalized = "\n\n"+json.dumps(twjson)  # no synckey support yet
+        tc.put(finalized)
+        logger.info(twjson)
+
+
     def do_update_task(self, task):
         logger.info("do_update_task: %s", task.get_title())
         self.send(task)
 
     def do_remove_task(self, task):
-        pass
+        self.delete_task(task)
 
     def do_create_task_list(self, gtdlist):
         """TW doesn't really have tasklists so idk what to do here entirely
@@ -156,7 +175,6 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
         gtdlist.set_is_removable(True)
         self.lists.append(gtdlist)
         self.emit("list-added", gtdlist)
-
 
     def do_update_task_list(self, gtdlist):
         self.emit("list-changed", gtdlist)
@@ -167,6 +185,10 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
         if not subtasks:
             logger.info("Got to be lazy there were no tasks")
             self.emit("list-removed", gtdlist)
+        else:
+            for task in subtasks:
+                self.delete_task(task)
+
 
 class TaskwarriorPlugin(GObject.Object, Gtd.Activatable):
 
