@@ -86,10 +86,23 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
         self.create_inbox()
 
     def create_inbox(self):
-        # manager = Gtd.Manager.get_default()
         new_list = Gtd.TaskList.new(self)
         new_list.set_name(self.INBOX_NAME)
         # inbox = manager.create_task_list(new_list)
+        tc = TaskdConnection.from_taskrc()
+        tasks = tc.pull().data
+        for task in tasks:
+            # make task into gtdtask
+            logger.info(task)
+
+            gtdtask = Gtd.Task.new() # This doesn't work until EDS deps are removed in gtd
+            gtdtask.set_title("timmy")
+            gtdtask.set_list(new_list)
+            # manager = Gtd.Manager.get_default()
+            # manager.create_task(gtdtask) # this triggers a push
+            logger.info("saving task")
+            new_list.save_task(gtdtask)
+            # new_list.emit('task-added', gtdtask)
         self.lists.append(new_list)
         self.emit("list-added", new_list)
 
@@ -124,7 +137,6 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
     def send(self, task):
         "Take a Gnome To-do task and convert and send it to taskd"
         twjson = self.to_twjson(task)
-        tc = TaskdConnection()
         tc = TaskdConnection.from_taskrc()
         finalized = "\n\n"+json.dumps(twjson)  # no synckey support yet
         tc.put(finalized)
