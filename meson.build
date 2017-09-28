@@ -155,10 +155,6 @@ gnome_todo_deps = [
   dependency('gio-2.0', version: '>= 2.43.4'),
   dependency('gmodule-export-2.0'),
   dependency('goa-1.0', version: '>= 3.2.0'),
-  dependency('libecal-1.2', version: '>= 3.13.90'),
-  dependency('libedataserver-1.2', version: '>= 3.17.1'),
-  dependency('libedataserverui-1.2', version: '>= 3.17.1'),
-  dependency('libical', version: '>= 0.43'),
   dependency('libpeas-1.0', version: '>= 1.17'),
   cc.find_library('m', required: true)
 ]
