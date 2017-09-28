@@ -58,7 +58,7 @@ gnome.gtkdoc(
           mkdb_args: [ '--sgml-mode', '--output-format=xml' ],
         html_assets: html_images,
             install: true,
-        install_dir: doc_path
+        install_dir: doc_path,
   gobject_typesfile: meson.project_name() + '.types',
           scan_args: [
     '--rebuild-types',
