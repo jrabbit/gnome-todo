@@ -42,7 +42,8 @@ gboolean      gtd_todo_txt_parser_is_word                         (gchar        
 gint          gtd_todo_txt_parser_get_token_id                    (gchar             *token,
                                                                    gint               last_read);
 
-GtdTask*      gtd_todo_txt_parser_parse_tokens                    (GList             *tokens);
+void          gtd_todo_txt_parser_parse_tokens                    (GtdTask           *task,
+                                                                   GList             *tokens);
 
 gboolean      gtd_todo_txt_parser_validate_token_format           (GList             *tokens);
 

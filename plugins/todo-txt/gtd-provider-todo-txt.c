@@ -274,8 +274,11 @@ gtd_provider_todo_txt_load_tasks (GtdProviderTodoTxt *self)
               continue;
             }
 
-          task = gtd_todo_txt_parser_parse_tokens (tokens);
+          task = gtd_provider_generate_task (GTD_PROVIDER (self));
+          gtd_todo_txt_parser_parse_tokens (task, tokens);
+
           g_hash_table_insert (self->tasks, g_strdup (gtd_task_get_title (task)), task);
+
           list = create_list (self, g_object_get_data (G_OBJECT (task), "list_name"));
           gtd_task_set_list (task, list);
 
