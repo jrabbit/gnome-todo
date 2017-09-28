@@ -136,15 +136,17 @@ default_tasklist_changed_cb (GtdNewTaskRow *self)
 static void
 entry_activated_cb (GtdNewTaskRow *self)
 {
+  GtdProvider *provider;
   GtdTask *new_task;
 
   /* Cannot create empty tasks */
   if (gtk_entry_get_text_length (self->entry) == 0)
     return;
 
-  new_task = gtd_task_new (NULL);
+  provider = gtd_task_list_get_provider (self->selected_tasklist);
+
+  new_task = gtd_provider_generate_task (provider);
   gtd_task_set_title (new_task, gtk_entry_get_text (self->entry));
-  gtd_task_save (new_task);
 
   g_signal_emit (self, signals[CREATE_TASK], 0, new_task, self->selected_tasklist);
 

@@ -22,7 +22,6 @@
 #include "gtd-object.h"
 
 #include <glib-object.h>
-#include <libecal/libecal.h>
 
 G_BEGIN_DECLS
 
@@ -34,24 +33,45 @@ struct _GtdTaskClass
 {
   GtdObjectClass parent;
 
+  gboolean      (*get_complete)                       (GtdTask              *self);
+  void          (*set_complete)                       (GtdTask              *self,
+                                                       gboolean              complete);
+
+  GDateTime*    (*get_creation_date)                  (GtdTask              *self);
+
+  const gchar*  (*get_description)                    (GtdTask              *self);
+  void          (*set_description)                    (GtdTask              *self,
+                                                       const gchar          *description);
+
+  GDateTime*    (*get_due_date)                       (GtdTask              *self);
+  void          (*set_due_date)                       (GtdTask              *self,
+                                                       GDateTime            *due_date);
+
+  gint32        (*get_priority)                       (GtdTask              *self);
+  void          (*set_priority)                       (GtdTask              *self,
+                                                       gint32                priority);
+
+  const gchar*  (*get_title)                          (GtdTask              *self);
+  void          (*set_title)                          (GtdTask              *self,
+                                                       const gchar          *title);
+
   /*< signals >*/
+
   void          (*subtask_added)                      (GtdTask              *self,
                                                        GtdTask              *subtask);
 
   void          (*subtask_removed)                    (GtdTask              *self,
                                                        GtdTask              *subtask);
 
-  gpointer       padding[8];
+  gpointer       padding[6];
 };
 
-GtdTask*            gtd_task_new                      (ECalComponent        *component);
+GtdTask*            gtd_task_new                      (void);
 
 gboolean            gtd_task_get_complete             (GtdTask              *task);
 
 void                gtd_task_set_complete             (GtdTask              *task,
                                                        gboolean              complete);
-
-ECalComponent*      gtd_task_get_component            (GtdTask              *task);
 
 GDateTime*          gtd_task_get_creation_date        (GtdTask              *task);
 
@@ -79,10 +99,6 @@ const gchar*        gtd_task_get_title                (GtdTask              *tas
 
 void                gtd_task_set_title                (GtdTask              *task,
                                                        const gchar          *title);
-
-void                gtd_task_abort                    (GtdTask              *task);
-
-void                gtd_task_save                     (GtdTask              *task);
 
 gint                gtd_task_compare                  (GtdTask              *t1,
                                                        GtdTask              *t2);

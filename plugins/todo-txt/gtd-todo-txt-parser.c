@@ -26,7 +26,8 @@ struct _GtdTodoTxtParser
   GtdObject          parent;
 };
 
-enum {
+enum
+{
   TASK_COMPLETE,
   TASK_PRIORITY,
   TASK_DATE,
@@ -79,10 +80,7 @@ gtd_todo_txt_parser_get_date (gchar *token)
   month = g_date_get_month (&date);
   day = g_date_get_day (&date);
 
-  dt = g_date_time_new_utc (year,
-                            month,
-                            day,
-                            0, 0, 0);
+  dt = g_date_time_new_utc (year, month, day, 0, 0, 0);
 
   return dt;
 }
@@ -159,27 +157,25 @@ gtd_todo_txt_parser_get_token_id (gchar *token,
   return -1;
 }
 
-GtdTask*
-gtd_todo_txt_parser_parse_tokens (GList *tokens)
+void
+gtd_todo_txt_parser_parse_tokens (GtdTask *task,
+                                  GList   *tokens)
 {
-  GtdTask *task;
   GDateTime *dt;
   GString *list_name;
   GString *title;
   GString *root_task_name;
-  gboolean is_subtask;
-
   GList *l;
+  gboolean is_subtask;
   gint last_read_token;
   gint token_id;
 
-  dt = NULL;
   l = NULL;
-  task = create_task ();
-  list_name = g_string_new (NULL);
-  title = g_string_new (NULL);
-  root_task_name = g_string_new (NULL);
+  dt = NULL;
   is_subtask = FALSE;
+  title = g_string_new (NULL);
+  list_name = g_string_new (NULL);
+  root_task_name = g_string_new (NULL);
 
   last_read_token = TASK_COMPLETE;
 
@@ -235,7 +231,7 @@ gtd_todo_txt_parser_parse_tokens (GList *tokens)
           break;
 
         default:
-          return NULL;
+          return;
         }
     }
 
@@ -251,8 +247,6 @@ gtd_todo_txt_parser_parse_tokens (GList *tokens)
   g_string_free (root_task_name, TRUE);
   g_string_free (list_name, TRUE);
   g_string_free (title, TRUE);
-
-  return task;
 }
 
 gboolean

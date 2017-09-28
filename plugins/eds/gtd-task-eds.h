@@ -1,6 +1,6 @@
-/* gtd-provider-todo-txt.h
+/* gtd-task-eds.h
  *
- * Copyright (C) 2016 Rohit Kaushik <kaushikrohit325@gmail.com>
+ * Copyright (C) 2017 Georges Basile Stavracas Neto <georges.stavracas@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,21 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTD_PROVIDER_TODO_TXT_H
-#define GTD_PROVIDER_TODO_TXT_H
+#ifndef GTD_TASK_EDS_H
+#define GTD_TASK_EDS_H
 
 #include "gnome-todo.h"
 
-#include <glib.h>
+#include <libecal/libecal.h>
 
 G_BEGIN_DECLS
 
-#define GTD_TYPE_PROVIDER_TODO_TXT (gtd_provider_todo_txt_get_type())
+#define GTD_TYPE_TASK_EDS (gtd_task_eds_get_type())
 
-G_DECLARE_FINAL_TYPE (GtdProviderTodoTxt, gtd_provider_todo_txt, GTD, PROVIDER_TODO_TXT, GtdObject)
+G_DECLARE_FINAL_TYPE (GtdTaskEds, gtd_task_eds, GTD, TASK_EDS, GtdTask)
 
-GtdProviderTodoTxt*    gtd_provider_todo_txt_new                     (GFile         *source_file);
+GtdTask*             gtd_task_eds_new                            (ECalComponent      *component);
+
+ECalComponent*       gtd_task_eds_get_component                  (GtdTaskEds         *self);
 
 G_END_DECLS
 
-#endif /* GTD_PROVIDER_TODO_TXT_H */
+#endif /* GTD_TASK_EDS_H */
+
