@@ -54,7 +54,15 @@ static guint signals[NUM_SIGNALS] = { 0, };
 static GtdTask*
 gtd_provider_default_generate_task (GtdProvider *self)
 {
-  return gtd_task_new ();
+  g_autofree gchar *uuid;
+  GtdTask *task;
+
+  uuid = g_uuid_string_random ();
+
+  task = gtd_task_new ();
+  gtd_object_set_uid (GTD_OBJECT (task), uuid);
+
+  return task;
 }
 
 static void
