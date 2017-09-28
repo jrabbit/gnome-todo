@@ -75,6 +75,8 @@ struct _GtdProviderInterface
 
   void               (*set_default_task_list)                    (GtdProvider        *provider,
                                                                   GtdTaskList        *list);
+
+  GtdTask*           (*generate_task)                            (GtdProvider        *self);
 };
 
 const gchar*         gtd_provider_get_id                         (GtdProvider        *provider);
@@ -113,6 +115,8 @@ GtdTaskList*         gtd_provider_get_default_task_list          (GtdProvider   
 
 void                 gtd_provider_set_default_task_list          (GtdProvider        *provider,
                                                                   GtdTaskList        *list);
+
+GtdTask*             gtd_provider_generate_task                  (GtdProvider        *self);
 
 G_END_DECLS
 

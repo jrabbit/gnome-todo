@@ -1102,3 +1102,19 @@ gtd_provider_eds_set_default_task_list (GtdProviderEds *provider,
 
   g_object_notify (G_OBJECT (provider), "default-task-list");
 }
+
+GtdTask*
+gtd_provider_eds_generate_task (GtdProviderEds *self)
+{
+  ECalComponent *component;
+  GtdTask *task;
+
+  component = e_cal_component_new ();
+  e_cal_component_set_new_vtype (component, E_CAL_COMPONENT_TODO);
+
+  task = gtd_task_eds_new (component);
+
+  g_object_unref (component);
+
+  return task;
+}

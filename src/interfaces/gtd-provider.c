@@ -17,6 +17,7 @@
  */
 
 #include "gtd-provider.h"
+#include "gtd-task.h"
 #include "gtd-task-list.h"
 
 /**
@@ -45,9 +46,22 @@ enum
 
 static guint signals[NUM_SIGNALS] = { 0, };
 
+
+/*
+ * Default implementations
+ */
+
+static GtdTask*
+gtd_provider_default_generate_task (GtdProvider *self)
+{
+  return gtd_task_new ();
+}
+
 static void
 gtd_provider_default_init (GtdProviderInterface *iface)
 {
+  iface->generate_task = gtd_provider_default_generate_task;
+
   /**
    * GtdProvider::enabled:
    *
@@ -429,4 +443,21 @@ gtd_provider_set_default_task_list (GtdProvider *provider,
   g_return_if_fail (GTD_PROVIDER_GET_IFACE (provider)->set_default_task_list);
 
   return GTD_PROVIDER_GET_IFACE (provider)->set_default_task_list (provider, list);
+}
+
+/**
+ * gtd_provider_generate_task:
+ * @provider: a #GtdProvider
+ *
+ * Creates a new, empty #GtdTask.
+ *
+ * Returns: (transfer full): a #GtdTask
+ */
+GtdTask*
+gtd_provider_generate_task (GtdProvider *self)
+{
+  g_return_val_if_fail (GTD_IS_PROVIDER (self), NULL);
+  g_return_val_if_fail (GTD_PROVIDER_GET_IFACE (self)->generate_task, NULL);
+
+  return GTD_PROVIDER_GET_IFACE (self)->generate_task (self);
 }

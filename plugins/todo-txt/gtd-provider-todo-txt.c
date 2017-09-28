@@ -289,7 +289,7 @@ gtd_provider_todo_txt_load_tasks (GtdProviderTodoTxt *self)
                 }
               else
                 {
-                  parent_task = gtd_task_new ();
+                  parent_task = gtd_provider_generate_task (GTD_PROVIDER (self));
                   gtd_task_set_list (parent_task, list);
                   gtd_task_set_title (parent_task, g_object_get_data (G_OBJECT (task), "root_task_name"));
 
