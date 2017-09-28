@@ -95,7 +95,7 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
             # make task into gtdtask
             logger.info(task)
 
-            gtdtask = Gtd.Task() # This doesn't work until EDS deps are removed in gtd
+            gtdtask = Gtd.Task()
             gtdtask.set_title("timmy")
             gtdtask.set_list(new_list)
             # manager = Gtd.Manager.get_default()
@@ -109,9 +109,6 @@ class TaskwarriorProvider(Gtd.Object, Gtd.Provider):
     def do_get_description(self):
         tc = TaskdConnection.from_taskrc()
         return "TaskWarrior on {}".format(tc.server)
-
-    def do_generate_task(self):
-        logger.info("do_generate_task")
 
     @GObject.Property(type=Gtd.TaskList)
     def default_task_list(self):
