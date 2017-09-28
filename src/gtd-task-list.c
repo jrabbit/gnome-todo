@@ -21,7 +21,6 @@
 #include "gtd-task-list.h"
 
 #include <glib/gi18n.h>
-#include <libecal/libecal.h>
 
 /**
  * SECTION:gtd-task-list

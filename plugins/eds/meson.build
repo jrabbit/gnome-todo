@@ -2,6 +2,20 @@ plugin_name = 'eds'
 
 plugins_ldflags += ['-Wl,--undefined=gtd_plugin_eds_register_types']
 
+
+################
+# Dependencies #
+################
+
+eds_plugin_deps = [
+  dependency('libecal-1.2', version: '>= 3.13.90'),
+  dependency('libedataserver-1.2', version: '>= 3.17.1'),
+  dependency('libedataserverui-1.2', version: '>= 3.17.1'),
+  dependency('libical', version: '>= 0.43'),
+]
+
+eds_plugin_deps += gnome_todo_deps
+
 sources = files(
   'gtd-plugin-' + plugin_name + '.c',
   'gtd-provider-' + plugin_name + '.c',
@@ -15,7 +29,7 @@ plugins_libs += static_library(
           plugin_name,
               sources: sources,
   include_directories: plugins_incs,
-         dependencies: gnome_todo_deps
+         dependencies: eds_plugin_deps
 )
 
 plugin_data = plugin_name + '.plugin'
