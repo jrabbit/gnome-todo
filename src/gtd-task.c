@@ -306,7 +306,7 @@ gtd_task_real_get_due_date (GtdTask *self)
 {
   GtdTaskPrivate *priv = gtd_task_get_instance_private (self);
 
-  return priv->due_date;
+  return priv->due_date ? g_date_time_ref (priv->due_date) : NULL;
 }
 
 static void
